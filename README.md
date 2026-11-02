@@ -2,11 +2,13 @@
 
 Fork modernizado do [Bygfoot](https://gitlab.com/bygfoot/bygfoot): gerenciador de futebol offline, com interface nova e partida acompanhada em 2D, para macOS, Windows e Linux.
 
-**Estado:** Fase 0 (spike e diagnóstico). Nada aqui é um jogo jogável ainda.
+**Estado:** Fase 1 concluída na branch `fase-1-nucleo` (núcleo headless nos 3 sistemas), aguardando merge. Nada aqui é um jogo jogável ainda.
 
 - Plano: `ROADMAP_BYGFOOT_MODERNO.md`
 - Regras do projeto: `CLAUDE.md`
-- Plano da fase atual: `docs/superpowers/plans/2026-11-01-fase-0-spike-diagnostico.md`
+- Plano da Fase 1: `docs/superpowers/plans/2026-11-02-fase-1-nucleo-3-sistemas.md`
+- Decisões: `docs/adr/` (ADR-001 origem do código; ADR-002 determinismo entre sistemas)
+- Remendos sobre o upstream: `patches/MANIFEST.md` (aplicados a uma cópia por `tools/apply-patches.sh`)
 
 ## Licença
 

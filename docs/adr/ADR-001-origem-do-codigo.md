@@ -1,7 +1,7 @@
 # ADR-001: origem do código de simulação (Caminho A ou B)
 
 - Data: 2026-11-01
-- Estado: **proposta para aprovação da pessoa responsável**
+- Estado: **proposta para aprovação da pessoa responsável** (atualizado ao fim da Fase 1, 2026-11-02)
 - Upstream avaliado: `9b7b0062` (ver `docs/spikes/upstream-pin.md`)
 
 ## Contexto
@@ -24,7 +24,7 @@ Tudo rodado em macOS arm64 nesta sessão (detalhes em `docs/spikes/`):
 
 O Caminho B (motor em Rust) continua como plano B, acionado se uma das condições abaixo falhar.
 
-**Resultado do G1: parcial. Cumprido para "simular sem janela, com resultado repetível" em macOS, Linux e Windows, medido no CI do GitHub (execução 41377028975: build do upstream, upstream intacto e `tests/spike/test-headless.sh` verdes nos três). Não cumprido: "dados versionados" (o upstream não versiona o save). Não verificado: se o mesmo seed dá o mesmo resultado ENTRE sistemas (cada sistema só foi comparado consigo mesmo). A decisão acima vale enquanto essas condições forem resolvidas na Fase 1.**
+**Resultado do G1 após a Fase 1: cumprido nos pontos testados, com ressalvas.** Simular sem janela com resultado repetível funciona em macOS, Linux e Windows (CI). A igualdade ENTRE sistemas **não vem de graça**: o upstream original diverge entre eles em 6 de 6 seeds. Com 3 remendos (`patches/0001..0003`, ver [ADR-002](ADR-002-determinismo-entre-sistemas.md)) os três sistemas dão a mesma partida (6 seeds de ouro, execução 41472997729; 16 seeds por 30 semanas, execução 41476866071). "Dados versionados" passou a existir como contrato nosso: `MatchTimeline v1` (`schemas/match-timeline-v1.schema.json`, teste de contrato nos 3 sistemas, execução 41481640595); o save do upstream continua sem versão. A decisão acima se mantém.
 
 ## O que o G1 NÃO provou (condições para manter a decisão)
 
@@ -32,15 +32,17 @@ Note: "dados versionados" aparece aqui como ausência no upstream. Ainda não fo
 
 | Condição | Estado | Se falhar |
 |---|---|---|
-| Rodar em Windows e Linux | **verificado no CI** (macOS, Ubuntu e Windows via MSYS2/MinGW64): compila e passa os testes do spike. Windows precisou de contornos (ver `docs/spikes/headless-result.md`) | manter o CI verde; resultados idênticos entre sistemas ainda não foram comparados |
-| Dados versionados | **o save do upstream não declara versão** (a tag de versão do formato antigo está comentada em `load_save.c:206`; não há `PRAGMA user_version`) | o `SimulationAdapter` adiciona versão de contrato por cima; o formato interno do upstream continua sendo dele |
+| Rodar em Windows e Linux | **verificado no CI** (macOS, Ubuntu e Windows via MSYS2/MinGW64): compila e passa os testes. **Resultados idênticos entre sistemas: só com os remendos 0001..0003** (ADR-002); sem eles divergem | manter o CI verde e as baterias de seeds nos 3 sistemas |
+| Dados versionados | **contrato `MatchTimeline v1` criado e testado** (versão no documento). O save do upstream continua sem versão (`load_save.c:206`, sem `PRAGMA user_version`); versionar o save fica para a Fase 2 | o `SimulationAdapter` versiona por cima; o formato interno do upstream continua sendo dele |
 | Lances em tempo real | os lances saem todos juntos no fim; a hipótese de geração lance a lance não foi verificada em execução | a animação usa a linha do tempo completa; pausar e mexer na tática no meio do jogo (Fase 3) pode exigir um remendo ou outro desenho |
 | Partida avulsa por ids | o motor simula o calendário de um país; só a última partida do usuário guarda os lances | remendo no upstream ou "gravar lances" para qualquer partida |
 | Licença | upstream tem 178 arquivos GPL-2.0-or-later e 23 sem cabeçalho (`docs/LEGAL_REVIEW.md`) | decisão jurídica antes de distribuir |
 
 ## Consequências
 
-- Remendos no upstream: **candidatos listados, nenhum aplicado**. São 7 (`docs/spikes/headless-result.md`): locale do JSON, `--random-seed` com sinal, busca de `support_files`/`-s`, lances de qualquer partida, comando de exportação de lances, avisos de comentário, saída em `stdout.log` no Windows. Os três primeiros já têm contorno no wrapper.
+- Remendos no upstream: **3 aplicados** (`patches/0001..0003`, todos de determinismo entre sistemas, ADR-002) sobre uma cópia; `upstream/` segue intacto. **Candidatos ainda não aplicados**: 7 (`docs/spikes/headless-result.md`): locale do JSON, `--random-seed` com sinal, busca de `support_files`/`-s`, lances de qualquer partida, comando de exportação de lances, avisos de comentário, saída em `stdout.log` no Windows. Os três primeiros já têm contorno no wrapper.
+- Atualizar o upstream tem processo e medida: `tools/sync-upstream.sh` e `.github/workflows/sync-upstream.yml`. Entre a `3.0.0` e o commit fixado (10 commits) as 6 seeds de ouro não mudaram ([sync-experiment](../spikes/sync-experiment.md)).
+- Limites conhecidos do determinismo (ADR-002): cobertura só dos caminhos exercitados, `powf` com 1 ulp de diferença entre bibliotecas matemáticas. Saves e replays só são portáveis entre builds com os remendos.
 - O binário original continua ligado ao GTK. O produto empacotado carregaria as bibliotecas GTK, a menos que a Fase 1 extraia uma biblioteca. Isso pesa no instalador de Windows e macOS.
 - O pós-processamento em Python do spike é descartável; o produto fará em Rust.
 
