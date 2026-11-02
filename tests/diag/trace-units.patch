@@ -1,0 +1,20 @@
+--- a/src/live_game.c
++++ b/src/live_game.c
+@@ -23,6 +23,8 @@
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+ 
++#include <stdlib.h>
++#include <stdio.h>
+ #include "callbacks.h"
+ #include "fixture.h"
+ #include "free.h"
+@@ -251,6 +253,8 @@
+ 	    live_game_pit_teams(live_game, new, const_float("float_live_game_scoring_chance_team_exponent"));
+ 
+     foul_event_prob = game_get_foul_prob(live_game, new);
++
++    { const char *tp = getenv("BF_TRACE"); if(tp) { FILE *tf = fopen(tp, "a"); if(tf) { fprintf(tf, "U min=%d r=%.9g foul=%.9g inj=%.9g stad=%.9g poss=%.9g chance=%.9g area=%d\n", new->minute, rndom, foul_event_prob, injury_event_prob, stadium_event, possession_change, scoring_chance, new->area); fclose(tf); } } }
+ 
+     if(rndom < foul_event_prob)
+ 	new->event.type = LIVE_GAME_EVENT_FOUL;
