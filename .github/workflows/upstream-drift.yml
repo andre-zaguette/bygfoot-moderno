@@ -1,0 +1,39 @@
+# Mede se as seeds de ouro mudam entre duas versões do upstream, no mesmo sistema e compilador (Ubuntu), sem remendos.
+# Base (GTK2) = tag 3.0.0; alvo = commit fixado em tools/upstream-pin.txt. É a medida do risco de acompanhar o upstream.
+name: upstream-drift
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/upstream-drift.yml']
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dependências
+        run: sudo apt-get update && sudo apt-get install -y cmake libgtk2.0-dev libgtk-3-dev libjson-c-dev libsqlite3-dev gettext pkg-config python3
+      - name: Obter o upstream (3.0.0 e o commit fixado)
+        run: |
+          PIN=$(sed -n 's/^commit //p' tools/upstream-pin.txt)
+          git clone --no-checkout https://gitlab.com/bygfoot/bygfoot.git /tmp/up
+          git -C /tmp/up worktree add /tmp/base 767acfa30a45e7fa091e14745cf53761482cb9d2
+          git -C /tmp/up worktree add /tmp/target "$PIN"
+          git -C /tmp/up log --oneline 767acfa30a45e7fa091e14745cf53761482cb9d2.."$PIN" | tee drift-commits.txt
+      - name: Compilar a base (3.0.0, GTK2)
+        run: cmake -S /tmp/base -B /tmp/build-base && cmake --build /tmp/build-base -j 4
+      - name: Compilar o alvo (GTK3)
+        run: cmake -S /tmp/target -B /tmp/build-target && cmake --build /tmp/build-target -j 4
+      - name: Seeds de ouro nas duas versões
+        run: |
+          BYGFOOT_BIN=/tmp/build-base/bygfoot BYGFOOT_SUPPORT=/tmp/base/support_files python3 -I tools/golden-hash.py > drift-base.txt || echo "base falhou"
+          BYGFOOT_BIN=/tmp/build-target/bygfoot BYGFOOT_SUPPORT=/tmp/target/support_files python3 -I tools/golden-hash.py > drift-target.txt || echo "alvo falhou"
+          wc -l drift-base.txt drift-target.txt
+      - name: Comparar
+        continue-on-error: true
+        run: python3 -I tools/compare-golden.py drift-base.txt drift-target.txt | tee drift-result.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drift
+          path: |
+            drift-*.txt
