@@ -45,4 +45,8 @@ run; [ $? = 2 ] || fail "DESTINO existente: esperado 2"
 
 mk; run; [ $? = 0 ] || fail "sem remendos: esperado 0"
 diff -r "$T/u" "$T/d" > /dev/null || fail "sem remendos: cópia deve ser idêntica"
+# pasta pai do DESTINO inexistente: deve ser criada
+mk; good_patch; echo '| 0001-x.patch | src/f.c | teste | 1 |' >> "$T/p/MANIFEST.md"
+UPSTREAM_DIR="$T/u" PATCH_DIR="$T/p" sh "$A" "$T/novo/pai/d" > "$T/o" 2>&1; [ $? = 0 ] || fail "pai inexistente: esperado 0 ($(cat "$T/o"))"
+[ "$(sed -n 2p "$T/novo/pai/d/src/f.c")" = B ] || fail "pai inexistente: remendo não aplicado"
 echo "OK"

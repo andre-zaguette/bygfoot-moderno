@@ -20,6 +20,7 @@ for f in "$PD"/*.patch; do
   echo "$listed" | grep -qx "$b" || bad "$b não está no MANIFEST.md"
 done
 
+mkdir -p "$(dirname "$DEST")" || bad "não consegui criar a pasta de $DEST"
 cp -R "$UP" "$DEST" || bad "falha ao copiar $UP"
 # 1º passa tudo em seco (a cópia só é alterada se todos encaixarem); como remendos podem depender uns dos outros, o seco é feito numa cópia descartável
 DRY=$(mktemp -d) || bad "sem diretório temporário"
