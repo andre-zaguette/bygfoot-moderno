@@ -1,0 +1,26 @@
+--- a/src/transfer.c
++++ b/src/transfer.c
+@@ -312,12 +312,17 @@
+ 			const_int("int_transfer_max_players") - transfer_list->len);
+     
+     for(i=0;i<number_of_new;i++)
+-	transfer_add_player(
+-	    transfer_player_get_new(
+-		(math_rnd(0, 1) < const_float("float_transfer_cup_percentage") &&
+-                 country.allcups->len)),
+-	    math_rndi(const_int("int_transfer_time_lower"),
+-		      const_int("int_transfer_time_upper")));
++    {
++	/* BYGFOOT_PATCH: a ordem de avaliação dos argumentos é indefinida em C e os dois
++	   consomem sorteios; fixa da esquerda para a direita (ordem do clang). */
++	gboolean from_cup = (math_rnd(0, 1) < const_float("float_transfer_cup_percentage") &&
++			     country.allcups->len);
++	Player *new_player = transfer_player_get_new(from_cup);
++	gint list_time = math_rndi(const_int("int_transfer_time_lower"),
++				   const_int("int_transfer_time_upper"));
++
++	transfer_add_player(new_player, list_time);
++    }
+ }
+ 
+ /** Select a random player for the transfer list. */
