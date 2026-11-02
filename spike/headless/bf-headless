@@ -1,0 +1,48 @@
+#!/bin/sh
+# bf-headless --seed N [--team NOME] [--weeks K] [--country SID]
+# Roda o binário ORIGINAL do Bygfoot em modo console (--json), sem janela, e imprime
+# uma linha JSON por lance (LiveGameUnit) da última partida do time do usuário,
+# terminando com {"final":[casa,fora], ...}.
+# Saída: 0 ok | 2 argumentos inválidos | 3 o motor falhou.
+# Variáveis: BYGFOOT_BIN (binário), BYGFOOT_SUPPORT (pasta support_files).
+HERE=$(cd "$(dirname "$0")" && pwd)
+ROOT=$(cd "$HERE/../.." && pwd)
+BIN=${BYGFOOT_BIN:-$ROOT/build/upstream/bygfoot}
+SUPPORT=${BYGFOOT_SUPPORT:-$ROOT/upstream/support_files}
+seed=; team="V. Gotu"; weeks=2; country=faroe_islands
+die() { echo "bf-headless: $1" >&2; exit "${2:-2}"; }
+while [ $# -gt 0 ]; do
+  case $1 in
+    --seed) seed=$2; shift 2 ;;
+    --team) team=$2; shift 2 ;;
+    --weeks) weeks=$2; shift 2 ;;
+    --country) country=$2; shift 2 ;;
+    *) die "argumento desconhecido: $1" ;;
+  esac
+done
+[ -n "$seed" ] || die "falta --seed"
+case $seed in ''|*[!0-9]*) die "seed deve ser inteiro sem sinal: '$seed'" ;; esac
+# --random-seed do upstream é inteiro COM sinal; acima do limite ele avisa e usa seed aleatória.
+[ ${#seed} -le 10 ] && [ "$seed" -le 2147483647 ] 2>/dev/null || die "seed fora do intervalo 0..2147483647: $seed"
+case $weeks in ''|*[!0-9]*) die "weeks deve ser inteiro: '$weeks'" ;; esac
+[ -x "$BIN" ] || die "binário não encontrado: $BIN (rode tools/build-upstream.sh)" 3
+[ -d "$SUPPORT" ] || die "support_files não encontrado: $SUPPORT" 3
+
+T=$(mktemp -d) || die "sem diretório temporário" 3
+trap 'rm -rf "$T"' EXIT INT TERM
+mkdir -p "$T/home" "$T/saves"
+ln -s "$SUPPORT" "$T/support_files"   # o motor procura support_files na pasta atual
+cat > "$T/cmds.json" <<JSON
+{ "commands" : [
+  { "add_user" : { "username" : "spike", "country" : "$country", "team" : "$team" }},
+  { "start_bygfoot" : { }},
+  { "simulate_games" : { "weeks" : $weeks }},
+  { "dump_bygfoot" : { }}
+]}
+JSON
+(cd "$T" && env -u DISPLAY LC_ALL=C LANG=C HOME="$T/home" "$BIN" --json "$T/cmds.json" --random-seed "$seed" > "$T/out.json" 2> "$T/err.txt")
+rc=$?
+if [ $rc -ne 0 ] || [ ! -s "$T/out.json" ]; then
+  echo "bf-headless: o motor saiu com $rc" >&2; head -c 2000 "$T/err.txt" >&2; exit 3
+fi
+python3 -I "$HERE/extract_units.py" "$T/out.json" || { echo "bf-headless: falha ao extrair lances" >&2; exit 3; }
