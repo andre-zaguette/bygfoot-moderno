@@ -1,0 +1,438 @@
+== 2026-11-01 22:25:50 cmake cmake version 4.4.5 | Apple clang version 21.0.0 (clang-2100.3.34.2)
+-- The C compiler identification is AppleClang 21.0.0.21000334
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found SQLite3: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libsqlite3.tbd (found version "3.54.0")
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.9")
+-- Checking for module 'glib-2.0'
+--   Found glib-2.0, version 2.90.1
+Foundglib-2.0
+-- Checking for module 'gtk+-3.0'
+--   Found gtk+-3.0, version 3.24.52
+-- Checking for modules ''
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+Please specify at least one package name on the command line.
+-- Found ZLIB: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libz.tbd (found version "1.2.12")
+-- Looking for json_object_new_array_ext
+-- Looking for json_object_new_array_ext - found
+-- Looking for json_object_object_add_ex
+-- Looking for json_object_object_add_ex - found
+-- Found Gettext: /opt/homebrew/bin/msgmerge (found version "1.0")
+-- Configuring done (2.0s)
+CMake Warning (author) at CMakeLists.txt:158 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at CMakeLists.txt:158 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at CMakeLists.txt:158 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at CMakeLists.txt:158 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at CMakeLists.txt:158 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at CMakeLists.txt:158 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at CMakeLists.txt:158 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+-- Generating done (0.1s)
+-- Build files have been written to: <repo>/build/upstream
+[  3%] Generating bg.gmo
+[  3%] Generating da.gmo
+[  3%] Generating de.gmo
+[  3%] Building C object CMakeFiles/bygfoot.dir/src/bet.c.o
+[  3%] Built target pofiles_2
+[  3%] Built target pofiles_3
+[  3%] Built target pofiles_1
+[  4%] Building C object CMakeFiles/bygfoot.dir/src/bygfoot.c.o
+[  5%] Generating el.gmo
+[  6%] Generating es.gmo
+[  7%] Building C object CMakeFiles/bygfoot.dir/src/callback_func.c.o
+[  7%] Built target pofiles_5
+[  7%] Built target pofiles_4
+[  8%] Generating fr.gmo
+[  9%] Generating it.gmo
+[  9%] Built target pofiles_6
+[  9%] Built target pofiles_7
+[ 11%] Generating pl.gmo
+[ 11%] Generating nl.gmo
+[ 11%] Built target pofiles_8
+[ 11%] Built target pofiles_9
+[ 12%] Building C object CMakeFiles/bygfoot.dir/src/callbacks.c.o
+[ 14%] Generating pt_BR.gmo
+[ 14%] Generating pt_PT.gmo
+[ 15%] Building C object CMakeFiles/bygfoot.dir/src/competition.c.o
+[ 15%] Built target pofiles_11
+[ 15%] Built target pofiles_10
+[ 17%] Generating ro.gmo
+[ 17%] Generating sv.gmo
+[ 17%] Built target pofiles_13
+[ 17%] Built target pofiles_12
+[ 18%] Building C object CMakeFiles/bygfoot.dir/src/country.c.o
+[ 19%] Generating tr.gmo
+[ 19%] Built target pofiles_14
+<repo>/upstream/src/callbacks.c:277:12: warning: 51 enumeration values not handled in switch: 'STATUS_NONE', 'STATUS_MAIN', 'STATUS_SHOW_LIVE_GAME'... [-Wswitch]
+  277 |     switch(gui_get_status(bygfoot->gui))
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/callbacks.c:277:12: note: add missing switch cases
+  277 |     switch(gui_get_status(bygfoot->gui))
+      |            ^
+<repo>/upstream/src/callbacks.c:308:12: warning: 51 enumeration values not handled in switch: 'STATUS_NONE', 'STATUS_MAIN', 'STATUS_SHOW_LIVE_GAME'... [-Wswitch]
+  308 |     switch(gui_get_status(bygfoot->gui))
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/callbacks.c:308:12: note: add missing switch cases
+  308 |     switch(gui_get_status(bygfoot->gui))
+      |            ^
+<repo>/upstream/src/callbacks.c:338:12: warning: 50 enumeration values not handled in switch: 'STATUS_NONE', 'STATUS_MAIN', 'STATUS_SHOW_LIVE_GAME'... [-Wswitch]
+  338 |     switch(gui_get_status(bygfoot->gui))
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/callbacks.c:338:12: note: add missing switch cases
+  338 |     switch(gui_get_status(bygfoot->gui))
+      |            ^
+<repo>/upstream/src/callbacks.c:370:12: warning: 50 enumeration values not handled in switch: 'STATUS_NONE', 'STATUS_MAIN', 'STATUS_SHOW_LIVE_GAME'... [-Wswitch]
+  370 |     switch(gui_get_status(bygfoot->gui))
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/callbacks.c:370:12: note: add missing switch cases
+  370 |     switch(gui_get_status(bygfoot->gui))
+      |            ^
+<repo>/upstream/src/callbacks.c:429:12: warning: 48 enumeration values not handled in switch: 'STATUS_NONE', 'STATUS_SHOW_LIVE_GAME', 'STATUS_LIVE_GAME_PAUSE'... [-Wswitch]
+  429 |     switch(gui_get_status(bygfoot->gui))
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/callbacks.c:429:12: note: add missing switch cases
+  429 |     switch(gui_get_status(bygfoot->gui))
+      |            ^
+5 warnings generated.
+[ 20%] Generating zh.gmo
+[ 21%] Building C object CMakeFiles/bygfoot.dir/src/cup.c.o
+[ 22%] Building C object CMakeFiles/bygfoot.dir/src/debug.c.o
+[ 22%] Built target pofiles_15
+[ 23%] Building C object CMakeFiles/bygfoot.dir/src/file.c.o
+[ 24%] Building C object CMakeFiles/bygfoot.dir/src/finance.c.o
+[ 25%] Building C object CMakeFiles/bygfoot.dir/src/fixture.c.o
+[ 26%] Building C object CMakeFiles/bygfoot.dir/src/free.c.o
+[ 27%] Building C object CMakeFiles/bygfoot.dir/src/game.c.o
+[ 28%] Building C object CMakeFiles/bygfoot.dir/src/game_gui.c.o
+[ 29%] Building C object CMakeFiles/bygfoot.dir/src/gui.c.o
+[ 30%] Building C object CMakeFiles/bygfoot.dir/src/interface.c.o
+[ 31%] Building C object CMakeFiles/bygfoot.dir/src/job.c.o
+[ 32%] Building C object CMakeFiles/bygfoot.dir/src/language.c.o
+<repo>/upstream/src/gui.c:215:54: warning: passing 'const OptionList *' to parameter of type 'OptionList *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  215 |     return option_int("int_opt_user_show_live_game", &user->options);
+      |                                                      ^~~~~~~~~~~~~~
+<repo>/upstream/src/option.h:75:43: note: passing argument to parameter 'optionlist' here
+   75 | option_int(const gchar *name, OptionList *optionlist);
+      |                                           ^
+1 warning generated.
+[ 33%] Building C object CMakeFiles/bygfoot.dir/src/league.c.o
+[ 34%] Building C object CMakeFiles/bygfoot.dir/src/lg_commentary.c.o
+[ 35%] Building C object CMakeFiles/bygfoot.dir/src/live_game.c.o
+[ 36%] Building C object CMakeFiles/bygfoot.dir/src/load_save.c.o
+[ 37%] Building C object CMakeFiles/bygfoot.dir/src/main.c.o
+[ 38%] Building C object CMakeFiles/bygfoot.dir/src/maths.c.o
+[ 39%] Building C object CMakeFiles/bygfoot.dir/src/misc.c.o
+[ 40%] Building C object CMakeFiles/bygfoot.dir/src/misc2_callback_func.c.o
+[ 41%] Building C object CMakeFiles/bygfoot.dir/src/misc2_interface.c.o
+[ 42%] Building C object CMakeFiles/bygfoot.dir/src/misc2_callbacks.c.o
+<repo>/upstream/src/misc.c:1009:51: warning: if statement has empty body [-Wempty-body]
+ 1009 |        if (input->token != STRAT_COND_CLOSE_PAREN);
+      |                                                   ^
+<repo>/upstream/src/misc.c:1009:51: note: put the semicolon on a separate line to silence this warning
+1 warning generated.
+[ 43%] Building C object CMakeFiles/bygfoot.dir/src/misc3_callbacks.c.o
+[ 44%] Building C object CMakeFiles/bygfoot.dir/src/misc3_interface.c.o
+[ 45%] Building C object CMakeFiles/bygfoot.dir/src/misc_callback_func.c.o
+[ 46%] Building C object CMakeFiles/bygfoot.dir/src/misc_callbacks.c.o
+[ 47%] Building C object CMakeFiles/bygfoot.dir/src/misc_interface.c.o
+[ 48%] Building C object CMakeFiles/bygfoot.dir/src/name.c.o
+[ 48%] Building C object CMakeFiles/bygfoot.dir/src/news.c.o
+[ 49%] Building C object CMakeFiles/bygfoot.dir/src/option.c.o
+[ 50%] Building C object CMakeFiles/bygfoot.dir/src/option_gui.c.o
+[ 51%] Building C object CMakeFiles/bygfoot.dir/src/options_callbacks.c.o
+[ 52%] Building C object CMakeFiles/bygfoot.dir/src/options_interface.c.o
+[ 53%] Building C object CMakeFiles/bygfoot.dir/src/player.c.o
+[ 54%] Building C object CMakeFiles/bygfoot.dir/src/sqlite_data_store.c.o
+[ 55%] Building C object CMakeFiles/bygfoot.dir/src/start_end.c.o
+[ 56%] Building C object CMakeFiles/bygfoot.dir/src/stat.c.o
+[ 57%] Building C object CMakeFiles/bygfoot.dir/src/strategy.c.o
+<repo>/upstream/src/sqlite_data_store.c:981:10: warning: assigning to 'const char *' from 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  981 |     json = sqlite3_column_text(stmt, 0);
+      |          ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1070:1: warning: non-void function does not return a value in all control paths [-Wreturn-type]
+ 1070 | }
+      | ^
+<repo>/upstream/src/sqlite_data_store.c:1101:5: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1101 |     GET_COLUMN_STRING(name);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1094:32: note: expanded from macro 'GET_COLUMN_STRING'
+ 1094 |         strncpy(player->field, sqlite3_column_text(stmt, opidx++), bytes);     \
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:259:42: note: expanded from macro 'strncpy'
+  259 | #define strncpy(...) __strncpy_chk_func (__VA_ARGS__)
+      |                                          ^~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:147:34: note: expanded from macro '__strncpy_chk_func'
+  147 |                 __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+      |                                                ^~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1214:5: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1214 |     GET_COLUMN_STRING(name);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1206:34: note: expanded from macro 'GET_COLUMN_STRING'
+ 1206 |             strncpy(team->field, sqlite3_column_text(stmt, opidx++), bytes);   \
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:259:42: note: expanded from macro 'strncpy'
+  259 | #define strncpy(...) __strncpy_chk_func (__VA_ARGS__)
+      |                                          ^~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:147:34: note: expanded from macro '__strncpy_chk_func'
+  147 |                 __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+      |                                                ^~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1215:5: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1215 |     GET_COLUMN_STRING(symbol);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1206:34: note: expanded from macro 'GET_COLUMN_STRING'
+ 1206 |             strncpy(team->field, sqlite3_column_text(stmt, opidx++), bytes);   \
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:259:42: note: expanded from macro 'strncpy'
+  259 | #define strncpy(...) __strncpy_chk_func (__VA_ARGS__)
+      |                                          ^~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:147:34: note: expanded from macro '__strncpy_chk_func'
+  147 |                 __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+      |                                                ^~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1216:5: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1216 |     GET_COLUMN_STRING(names_file);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1206:34: note: expanded from macro 'GET_COLUMN_STRING'
+ 1206 |             strncpy(team->field, sqlite3_column_text(stmt, opidx++), bytes);   \
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:259:42: note: expanded from macro 'strncpy'
+  259 | #define strncpy(...) __strncpy_chk_func (__VA_ARGS__)
+      |                                          ^~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:147:34: note: expanded from macro '__strncpy_chk_func'
+  147 |                 __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+      |                                                ^~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1217:5: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1217 |     GET_COLUMN_STRING(def_file);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1206:34: note: expanded from macro 'GET_COLUMN_STRING'
+ 1206 |             strncpy(team->field, sqlite3_column_text(stmt, opidx++), bytes);   \
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:259:42: note: expanded from macro 'strncpy'
+  259 | #define strncpy(...) __strncpy_chk_func (__VA_ARGS__)
+      |                                          ^~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:147:34: note: expanded from macro '__strncpy_chk_func'
+  147 |                 __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+      |                                                ^~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1218:5: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1218 |     GET_COLUMN_STRING(strategy_sid);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1206:34: note: expanded from macro 'GET_COLUMN_STRING'
+ 1206 |             strncpy(team->field, sqlite3_column_text(stmt, opidx++), bytes);   \
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:259:42: note: expanded from macro 'strncpy'
+  259 | #define strncpy(...) __strncpy_chk_func (__VA_ARGS__)
+      |                                          ^~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:147:34: note: expanded from macro '__strncpy_chk_func'
+  147 |                 __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+      |                                                ^~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1227:5: warning: passing 'const unsigned char *' to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1227 |     GET_COLUMN_STRING(stadium.name);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1206:34: note: expanded from macro 'GET_COLUMN_STRING'
+ 1206 |             strncpy(team->field, sqlite3_column_text(stmt, opidx++), bytes);   \
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:259:42: note: expanded from macro 'strncpy'
+  259 | #define strncpy(...) __strncpy_chk_func (__VA_ARGS__)
+      |                                          ^~~~~~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:147:34: note: expanded from macro '__strncpy_chk_func'
+  147 |                 __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+      |                                                ^~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1401:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1401 |         const char *name = sqlite3_column_text(stmt, 1);
+      |                     ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1402:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1402 |         const char *string_value = sqlite3_column_text(stmt, 2);
+      |                     ^              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1490:10: warning: assigning to 'const char *' from 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1490 |     json = sqlite3_column_text(stmt, 0);
+      |          ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1514:10: warning: assigning to 'const char *' from 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1514 |     json = sqlite3_column_text(stmt, 0);
+      |          ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1544:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1544 |         const char *json = sqlite3_column_text(stmt, 0);
+      |                     ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1667:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1667 |         const char *json = sqlite3_column_text(stmt, 0);
+      |                     ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1710:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1710 |         const char *json = sqlite3_column_text(stmt, 0);
+      |                     ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1740:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1740 |         const char *json = sqlite3_column_text(stmt, 0);
+      |                     ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1762:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1762 |         const char *json = sqlite3_column_text(stmt, 0);
+      |                     ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1789:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1789 |         const char *json = sqlite3_column_text(stmt, 0);
+      |                     ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/sqlite_data_store.c:1808:21: warning: initializing 'const char *' with an expression of type 'const unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1808 |         const char *json = sqlite3_column_text(stmt, 0);
+      |                     ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+20 warnings generated.
+[ 58%] Building C object CMakeFiles/bygfoot.dir/src/support.c.o
+[ 59%] Building C object CMakeFiles/bygfoot.dir/src/table.c.o
+[ 60%] Building C object CMakeFiles/bygfoot.dir/src/team.c.o
+[ 61%] Building C object CMakeFiles/bygfoot.dir/src/training.c.o
+[ 62%] Building C object CMakeFiles/bygfoot.dir/src/training_callbacks.c.o
+[ 63%] Building C object CMakeFiles/bygfoot.dir/src/training_interface.c.o
+[ 64%] Building C object CMakeFiles/bygfoot.dir/src/transfer.c.o
+[ 65%] Building C object CMakeFiles/bygfoot.dir/src/treeview.c.o
+[ 66%] Building C object CMakeFiles/bygfoot.dir/src/treeview2.c.o
+[ 67%] Building C object CMakeFiles/bygfoot.dir/src/treeview_helper.c.o
+[ 68%] Building C object CMakeFiles/bygfoot.dir/src/user.c.o
+[ 69%] Building C object CMakeFiles/bygfoot.dir/src/window.c.o
+[ 70%] Building C object CMakeFiles/bygfoot.dir/src/xml.c.o
+[ 71%] Building C object CMakeFiles/bygfoot.dir/src/xml_country.c.o
+[ 72%] Building C object CMakeFiles/bygfoot.dir/src/xml_cup.c.o
+[ 73%] Building C object CMakeFiles/bygfoot.dir/src/xml_league.c.o
+[ 74%] Building C object CMakeFiles/bygfoot.dir/src/xml_lg_commentary.c.o
+[ 75%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_cup.c.o
+[ 76%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_fixtures.c.o
+[ 77%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_jobs.c.o
+[ 78%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_league.c.o
+[ 79%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_league_stat.c.o
+[ 80%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_leagues_cups.c.o
+[ 81%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_live_game.c.o
+[ 81%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_misc.c.o
+[ 82%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_newspaper.c.o
+[ 83%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_players.c.o
+[ 84%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_season_stats.c.o
+[ 85%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_table.c.o
+[ 86%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_teams.c.o
+[ 87%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_transfers.c.o
+[ 88%] Building C object CMakeFiles/bygfoot.dir/src/xml_loadsave_users.c.o
+[ 89%] Building C object CMakeFiles/bygfoot.dir/src/xml_mmatches.c.o
+[ 90%] Building C object CMakeFiles/bygfoot.dir/src/xml_name.c.o
+[ 91%] Building C object CMakeFiles/bygfoot.dir/src/xml_news.c.o
+[ 92%] Building C object CMakeFiles/bygfoot.dir/src/xml_strategy.c.o
+[ 93%] Building C object CMakeFiles/bygfoot.dir/src/xml_team.c.o
+[ 94%] Building C object CMakeFiles/bygfoot.dir/src/youth_academy.c.o
+[ 95%] Building C object CMakeFiles/bygfoot.dir/src/zip/unzip.c.o
+<repo>/upstream/src/zip/unzip.c:988:43: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  988 |         if ((pfile_in_zip_read_info->read_buffer == NULL))
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+<repo>/upstream/src/zip/unzip.c:988:43: note: remove extraneous parentheses around the comparison to silence this warning
+  988 |         if ((pfile_in_zip_read_info->read_buffer == NULL))
+      |             ~                                    ^      ~
+<repo>/upstream/src/zip/unzip.c:988:43: note: use '=' to turn this equality comparison into an assignment
+  988 |         if ((pfile_in_zip_read_info->read_buffer == NULL))
+      |                                                  ^~
+      |                                                  =
+[ 96%] Building C object CMakeFiles/bygfoot.dir/src/zip/zip.c.o
+1 warning generated.
+[ 97%] Building C object CMakeFiles/bygfoot.dir/src/json_interface.c.o
+[ 99%] Building C object CMakeFiles/bygfoot.dir/src/json_serialize.c.o
+[ 99%] Building C object CMakeFiles/bygfoot.dir/src/json_deserialize.c.o
+<repo>/upstream/src/zip/zip.c:372:15: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  372 |     if ((level==2))
+      |          ~~~~~^~~
+<repo>/upstream/src/zip/zip.c:372:15: note: remove extraneous parentheses around the comparison to silence this warning
+  372 |     if ((level==2))
+      |         ~     ^  ~
+<repo>/upstream/src/zip/zip.c:372:15: note: use '=' to turn this equality comparison into an assignment
+  372 |     if ((level==2))
+      |               ^~
+      |               =
+<repo>/upstream/src/zip/zip.c:374:15: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  374 |     if ((level==1))
+      |          ~~~~~^~~
+<repo>/upstream/src/zip/zip.c:374:15: note: remove extraneous parentheses around the comparison to silence this warning
+  374 |     if ((level==1))
+      |         ~     ^  ~
+<repo>/upstream/src/zip/zip.c:374:15: note: use '=' to turn this equality comparison into an assignment
+  374 |     if ((level==1))
+      |               ^~
+      |               =
+2 warnings generated.
+<repo>/upstream/src/json_serialize.c:245:1: warning: non-void function does not return a value [-Wreturn-type]
+  245 | }
+      | ^
+<repo>/upstream/src/json_deserialize.c:2298:5: warning: passing 'guint32 *' (aka 'unsigned int *') to parameter of type 'gint *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+ 2298 |     DESERIALIZE(random_seed, deserialize_int64);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/json_deserialize.c:2288:5: note: expanded from macro 'DESERIALIZE'
+ 2288 |     DESERIALIZE_FIELD(bygfoot_obj, bygfoot, field, func);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<repo>/upstream/src/json_deserialize.c:34:37: note: expanded from macro 'DESERIALIZE_FIELD'
+   34 |             func(bygfoot, json_obj, &(object->field));                         \
+      |                                     ^~~~~~~~~~~~~~~~
+<repo>/upstream/src/json_deserialize.c:118:61: note: passing argument to parameter 'value' here
+  118 | deserialize_int64(Bygfoot *bygfoot, json_object *obj, gint *value)
+      |                                                             ^
+1 warning generated.
+1 warning generated.
+[100%] Linking C executable bygfoot
+ld: warning: ignoring duplicate libraries: '-lm'
+[100%] Built target bygfoot
+== exit=0
