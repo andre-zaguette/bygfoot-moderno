@@ -1,7 +1,8 @@
 #!/bin/sh
 # Compara os hashes das seeds de ouro com tests/golden-seeds/expected-macos.txt.
 ROOT=$(cd "$(dirname "$0")/../.." && pwd)
-EXP="$ROOT/tests/golden-seeds/expected-macos.txt"
+# uso: test-golden.sh [patched]   (patched: usa BYGFOOT_BIN da cópia remendada e expected-patched.txt)
+if [ "$1" = patched ]; then EXP="$ROOT/tests/golden-seeds/expected-patched.txt"; else EXP="$ROOT/tests/golden-seeds/expected-macos.txt"; fi
 T=$(mktemp -d) || exit 2
 trap 'rm -rf "$T"' EXIT
 [ -f "$EXP" ] || { echo "FALHA: falta $EXP"; exit 1; }

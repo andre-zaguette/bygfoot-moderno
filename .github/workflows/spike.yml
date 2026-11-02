@@ -34,46 +34,23 @@ jobs:
         run: sh tools/verify-upstream-pristine.sh 9b7b0062
       - name: Testes do spike
         run: sh tests/spike/test-headless.sh
-      - name: Testes de seeds de ouro (comparador)
-        run: sh tests/golden-seeds/test-compare-golden.sh
-      - name: Hashes das seeds de ouro
+      - name: Testes de seeds de ouro (comparador e diagnóstico)
+        run: |
+          sh tests/golden-seeds/test-compare-golden.sh
+          sh tests/golden-seeds/test-first-divergence.sh
+          sh tests/patches/test-apply-patches.sh
+      - name: Hashes das seeds de ouro (upstream original, informativo)
         run: python3 -I tools/golden-hash.py > golden-${{ matrix.os }}.txt && cat golden-${{ matrix.os }}.txt
-      - name: Experimento ADR-002 - aplicar remendos em cópia e compilar
+      - name: Aplicar remendos em cópia e compilar
         run: |
           sh tools/apply-patches.sh build/patched-src
           BF_SRC=build/patched-src BF_BUILD=build/patched sh tools/build-upstream.sh build/patched-build.log
-      - name: Diagnóstico ADR-002 - build com rastreio de nomes
-        run: |
-          cp -R build/patched-src build/trace-src
-          (cd build/trace-src && patch -p1 < ../../tests/diag/trace-names.patch)
-          BF_SRC=build/trace-src BF_BUILD=build/trace sh tools/build-upstream.sh build/trace-build.log
-          mkdir -p diag
-          rm -f diag/trace-full.txt
-          BF_TRACE="$PWD/diag/trace-full.txt" BYGFOOT_BIN="$PWD/build/trace/bygfoot" sh tools/dump-state.sh 1 > /dev/null
-          head -3000 diag/trace-full.txt > diag/trace-${{ matrix.os }}.txt
-          rm diag/trace-full.txt
-          (cd build/trace-src && patch -p1 < ../../tests/diag/trace-draws.patch && patch -p1 < ../../tests/diag/trace-units.patch)
-          BF_SRC=build/trace-src BF_BUILD=build/trace sh tools/build-upstream.sh build/trace2-build.log
-          BF_TRACE="$PWD/diag/trace-units-full.txt" BYGFOOT_BIN="$PWD/build/trace/bygfoot" sh spike/headless/bf-headless --seed 1 > /dev/null
-          grep '^U ' diag/trace-units-full.txt | tr -d '\r' | head -4000 > diag/units-${{ matrix.os }}.txt
-          rm diag/trace-units-full.txt
-          rm -f diag/draws-full.txt
-          BF_WIN=3052218-3084171 BF_TRACE="$PWD/diag/draws-full.txt" BYGFOOT_BIN="$PWD/build/trace/bygfoot" sh spike/headless/bf-headless --seed 1 > /dev/null
-          grep '^D ' diag/draws-full.txt | tr -d '\r' > diag/draws-${{ matrix.os }}.txt
-          rm diag/draws-full.txt
-      - name: Experimento ADR-002 - hashes com remendo
+      - name: Seeds de ouro com remendos contra o esperado
+        run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tests/golden-seeds/test-golden.sh patched
+      - name: Hashes com remendos (6 seeds)
         run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" python3 -I tools/golden-hash.py > golden-patched-${{ matrix.os }}.txt && cat golden-patched-${{ matrix.os }}.txt
-      - name: Diagnóstico (saída completa e ordem dos diretórios)
-        if: always()
-        run: |
-          mkdir -p diag
-          sh spike/headless/bf-headless --seed 0 > diag/out-${{ matrix.os }}.txt || true
-          BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh spike/headless/bf-headless --seed 1 > diag/out-patched-seed1-${{ matrix.os }}.txt || true
-          sh tools/dump-state.sh 1 > diag/state-${{ matrix.os }}.txt || true
-          BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tools/dump-state.sh 1 > diag/state-patched-${{ matrix.os }}.txt || true
-          DIGEST_DEPTH=9 DIGEST_PREFIX='^\.country_list\[(2|76|85)\]\.leagues\[(0|5)\]\.teams\[(9|10|0)\]' BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tools/dump-state.sh 1 > diag/teams-patched-${{ matrix.os }}.txt || true
-          STATE_SAMPLE=1 BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tools/dump-state.sh 1 > diag/sample-patched-${{ matrix.os }}.txt || true
-          python3 -I -c "import os;[print(n) for n in os.listdir('upstream/support_files/definitions')]" > diag/readdir-definitions-${{ matrix.os }}.txt
+      - name: Hashes com remendos (bateria maior)
+        run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" python3 -I tools/golden-hash.py --seeds tests/golden-seeds/seeds-extended.txt > golden-extended-${{ matrix.os }}.txt && cat golden-extended-${{ matrix.os }}.txt
       - name: Publicar hashes
         if: always()
         uses: actions/upload-artifact@v4
@@ -82,7 +59,7 @@ jobs:
           path: |
             golden-${{ matrix.os }}.txt
             golden-patched-${{ matrix.os }}.txt
-            diag/
+            golden-extended-${{ matrix.os }}.txt
   compare:
     needs: headless
     runs-on: ubuntu-latest
@@ -92,10 +69,10 @@ jobs:
         with:
           path: golden
           merge-multiple: true
-      - name: Comparar macOS, Linux e Windows (upstream original)
-        continue-on-error: true   # divergência conhecida, ver docs/spikes/cross-os-determinism.md
-        run: |
-          ls -l golden
-          python3 -I tools/compare-golden.py golden/golden-macos-latest.txt golden/golden-ubuntu-latest.txt golden/golden-windows-latest.txt
-      - name: Comparar macOS, Linux e Windows (com remendos)
+      - name: Upstream original entre sistemas (informativo, diverge de propósito)
+        continue-on-error: true   # divergência conhecida, ver docs/spikes/cross-os-determinism.md e ADR-002
+        run: python3 -I tools/compare-golden.py golden/golden-macos-latest.txt golden/golden-ubuntu-latest.txt golden/golden-windows-latest.txt
+      - name: Com remendos entre sistemas (6 seeds)
         run: python3 -I tools/compare-golden.py golden/golden-patched-macos-latest.txt golden/golden-patched-ubuntu-latest.txt golden/golden-patched-windows-latest.txt
+      - name: Com remendos entre sistemas (bateria maior)
+        run: python3 -I tools/compare-golden.py golden/golden-extended-macos-latest.txt golden/golden-extended-ubuntu-latest.txt golden/golden-extended-windows-latest.txt

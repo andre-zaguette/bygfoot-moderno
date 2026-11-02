@@ -1,0 +1,17 @@
+# seed|time|semanas — bateria maior para achar outros pontos de ordem de avaliação indefinida (ADR-002)
+2|V. Gotu|30
+3|V. Gotu|30
+5|V. Gotu|30
+7|V. Gotu|30
+11|V. Gotu|30
+13|V. Gotu|30
+17|V. Gotu|30
+19|V. Gotu|30
+23|V. Gotu|30
+42|V. Gotu|30
+100|V. Gotu|30
+999|V. Gotu|30
+12345|V. Gotu|30
+65535|V. Gotu|30
+1000000|V. Gotu|30
+987654321|V. Gotu|30
