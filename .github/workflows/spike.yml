@@ -57,6 +57,10 @@ jobs:
           BF_TRACE="$PWD/diag/trace-units-full.txt" BYGFOOT_BIN="$PWD/build/trace/bygfoot" sh spike/headless/bf-headless --seed 1 > /dev/null
           grep '^U ' diag/trace-units-full.txt | tr -d '\r' | head -4000 > diag/units-${{ matrix.os }}.txt
           rm diag/trace-units-full.txt
+          rm -f diag/draws-full.txt
+          BF_WIN=3052218-3084171 BF_TRACE="$PWD/diag/draws-full.txt" BYGFOOT_BIN="$PWD/build/trace/bygfoot" sh spike/headless/bf-headless --seed 1 > /dev/null
+          grep '^D ' diag/draws-full.txt | tr -d '\r' > diag/draws-${{ matrix.os }}.txt
+          rm diag/draws-full.txt
       - name: Experimento ADR-002 - hashes com remendo
         run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" python3 -I tools/golden-hash.py > golden-patched-${{ matrix.os }}.txt && cat golden-patched-${{ matrix.os }}.txt
       - name: Diagnóstico (saída completa e ordem dos diretórios)
