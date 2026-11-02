@@ -18,8 +18,12 @@ Os 10 commits entre elas (lista no artefato `drift-commits.txt`) incluem o port 
 
 - É uma amostra: 6 seeds, 2 semanas, um país, um sistema. Não cobre fim de temporada, copas, transferências em semanas avançadas.
 - Mede deriva entre duas versões já existentes. Qualquer sincronização futura deve rodar `tools/sync-upstream.sh`, que imprime `SEEDS_IGUAIS` ou `SEEDS_MUDARAM <seeds>`, e as baterias do CI (6 seeds e 16 seeds por 30 semanas).
-- O uso de `patches/` continua sendo o ponto frágil: um remendo pode deixar de encaixar depois de um sync. `apply-patches.sh` falha sem deixar cópia parcial (testado) e o `sync-upstream.sh` repassa a falha.
+- O uso de `patches/` continua sendo o ponto frágil: um remendo pode deixar de encaixar depois de um sync. `apply-patches.sh` falha sem deixar cópia parcial (testado) e o `sync-upstream.sh` repassa a falha ao workflow (`shell: bash` com pipefail; revisão independente corrigiu um defeito inicial que a engolia).
 
 ## Teste do script
 
-`tests/patches/test-sync-upstream.sh` (lento, precisa de rede): num clone temporário troca `upstream/` pela `3.0.0`, sincroniza com o commit fixado e confere `SEEDS_IGUAIS`, o pin atualizado e `verify-upstream-pristine.sh`. Resultado nesta sessão: `OK`. Recusa também argumento ausente, commit curto e árvore suja. O ramo `SEEDS_MUDARAM` foi checado só na lógica de comparação (`awk`) com arquivos sintéticos.
+`tests/patches/test-sync-upstream.sh` (lento, precisa de rede): num clone temporário troca `upstream/` pela `3.0.0`, sincroniza com o commit fixado e confere `SEEDS_IGUAIS`, o pin atualizado e `verify-upstream-pristine.sh`. Resultado nesta sessão (saída final `SEEDS_IGUAIS` e `OK`, rodado localmente no macOS; não roda no CI por usar a rede e ser lento). Recusa também argumento ausente, commit curto e árvore suja. O ramo `SEEDS_MUDARAM` foi checado só na lógica de comparação (`awk`) com arquivos sintéticos.
+
+## Workflow semanal
+
+`.github/workflows/sync-upstream.yml` tem dois jobs: `sync` (só lê o repositório, executa o código do upstream) e `publish` (escreve, não executa código de terceiros). Verificação feita: ensaio por push (execução 41481640724 antes da revisão, `sem commits novos no upstream`, porque o `main` do upstream é o próprio pin). **O caminho de publicação (push da branch, PR de rascunho, disparo do CI) nunca foi exercitado de ponta a ponta**: só o ciclo `git bundle` → `git fetch` foi testado localmente. O repositório também não permite ao `GITHUB_TOKEN` criar PRs; nesse caso o workflow avisa e a branch fica enviada para abrir o PR à mão.

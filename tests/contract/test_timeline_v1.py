@@ -17,8 +17,23 @@ SAMPLE = os.path.join(ROOT, "tests", "contract", "timeline-v1.sample.json")
 GOAL_TYPES = (10, 11)
 
 
+def patch_names():
+    d = os.path.join(ROOT, "patches")
+    return sorted(f for f in os.listdir(d) if f.endswith(".patch"))
+
+
+def env():
+    e = dict(os.environ)
+    # com o motor remendado (BYGFOOT_BIN), o chamador declara quais remendos o compõem
+    if e.get("BYGFOOT_BIN"):
+        e["BYGFOOT_PATCHES"] = ",".join(patch_names())
+    else:
+        e.pop("BYGFOOT_PATCHES", None)
+    return e
+
+
 def run(*args):
-    return subprocess.run(["sh", BF, *args], capture_output=True)
+    return subprocess.run(["sh", BF, *args], capture_output=True, env=env())
 
 
 def timeline(seed):
@@ -36,6 +51,11 @@ class TimelineV1(unittest.TestCase):
                 self.assertEqual(doc["source"]["engine"], "bygfoot")
                 self.assertEqual(doc["source"]["seed"], seed)
                 self.assertEqual(len(doc["source"]["upstreamCommit"]), 40)
+                expected = patch_names() if os.environ.get("BYGFOOT_BIN") else []
+                self.assertEqual(doc["source"]["patches"], expected)
+                self.assertIsInstance(doc["match"]["fixtureId"], int)
+                self.assertIsInstance(doc["match"]["home"], str)
+                self.assertIsInstance(doc["match"]["away"], str)
                 units = doc["units"]
                 self.assertTrue(units)
                 prev = [0, 0]
@@ -45,10 +65,14 @@ class TimelineV1(unittest.TestCase):
                     self.assertIn(u["time"], (0, 1, 2, 3))
                     self.assertGreaterEqual(u["minute"], -1)
                     self.assertIsInstance(u["event"]["type"], int)
+                    self.assertIn(u["event"]["team"], (-1, 0, 1))
                     if u["result"] != prev:
                         self.assertTrue(
                             u["event"]["type"] in GOAL_TYPES or u["time"] == 3,
                             f"placar mudou no lance {i} sem gol (evento {u['event']['type']})")
+                        if u["time"] != 3:  # fora dos pênaltis, um gol muda o placar em exatamente +1 de um lado
+                            self.assertEqual(sum(u["result"]) - sum(prev), 1,
+                                             f"gol no lance {i} não somou 1")
                     prev = u["result"]
                 self.assertEqual(units[-1]["result"], doc["match"]["final"])
                 self.assertEqual(units[0]["event"]["type"], 1)   # START_MATCH

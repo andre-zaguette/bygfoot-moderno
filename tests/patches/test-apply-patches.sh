@@ -45,6 +45,29 @@ run; [ $? = 2 ] || fail "DESTINO existente: esperado 2"
 
 mk; run; [ $? = 0 ] || fail "sem remendos: esperado 0"
 diff -r "$T/u" "$T/d" > /dev/null || fail "sem remendos: cópia deve ser idêntica"
+# contexto PARCIALMENTE alterado (o patch aplicaria com fuzz): tem de falhar, não cair no lugar errado
+mk; printf 'l1\nl2\nl3\nl4\nl5\nl6\nl7\nl8\nl9\n' > "$T/u/src/f.c"
+cat > "$T/p/0001-x.patch" <<'P'
+--- a/src/f.c
++++ b/src/f.c
+@@ -2,7 +2,7 @@
+ l2
+ l3
+ l4
+-l5
++L5
+ l6
+ l7
+ l8
+P
+echo '| 0001-x.patch | src/f.c | teste | 1 |' >> "$T/p/MANIFEST.md"
+printf 'l1\nXX\nl3\nl4\nl5\nl6\nl7\nYY\nl9\n' > "$T/u/src/f.c"   # 1ª e última linha de contexto mudaram
+run; rc=$?; [ $rc = 1 ] || fail "contexto parcial (fuzz): esperado 1, veio $rc"
+[ ! -e "$T/d" ] || fail "contexto parcial: DESTINO deveria ter sido removido"
+# sucesso não deixa .orig nem .rej na cópia
+mk; good_patch; echo '| 0001-x.patch | src/f.c | teste | 1 |' >> "$T/p/MANIFEST.md"
+run; [ $? = 0 ] || fail "sem sobras: esperado 0"
+[ -z "$(find "$T/d" -name '*.orig' -o -name '*.rej')" ] || fail "sobrou .orig/.rej na cópia"
 # pasta pai do DESTINO inexistente: deve ser criada
 mk; good_patch; echo '| 0001-x.patch | src/f.c | teste | 1 |' >> "$T/p/MANIFEST.md"
 UPSTREAM_DIR="$T/u" PATCH_DIR="$T/p" sh "$A" "$T/novo/pai/d" > "$T/o" 2>&1; [ $? = 0 ] || fail "pai inexistente: esperado 0 ($(cat "$T/o"))"

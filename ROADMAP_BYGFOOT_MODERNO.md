@@ -247,6 +247,8 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 
 ### Sprint 02 — Semanas 3–4 | Prova de integração e decisão arquitetural
 
+> **Estado em 2026-11-02 (Fase 1 na branch `fase-1-nucleo`):** G1 cumprido nos pontos testados — simulação headless repetível nos 3 sistemas; igualdade entre sistemas só com 3 remendos (ADR-002); contrato `MatchTimeline v1` testado; infraestrutura de remendos e de sincronização com o upstream criada. Pendentes: save sem versão, lances ao vivo (geração lance a lance), partida avulsa por ids, revisão jurídica. Veja `docs/adr/ADR-001` e `ADR-002`.
+
 - [ ] `BF-010` Prototipar uma chamada headless ao simulador: `simulate_fixture` com entrada e saída estruturadas.
 - [ ] `BF-011` Se integração em C falhar, criar PoC Rust com 1 partida determinística + eventos.
 - [ ] `BF-012` Definir contrato versionado `SimulationAdapter` e persistência com migrations.

@@ -10,7 +10,7 @@
     "schemaVersion": { "const": 1 },
     "source": {
       "type": "object",
-      "required": ["engine", "upstreamCommit", "seed", "country", "team", "weeks"],
+      "required": ["engine", "upstreamCommit", "seed", "country", "team", "weeks", "patches"],
       "additionalProperties": false,
       "properties": {
         "engine": { "const": "bygfoot" },
@@ -18,7 +18,8 @@
         "seed": { "type": "integer", "minimum": 0, "maximum": 2147483647 },
         "country": { "type": "string" },
         "team": { "type": "string" },
-        "weeks": { "type": "integer", "minimum": 0, "maximum": 100 }
+        "weeks": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "patches": { "type": "array", "items": { "type": "string" }, "description": "Remendos de patches/ que compõem o motor usado, declarados pelo chamador (BYGFOOT_PATCHES). [] = não declarado (não garante upstream sem remendos)." }
       }
     },
     "match": {

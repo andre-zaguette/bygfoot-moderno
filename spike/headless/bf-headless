@@ -4,7 +4,8 @@
 # uma linha JSON por lance (LiveGameUnit) da última partida do time do usuário,
 # terminando com {"final":[casa,fora], ...}.
 # Saída: 0 ok | 2 argumentos inválidos | 3 o motor falhou.
-# Variáveis: BYGFOOT_BIN (binário), BYGFOOT_SUPPORT (pasta support_files).
+# Variáveis: BYGFOOT_BIN (binário), BYGFOOT_SUPPORT (pasta support_files),
+# BYGFOOT_PATCHES (nomes dos remendos que compõem o binário, separados por vírgula; vai para source.patches).
 HERE=$(cd "$(dirname "$0")" && pwd)
 ROOT=$(cd "$HERE/../.." && pwd)
 BIN=${BYGFOOT_BIN:-$ROOT/build/upstream/bygfoot}
@@ -35,9 +36,13 @@ done
 case $format in lines|timeline-v1) ;; *) die "formato desconhecido: $format (use lines ou timeline-v1)" ;; esac
 [ -n "$seed" ] || die "falta --seed"
 case $seed in ''|*[!0-9]*) die "seed deve ser inteiro sem sinal: '$seed'" ;; esac
+# o upstream lê --random-seed como octal quando começa em 0 ("010" vira 8, "08" vira seed aleatória): só "0" puro é aceito
+case $seed in 0?*) die "seed não pode ter zero à esquerda: '$seed'" ;; esac
 # --random-seed do upstream é inteiro COM sinal; acima do limite ele avisa e usa seed aleatória.
 [ ${#seed} -le 10 ] && [ "$seed" -le 2147483647 ] 2>/dev/null || die "seed fora do intervalo 0..2147483647: $seed"
 case $weeks in ''|*[!0-9]*) die "weeks deve ser inteiro: '$weeks'" ;; esac
+case $weeks in 0?*) die "weeks não pode ter zero à esquerda: '$weeks'" ;; esac
+[ "$weeks" != 0 ] || die "weeks deve ser pelo menos 1 (com 0 o time não joga)"
 [ ${#weeks} -le 4 ] && [ "$weeks" -le "$MAX_WEEKS" ] 2>/dev/null || die "weeks acima do teto ($MAX_WEEKS): $weeks"
 [ -x "$BIN" ] || die "binário não encontrado: $BIN (rode tools/build-upstream.sh)" 3
 [ -d "$SUPPORT" ] || die "support_files não encontrado: $SUPPORT" 3
@@ -63,4 +68,4 @@ if [ $rc -ne 0 ] || [ ! -s "$T/out.json" ]; then
   echo "bf-headless: o motor saiu com $rc (time não encontrado ou motor caiu)" >&2; head -c 2000 "$T/err.txt" >&2; exit 3
 fi
 COMMIT=$(sed -n 's/^commit //p' "$ROOT/tools/upstream-pin.txt")
-python3 -I "$HERE/extract_units.py" "$T/out.json" --format "$format" --seed "$seed" --country "$country" --team "$team" --weeks "$weeks" --commit "$COMMIT" || { echo "bf-headless: falha ao extrair lances" >&2; exit 3; }
+python3 -I "$HERE/extract_units.py" "$T/out.json" --format "$format" --seed "$seed" --country "$country" --team "$team" --weeks "$weeks" --commit "$COMMIT" --patches "${BYGFOOT_PATCHES:-}" || { echo "bf-headless: falha ao extrair lances" >&2; exit 3; }

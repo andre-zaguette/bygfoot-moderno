@@ -5,3 +5,5 @@ target/
 !docs/spikes/*.log
 .superpowers/
 .DS_Store
+__pycache__/
+*.pyc

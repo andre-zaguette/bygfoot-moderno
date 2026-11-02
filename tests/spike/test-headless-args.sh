@@ -32,6 +32,11 @@ expect2 "barra em --country"    --seed 1 --country 'faroe\islands'
 expect2 "quebra de linha em --team" --seed 1 --team "$(printf 'a\nb')"
 expect2 "argumento desconhecido" --seed 1 --nada
 
+# Zero à esquerda: o upstream lê --random-seed como octal ("010" == 8, "08" vira seed aleatória).
+expect2 "seed com zero à esquerda (010)" --seed 010
+expect2 "seed com zero à esquerda (08)"  --seed 08
+expect2 "weeks com zero à esquerda"      --seed 1 --weeks 050
+expect2 "weeks zero"                     --seed 1 --weeks 0
 # Time inexistente: o motor cai; o wrapper sai 3, sem nada no stdout e com mensagem clara.
 "$BF" --seed 1 --team "Time Inexistente" > "$T/out" 2> "$T/err"; rc=$?
 [ "$rc" = "3" ] || fail "time inexistente: esperado exit 3, veio $rc"

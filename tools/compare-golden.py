@@ -1,7 +1,7 @@
 """Compara arquivos de golden-hash.py gerados em sistemas diferentes.
 
 Saída 0: todos iguais byte a byte (por seed). 1: divergência (lista as seeds e os hashes por arquivo).
-2: arquivo ausente ou ilegível.
+2: arquivo ausente, ilegível ou vazio.
 """
 import sys
 
@@ -26,6 +26,10 @@ def main(paths):
         sys.stderr.write("uso: compare-golden.py ARQ1 ARQ2 [ARQ3...]\n")
         sys.exit(2)
     tables = [load(p) for p in paths]
+    for p, t in zip(paths, tables):
+        if not t:
+            sys.stderr.write(f"{p}: arquivo sem nenhuma linha\n")
+            sys.exit(2)
     keys = sorted(set().union(*[t.keys() for t in tables]))
     bad = False
     for k in keys:

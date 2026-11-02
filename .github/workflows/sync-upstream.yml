@@ -1,5 +1,7 @@
-# Semanalmente (e sob demanda) traz o main do upstream para upstream/ numa branch e abre um PR de rascunho com o resultado das seeds.
-# Em push (alteração deste arquivo) roda em modo de ensaio: executa o sync no runner, sem enviar branch nem abrir PR.
+# Semanalmente (e sob demanda) traz o main do upstream para upstream/ numa branch e publica o resultado das seeds.
+# Dois jobs de propósito: o código de terceiros (CMake e binário do upstream) roda no job "sync", que só LÊ o repositório
+# (sem token de escrita nem credencial guardada). Quem publica é o job "publish", que não executa código do upstream.
+# Em push (alteração deste arquivo ou do script) roda em modo de ensaio: executa o sync, não publica nada.
 name: sync-upstream
 on:
   schedule: [{ cron: '0 6 * * 1' }]
@@ -7,40 +9,80 @@ on:
   push:
     paths: ['.github/workflows/sync-upstream.yml', 'tools/sync-upstream.sh']
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 jobs:
   sync:
     runs-on: ubuntu-latest
-    env:
-      DRY: ${{ github.event_name == 'push' && '1' || '' }}
+    outputs:
+      same: ${{ steps.up.outputs.same }}
+      new: ${{ steps.up.outputs.new }}
+      result: ${{ steps.sync.outputs.result }}
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+        with:
+          fetch-depth: 0
+          persist-credentials: false
       - name: Dependências
         run: sudo apt-get update && sudo apt-get install -y cmake libgtk-3-dev libjson-c-dev libsqlite3-dev gettext pkg-config python3
       - name: Descobrir o commit novo do upstream
         id: up
+        shell: bash
         run: |
           git remote add upstream https://gitlab.com/bygfoot/bygfoot.git
-          git fetch -q upstream master || git fetch -q upstream main
+          git fetch -q upstream main
           NEW=$(git rev-parse FETCH_HEAD)
           PIN=$(sed -n 's/^commit //p' tools/upstream-pin.txt)
-          echo "new=$NEW" >> "$GITHUB_OUTPUT"; echo "pin=$PIN" >> "$GITHUB_OUTPUT"
-          if [ "$NEW" = "$PIN" ]; then echo "sem commits novos no upstream"; echo "same=1" >> "$GITHUB_OUTPUT"; fi
+          echo "new=$NEW" >> "$GITHUB_OUTPUT"
+          if [ "$NEW" = "$PIN" ]; then echo "sem commits novos no upstream"; echo "same=1" >> "$GITHUB_OUTPUT"; else echo "same=0" >> "$GITHUB_OUTPUT"; fi
       - name: Sincronizar
         id: sync
         if: steps.up.outputs.same != '1'
+        shell: bash   # liga pipefail: a falha do script não pode ser engolida pelo tee
+        env:
+          NEW: ${{ steps.up.outputs.new }}
         run: |
           git config user.name "sync-upstream"; git config user.email "actions@users.noreply.github.com"
-          git checkout -b "sync/upstream-$(echo ${{ steps.up.outputs.new }} | cut -c1-8)"
-          sh tools/sync-upstream.sh "${{ steps.up.outputs.new }}" | tee sync-result.txt
-          echo "result=$(tail -1 sync-result.txt)" >> "$GITHUB_OUTPUT"
-      - name: Enviar branch e abrir PR de rascunho
-        if: steps.up.outputs.same != '1' && env.DRY == ''
-        env: { GH_TOKEN: '${{ github.token }}' }
+          BASE=$(git rev-parse HEAD)
+          git checkout -b "sync/upstream-${NEW:0:8}"
+          # a saída fica fora da árvore de trabalho: o script exige árvore limpa
+          sh tools/sync-upstream.sh "$NEW" | tee "$RUNNER_TEMP/sync-result.txt"
+          echo "result=$(tail -1 "$RUNNER_TEMP/sync-result.txt")" >> "$GITHUB_OUTPUT"
+          git bundle create "$RUNNER_TEMP/sync.bundle" HEAD "^$BASE"
+          cp "$RUNNER_TEMP/sync.bundle" "$RUNNER_TEMP/sync-result.txt" .
+      - uses: actions/upload-artifact@v4
+        if: steps.up.outputs.same != '1'
+        with:
+          name: sync-upstream
+          path: |
+            sync.bundle
+            sync-result.txt
+  publish:
+    needs: sync
+    if: needs.sync.outputs.same == '0' && github.event_name != 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: sync-upstream
+      - name: Enviar a branch, abrir PR de rascunho e disparar o CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEW: ${{ needs.sync.outputs.new }}
+          RESULT: ${{ needs.sync.outputs.result }}
         run: |
-          B="sync/upstream-$(echo ${{ steps.up.outputs.new }} | cut -c1-8)"
+          B="sync/upstream-${NEW:0:8}"
+          git fetch sync.bundle "HEAD:refs/heads/$B"
           git push origin "$B"
-          gh pr create --draft --base main --head "$B" --title "chore(upstream): sincroniza com ${{ steps.up.outputs.new }}" \
-            --body "Resultado das seeds de ouro: **${{ steps.sync.outputs.result }}**. Decisão de aceitar é humana: se as seeds mudaram, veja docs/adr/ADR-002 e a política de seeds."
+          # um push feito com o GITHUB_TOKEN não dispara o CI sozinho: dispara de forma explícita
+          gh workflow run spike.yml --ref "$B" || echo "::warning::não consegui disparar spike.yml em $B"
+          gh pr create --draft --base main --head "$B" --title "chore(upstream): sincroniza com $NEW" \
+            --body "Resultado das seeds de ouro: **$RESULT**. A decisão de aceitar é humana: se as seeds mudaram, veja docs/adr/ADR-002." \
+            || echo "::warning::não consegui abrir o PR (o repositório pode não permitir ao GITHUB_TOKEN criar PRs). Abra manualmente a partir de $B."

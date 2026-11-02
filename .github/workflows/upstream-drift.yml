@@ -5,6 +5,8 @@ on:
   workflow_dispatch:
   push:
     paths: ['.github/workflows/upstream-drift.yml']
+permissions:
+  contents: read
 jobs:
   drift:
     runs-on: ubuntu-latest
@@ -25,11 +27,11 @@ jobs:
         run: cmake -S /tmp/target -B /tmp/build-target && cmake --build /tmp/build-target -j 4
       - name: Seeds de ouro nas duas versões
         run: |
-          BYGFOOT_BIN=/tmp/build-base/bygfoot BYGFOOT_SUPPORT=/tmp/base/support_files python3 -I tools/golden-hash.py > drift-base.txt || echo "base falhou"
-          BYGFOOT_BIN=/tmp/build-target/bygfoot BYGFOOT_SUPPORT=/tmp/target/support_files python3 -I tools/golden-hash.py > drift-target.txt || echo "alvo falhou"
+          BYGFOOT_BIN=/tmp/build-base/bygfoot BYGFOOT_SUPPORT=/tmp/base/support_files python3 -I tools/golden-hash.py > drift-base.txt
+          BYGFOOT_BIN=/tmp/build-target/bygfoot BYGFOOT_SUPPORT=/tmp/target/support_files python3 -I tools/golden-hash.py > drift-target.txt
           wc -l drift-base.txt drift-target.txt
-      - name: Comparar
-        continue-on-error: true
+      - name: Comparar (fica vermelho se alguma seed mudou entre as versões)
+        shell: bash
         run: python3 -I tools/compare-golden.py drift-base.txt drift-target.txt | tee drift-result.txt
       - uses: actions/upload-artifact@v4
         if: always()

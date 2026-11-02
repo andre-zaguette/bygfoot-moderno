@@ -8,6 +8,8 @@ DEST=$1
 [ -n "$DEST" ] || { echo "uso: apply-patches.sh DESTINO" >&2; exit 2; }
 [ ! -e "$DEST" ] || { echo "apply-patches: DESTINO já existe: $DEST" >&2; exit 2; }
 bad() { echo "apply-patches: $1" >&2; rm -rf "$DEST"; exit 1; }
+# Ctrl-C ou kill no meio: não deixa DESTINO parcial
+trap 'rm -rf "$DEST"; exit 1' INT TERM
 
 [ -f "$PD/MANIFEST.md" ] || bad "falta $PD/MANIFEST.md"
 # toda linha de tabela do manifesto cuja 1ª coluna termina em .patch deve existir
@@ -27,11 +29,11 @@ DRY=$(mktemp -d) || bad "sem diretório temporário"
 cp -R "$UP/." "$DRY/" || { rm -rf "$DRY"; bad "falha ao copiar para teste a seco"; }
 for f in "$PD"/*.patch; do
   [ -e "$f" ] || continue
-  (cd "$DRY" && patch -p1 -s < "$f") >/dev/null 2>&1 || { rm -rf "$DRY"; bad "remendo não encaixa: $(basename "$f")"; }
+  (cd "$DRY" && patch -p1 -s -F0 -N --no-backup-if-mismatch < "$f") >/dev/null 2>&1 || { rm -rf "$DRY"; bad "remendo não encaixa: $(basename "$f")"; }
 done
 rm -rf "$DRY"
 for f in "$PD"/*.patch; do
   [ -e "$f" ] || continue
-  (cd "$DEST" && patch -p1 -s < "$f") >/dev/null 2>&1 || bad "falha ao aplicar $(basename "$f")"
+  (cd "$DEST" && patch -p1 -s -F0 -N --no-backup-if-mismatch < "$f") >/dev/null 2>&1 || bad "falha ao aplicar $(basename "$f")"
 done
 exit 0

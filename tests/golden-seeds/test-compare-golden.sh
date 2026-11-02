@@ -23,4 +23,8 @@ python3 -I "$C" "$T/a" "$T/nao-existe" > "$T/o" 2>&1; rc=$?
 printf '1\tA\t2\taaa\t10\n' > "$T/c"
 python3 -I "$C" "$T/a" "$T/c" > "$T/o" 2>&1; rc=$?
 [ "$rc" = 1 ] || fail "linha faltando: esperado 1, veio $rc"
+# arquivos vazios não podem passar por "iguais"
+: > "$T/e1"; : > "$T/e2"
+python3 -I "$C" "$T/e1" "$T/e2" > "$T/o" 2>&1; rc=$?
+[ "$rc" = 2 ] || fail "arquivos vazios: esperado 2, veio $rc"
 echo "OK"

@@ -24,7 +24,7 @@ Tudo rodado em macOS arm64 nesta sessão (detalhes em `docs/spikes/`):
 
 O Caminho B (motor em Rust) continua como plano B, acionado se uma das condições abaixo falhar.
 
-**Resultado do G1 após a Fase 1: cumprido nos pontos testados, com ressalvas.** Simular sem janela com resultado repetível funciona em macOS, Linux e Windows (CI). A igualdade ENTRE sistemas **não vem de graça**: o upstream original diverge entre eles em 6 de 6 seeds. Com 3 remendos (`patches/0001..0003`, ver [ADR-002](ADR-002-determinismo-entre-sistemas.md)) os três sistemas dão a mesma partida (6 seeds de ouro, execução 41472997729; 16 seeds por 30 semanas, execução 41476866071). "Dados versionados" passou a existir como contrato nosso: `MatchTimeline v1` (`schemas/match-timeline-v1.schema.json`, teste de contrato nos 3 sistemas, execução 41481640595); o save do upstream continua sem versão. A decisão acima se mantém.
+**Resultado do G1 após a Fase 1: cumprido nos pontos testados, com ressalvas.** Simular sem janela com resultado repetível funciona em macOS, Linux e Windows (CI). A igualdade ENTRE sistemas **não vem de graça**: o upstream original diverge entre eles em 6 de 6 seeds. Com 3 remendos (`patches/0001..0003`, ver [ADR-002](ADR-002-determinismo-entre-sistemas.md)) os três sistemas dão a mesma timeline de partida (6 seeds de ouro e 16 seeds por 30 semanas; o hash cobre o documento `timeline-v1` completo). "Dados versionados" passou a existir como contrato nosso: `MatchTimeline v1` (`schemas/match-timeline-v1.schema.json`, teste de contrato nos 3 sistemas, execução 41481640595); o save do upstream continua sem versão. A decisão acima se mantém.
 
 ## O que o G1 NÃO provou (condições para manter a decisão)
 
@@ -42,7 +42,7 @@ Note: "dados versionados" aparece aqui como ausência no upstream. Ainda não fo
 
 - Remendos no upstream: **3 aplicados** (`patches/0001..0003`, todos de determinismo entre sistemas, ADR-002) sobre uma cópia; `upstream/` segue intacto. **Candidatos ainda não aplicados**: 7 (`docs/spikes/headless-result.md`): locale do JSON, `--random-seed` com sinal, busca de `support_files`/`-s`, lances de qualquer partida, comando de exportação de lances, avisos de comentário, saída em `stdout.log` no Windows. Os três primeiros já têm contorno no wrapper.
 - Atualizar o upstream tem processo e medida: `tools/sync-upstream.sh` e `.github/workflows/sync-upstream.yml`. Entre a `3.0.0` e o commit fixado (10 commits) as 6 seeds de ouro não mudaram ([sync-experiment](../spikes/sync-experiment.md)).
-- Limites conhecidos do determinismo (ADR-002): cobertura só dos caminhos exercitados, `powf` com 1 ulp de diferença entre bibliotecas matemáticas. Saves e replays só são portáveis entre builds com os remendos.
+- Limites conhecidos do determinismo (ADR-002): cobertura só dos caminhos exercitados, `powf` com 1 ulp de diferença entre bibliotecas matemáticas. Replays da timeline são iguais entre sistemas com os remendos nas seeds testadas; saves completos não foram comparados (há diferença conhecida em `value`/`wage`).
 - O binário original continua ligado ao GTK. O produto empacotado carregaria as bibliotecas GTK, a menos que a Fase 1 extraia uma biblioteca. Isso pesa no instalador de Windows e macOS.
 - O pós-processamento em Python do spike é descartável; o produto fará em Rust.
 

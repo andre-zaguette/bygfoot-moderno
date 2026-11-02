@@ -31,7 +31,8 @@ def timeline_v1(dump, meta):
     return {
         "schemaVersion": 1,
         "source": {"engine": "bygfoot", "upstreamCommit": meta.commit, "seed": meta.seed,
-                   "country": meta.country, "team": meta.team, "weeks": meta.weeks},
+                   "country": meta.country, "team": meta.team, "weeks": meta.weeks,
+                   "patches": [x for x in (meta.patches or "").split(",") if x]},
         "match": {"fixtureId": lg.get("fix_id"), "home": names[0], "away": names[1],
                   "final": units[-1]["result"]},
         "units": units,
@@ -82,5 +83,6 @@ if __name__ == "__main__":
     ap.add_argument("--team")
     ap.add_argument("--weeks", type=int)
     ap.add_argument("--commit")
+    ap.add_argument("--patches", default="")
     a = ap.parse_args()
     main(a.path, a)

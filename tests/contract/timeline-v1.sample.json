@@ -12,6 +12,11 @@
  "source": {
   "country": "faroe_islands",
   "engine": "bygfoot",
+  "patches": [
+   "0001-ordenar-listagem-de-diretorios.patch",
+   "0002-ordem-de-avaliacao-nome-sobrenome.patch",
+   "0003-ordem-de-avaliacao-transferencias.patch"
+  ],
   "seed": 431199,
   "team": "V. Gotu",
   "upstreamCommit": "9b7b0062ddb90a620865314dddf0c4b1c0a23660",
