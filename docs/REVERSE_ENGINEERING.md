@@ -1,6 +1,6 @@
 # Engenharia reversa do Bygfoot (upstream fixado em `9b7b0062`)
 
-Estado: **em andamento (Fase 0)**. Seções 1–3 escritas na Tarefa 4. Seções 4–5 (SQLite e campeonato) vêm da Tarefa 6. Seção 6 (spike e decisão) vem da Tarefa 8.
+Estado: **em andamento (Fase 0)**. Seções 1–3 (Tarefa 4) e 4–5 (Tarefa 6) escritas. Seção 6 (spike e decisão) vem da Tarefa 8.
 
 Tudo abaixo vem de leitura do código em `upstream/` e de `tools/gtk-coupling.sh`. Nada foi compilado nem executado ainda. Onde há inferência, está marcado como **hipótese**.
 
@@ -112,3 +112,38 @@ Onde essas variáveis são definidas e inicializadas **ainda não foi rastreado*
 2. Localizar a inicialização de `status`, `users`, opções e do gerador aleatório.
 3. Descobrir como a seed é aplicada (a regra do projeto exige mesma seed, mesmo resultado).
 4. Medir quantos símbolos de interface o linker pede ao compilar só o núcleo.
+
+## 4. Save em SQLite
+
+Fonte: `sh tools/sqlite-schema.sh upstream/src`, que extrai os `CREATE` do código em `sqlite_data_store.c:726-795` e `:871-874` (14 tabelas e 2 índices). O arquivo é aberto em `sqlite_data_store.c:898`.
+
+| Tabela | Colunas | Observação |
+|---|---|---|
+| `option` | `user, name, string_value, int_value, type` | opções por usuário |
+| `league` | `id, json` | **as partidas (fixtures) e a tabela de pontos ficam dentro do JSON** (ver seção 5) |
+| `cup` | `id, json` | idem |
+| `team` | `id, name, symbol, names_file, def_file, strategy_sid, structure, style, boost, average_talent, luck, first_team_id, reserve_level, league_id, stadium_*` | colunas reais |
+| `player` | `id, team_id, name, pos, cpos, health, recovery, value, wage, offers, streak, skill, cskill, talent, etal0..etal3, fitness, lsu, age, peak_age, peak_region, contract, streak_prob, streak_count, participation, roster_index` | colunas reais |
+| `player_stat` | `player_id, season_id, stat_id, competition_id, games, goals, shots, yellows, reds` | índice em `player_id` |
+| `user`, `transfer`, `season_stat`, `job`, `newspaper`, `bet`, `country`, `bygfoot` | `json TEXT` | um blob JSON por linha |
+
+Índices: `player_stat_player_id` em `player_stat(player_id)` e `player_team_id` em `player(team_id)`.
+
+Consequências (hipóteses a confirmar na Fase 1):
+
+- **Não existe tabela de partidas nem de classificação.** Quem quiser ler fixtures do save precisa ler e interpretar o JSON de `league`/`cup` (serialização em `json_serialize.c` e `json_deserialize.c`).
+- Metade das tabelas é só um blob JSON. O formato interno desse JSON é do upstream e **não tem versão de esquema declarada no que li**. O `SimulationAdapter` e qualquer importador devem ir pelo próprio núcleo (`load_save.c`), nunca por SQL direto nessas tabelas.
+- Não foi procurada ainda uma tabela ou chave de versão do save. Pendência.
+
+## 5. Regras de campeonato
+
+- **Turno e returno:** `league.c:83` define `round_robins = 2` por padrão. `fixture_write_league_fixtures` (`fixture.c:44`) lê `league->round_robins` (`fixture.c:56`) e chama `fixture_write_round_robin` (`fixture.c:561`) uma vez por turno; `fixture_write_round_robin_matchday` (`fixture.c:691`) monta cada rodada. A ordem dos jogos de cada rodada ainda não foi lida em detalhe.
+- **Rodada da semana:** cada `Fixture` tem `week_number` e `week_round_number`. `fixture_get_next_week` (`fixture.c:1543`) e `fixture_get_week_list` (`fixture.c:1113`) navegam por elas.
+- **Atualização da tabela:** `table_update` (`table.c:79`) usa `table_update_get_elements` (`table.c:139`) a cada partida jogada.
+- **Desempate** (`table_element_compare_func`, `table.c:192-245`), na ordem do código:
+  1. pontos (`TABLE_PTS`);
+  2. saldo de gols (`TABLE_GF - TABLE_GA`);
+  3. gols sofridos (`TABLE_GA`; o sentido do `misc_int_compare` não foi conferido);
+  4. confronto direto entre os dois times, quando existem as duas partidas jogadas até a rodada atual. O resto desse ramo (o que acontece sem as duas partidas) não foi lido.
+
+Para o MVP de 12 clubes e 22 rodadas, `round_robins = 2` com 12 times gera 22 rodadas (cada time joga 11 adversários duas vezes). Isso é aritmética, não foi confirmado rodando o gerador.
