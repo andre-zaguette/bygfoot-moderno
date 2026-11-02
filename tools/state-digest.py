@@ -4,7 +4,7 @@ import json
 import sys
 
 
-def main(path, depth):
+def main(path, depth, prefix=None):
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     d = json.load(open(path, encoding="utf-8"))
@@ -25,8 +25,11 @@ def main(path, depth):
                 walk(f"{p}[{i}]", x, dep - 1)
 
     walk("", d, depth)
+    if prefix:
+        import re
+        out = [l for l in out if re.match(prefix, l)]
     print("\n".join(out))
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 6)
+    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 6, sys.argv[3] if len(sys.argv) > 3 else None)

@@ -62,6 +62,7 @@ jobs:
           BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh spike/headless/bf-headless --seed 1 > diag/out-patched-seed1-${{ matrix.os }}.txt || true
           sh tools/dump-state.sh 1 > diag/state-${{ matrix.os }}.txt || true
           BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tools/dump-state.sh 1 > diag/state-patched-${{ matrix.os }}.txt || true
+          DIGEST_DEPTH=9 DIGEST_PREFIX='^\.country_list\[(2|76|85)\]\.leagues\[(0|5)\]\.teams\[(9|10|0)\]' BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tools/dump-state.sh 1 > diag/teams-patched-${{ matrix.os }}.txt || true
           STATE_SAMPLE=1 BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tools/dump-state.sh 1 > diag/sample-patched-${{ matrix.os }}.txt || true
           python3 -I -c "import os;[print(n) for n in os.listdir('upstream/support_files/definitions')]" > diag/readdir-definitions-${{ matrix.os }}.txt
       - name: Publicar hashes
