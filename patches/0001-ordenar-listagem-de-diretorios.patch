@@ -1,0 +1,55 @@
+--- a/src/file.c
++++ b/src/file.c
+@@ -75,6 +75,12 @@
+   @see file_find_support_file()
+   @see #support_directories  
+  */
++static gint
++bygfoot_patch_strcmp(gconstpointer a, gconstpointer b)
++{
++  return strcmp(*(const gchar * const *)a, *(const gchar * const *)b);
++}
++
+   void
+ file_add_support_directory_recursive(Bygfoot *bygfoot, const gchar     *directory)
+ {
+@@ -102,13 +108,16 @@
+     add_pixmap_directory(directory);
+   support_directories = g_list_prepend (support_directories,
+       g_strdup (directory));
+-  while(TRUE)
+-  {
+-    file = g_dir_read_name(newdir);
+-
+-    if(file == NULL)
+-      break;
++  /* BYGFOOT_PATCH: listagem ordenada, para que a ordem de carga não dependa do sistema de arquivos */
++  GPtrArray *names = g_ptr_array_new_with_free_func(g_free);
++  while((file = g_dir_read_name(newdir)) != NULL)
++    g_ptr_array_add(names, g_strdup(file));
++  g_dir_close(newdir);
++  g_ptr_array_sort(names, bygfoot_patch_strcmp);
+ 
++  for(guint ni = 0; ni < names->len; ni++)
++  {
++    file = g_ptr_array_index(names, ni);
+     fullpath = g_strdup_printf ("%s%s%s", directory,
+         G_DIR_SEPARATOR_S, file);
+ 
+@@ -118,7 +127,7 @@
+     g_free(fullpath);
+   }
+ 
+-  g_dir_close(newdir);
++  g_ptr_array_free(names, TRUE);
+ }
+ 
+ /**
+@@ -478,6 +487,7 @@
+   }
+ 
+   g_dir_close(dir);
++  g_ptr_array_sort(contents, bygfoot_patch_strcmp); /* BYGFOOT_PATCH */
+ 
+   return contents;
+ }

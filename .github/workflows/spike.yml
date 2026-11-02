@@ -38,6 +38,12 @@ jobs:
         run: sh tests/golden-seeds/test-compare-golden.sh
       - name: Hashes das seeds de ouro
         run: python3 -I tools/golden-hash.py > golden-${{ matrix.os }}.txt && cat golden-${{ matrix.os }}.txt
+      - name: Experimento ADR-002 - aplicar remendos em cópia e compilar
+        run: |
+          sh tools/apply-patches.sh build/patched-src
+          BF_SRC=build/patched-src BF_BUILD=build/patched sh tools/build-upstream.sh build/patched-build.log
+      - name: Experimento ADR-002 - hashes com remendo
+        run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" python3 -I tools/golden-hash.py > golden-patched-${{ matrix.os }}.txt && cat golden-patched-${{ matrix.os }}.txt
       - name: Diagnóstico (saída completa e ordem dos diretórios)
         if: always()
         run: |
@@ -51,6 +57,7 @@ jobs:
           name: golden-${{ matrix.os }}
           path: |
             golden-${{ matrix.os }}.txt
+            golden-patched-${{ matrix.os }}.txt
             diag/
   compare:
     needs: headless
@@ -61,7 +68,10 @@ jobs:
         with:
           path: golden
           merge-multiple: true
-      - name: Comparar macOS, Linux e Windows
+      - name: Comparar macOS, Linux e Windows (upstream original)
+        continue-on-error: true   # divergência conhecida, ver docs/spikes/cross-os-determinism.md
         run: |
           ls -l golden
           python3 -I tools/compare-golden.py golden/golden-macos-latest.txt golden/golden-ubuntu-latest.txt golden/golden-windows-latest.txt
+      - name: Comparar macOS, Linux e Windows (com remendos)
+        run: python3 -I tools/compare-golden.py golden/golden-patched-macos-latest.txt golden/golden-patched-ubuntu-latest.txt golden/golden-patched-windows-latest.txt
