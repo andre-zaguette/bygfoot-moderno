@@ -42,6 +42,16 @@ jobs:
         run: |
           sh tools/apply-patches.sh build/patched-src
           BF_SRC=build/patched-src BF_BUILD=build/patched sh tools/build-upstream.sh build/patched-build.log
+      - name: Diagnóstico ADR-002 - build com rastreio de nomes
+        run: |
+          cp -R build/patched-src build/trace-src
+          (cd build/trace-src && patch -p1 < ../../tests/diag/trace-names.patch)
+          BF_SRC=build/trace-src BF_BUILD=build/trace sh tools/build-upstream.sh build/trace-build.log
+          mkdir -p diag
+          rm -f diag/trace-full.txt
+          BF_TRACE="$PWD/diag/trace-full.txt" BYGFOOT_BIN="$PWD/build/trace/bygfoot" sh tools/dump-state.sh 1 > /dev/null
+          head -3000 diag/trace-full.txt > diag/trace-${{ matrix.os }}.txt
+          rm diag/trace-full.txt
       - name: Experimento ADR-002 - hashes com remendo
         run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" python3 -I tools/golden-hash.py > golden-patched-${{ matrix.os }}.txt && cat golden-patched-${{ matrix.os }}.txt
       - name: Diagnóstico (saída completa e ordem dos diretórios)

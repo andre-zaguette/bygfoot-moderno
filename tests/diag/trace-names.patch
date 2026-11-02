@@ -1,0 +1,33 @@
+--- a/src/name.c
++++ b/src/name.c
+@@ -25,6 +25,8 @@
+ 
+ #include "main.h"
+ #include "free.h"
++#include <stdlib.h>
++#include <stdio.h>
+ #include "name.h"
+ #include "option.h"
+ #include "variables.h"
+@@ -67,6 +69,7 @@
+ 
+     gint i;
+ 
++    { const char *tp = getenv("BF_TRACE"); if(tp) { FILE *tf = fopen(tp, "a"); if(tf) { fprintf(tf, "N file=%s cl=%d\n", names_file, country_list ? (int)country_list->len : -1); fclose(tf); } } }
+     if(math_rnd(0, 1) < const_float("float_name_random_list_prob")) {
+         Country *c;
+         if (!country_list) {
+@@ -107,8 +110,11 @@
+ 
+     /* BYGFOOT_PATCH: a ordem de avaliação dos argumentos é indefinida em C;
+        fixa nome antes do sobrenome (ordem do clang), para clang e gcc sortearem igual. */
+-    gchar *first_name = name_get_random_first_name(namelist);
+-    gchar *last_name = name_get_random_last_name(namelist);
++    guint32 tr_i1 = g_rand_int_range(rand_generator, 0, namelist->first_names->len);
++    guint32 tr_i2 = g_rand_int_range(rand_generator, 0, namelist->last_names->len);
++    gchar *first_name = g_ptr_array_index(namelist->first_names, tr_i1);
++    gchar *last_name = g_ptr_array_index(namelist->last_names, tr_i2);
++    { const char *tp = getenv("BF_TRACE"); if(tp) { FILE *tf = fopen(tp, "a"); if(tf) { fprintf(tf, "NG sid=%s i1=%u/%u i2=%u/%u\n", namelist->sid ? namelist->sid : "?", tr_i1, namelist->first_names->len, tr_i2, namelist->last_names->len); fclose(tf); } } }
+ 
+     sprintf(buf, "%s %s", first_name, last_name);
+ 
