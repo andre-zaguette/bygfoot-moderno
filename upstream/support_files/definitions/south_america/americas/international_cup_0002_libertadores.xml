@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Copa Libertadores</name>
+	<short_name>CL</short_name>
+	<symbol>wc_samerica.png</symbol>
+	<sid>libertadores</sid>
+	<group>1</group>
+	<yellow_red>3</yellow_red>
+	<add_week>-1</add_week>
+	<!-- February 4 - November 29 -->
+	<last_week>42</last_week>
+	<week_gap>1</week_gap>
+	<property>international</property>
+	<property>highlight1</property>
+	<break_in length="1">11</break_in>
+	<break_in length="1">13</break_in>
+	<!-- Need to assume that a country could have up to 2 teams
+	     qualify by winning this cup or the sudamericana cup last
+	     year, so need to add 2 to each end_idx. -->
+	<cup_rounds>
+		<cup_round>
+			<!-- Feb 4, 11: Week 1, 2 -->
+			<delay>-23</delay>
+			<byes>0</byes>
+			<round_name>First Stage</round_name>
+			<choose_teams>  
+				<choose_team>
+					<!-- bolivia 4: 2nd best not qualified from aggregate table .
+					     FIXME: We don't do the split tables, so taking 4th best. -->
+					<choose_team_sid>bolivia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>4</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- ecuador 4: FIXME This should be the cup winner, but
+					     we haven't added the cup definition yet. -->
+					<choose_team_sid>ecuador1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>4</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- paraguay 4: FIXME: From what I can tell this should be
+					     the top cup finisher that hasn't already qualified, but
+  					     we haven't added the cup definition yet. -->
+					<choose_team_sid>paraguay1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>4</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- peru 4: 4th place team. -->
+					<choose_team_sid>peru1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>4</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Uruguay 4: 2nd best aggregate not yet qualified. 
+					     FIXME: We don't use split tables, so taking 4th best-->
+					<choose_team_sid>uruguay1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>4</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Venezuela 4: 2nd best aggregate not yet qualified. 
+					     FIXME: We don't use split tables, so taking 4th best-->
+					<choose_team_sid>venezuela1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+			<!-- Feb 18, 25: Week 3, 4 -->
+			<delay>-23</delay>
+			<round_name>Second Stage</round_name>
+			<byes>0</byes>
+			<choose_teams>  
+				<choose_team>
+				        <!-- Argentina 6: Aggregate third best not qualified.
+					     FIXME: We don't use split tables, so we are taking 6th best-->
+					<choose_team_sid>argentina1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>6</start_idx>
+					<end_idx>8</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- bolivia 3: Aggregate table best team not qualified.
+					     FIXME: We don't use split tables, so we are taking 3rd best.-->
+					<choose_team_sid>bolivia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>5</end_idx>
+				</choose_team>
+				<choose_team>
+				        <!-- Brazil 6,7: -->
+					<choose_team_sid>brazil1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>6</start_idx>
+					<end_idx>9</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Chile 3,4:
+					  FIXME: 4th spot should be best cup finisher not
+					  qualified, but we don't have the cup definition.-->
+					<choose_team_sid>chile1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Colombia 3,4: Best two aggregate not yet qualified.
+					     FIXME: We don't use split tables so we are taking 3rd and
+					     4th best. -->
+					<choose_team_sid>colombia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- ecuador 3: Aggregate best not qualified.
+  					     FIXME: We don't use split tables so we are taking 3rd best. -->
+					<choose_team_sid>ecuador1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>5</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- paraguay 3: Aggregate best not qualified.
+  					     FIXME: We don't use split tables so we are taking 3rd best. -->
+					<choose_team_sid>paraguay1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>5</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- peru 3: --> 
+					<choose_team_sid>peru1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>5</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Uruguay 3: Aggregate best not qualified.
+  					     FIXME: We don't use split tables so we are taking 3rd best. -->
+					<choose_team_sid>uruguay1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>5</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Venezuela 3: Aggregate best not qualified.
+  					     FIXME: We don't use split tables so we are taking 3rd best. -->
+					<choose_team_sid>venezuela1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>5</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+			<delay>-23</delay>
+			<!-- Mar 4, 11: Week 5, 6 -->
+			<round_name>Third Stage</round_name>
+			<byes>0</byes>
+			<choose_teams>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+			<delay>-21</delay>
+			<!-- Week 9, 10, 12, 14, 15, 16 -->
+			<number_of_groups>8</number_of_groups>
+			<number_of_advance>2</number_of_advance>
+			<round_name>Group Stage</round_name>
+			<choose_teams>  
+				<choose_team>
+					<choose_team_sid>libertadores</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>sudamericana</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Argentina 1-5 -->
+					<choose_team_sid>argentina1</choose_team_sid>
+					<number_of_teams>5</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>7</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Bolivia 1-2
+					     FIXME: We don't have split tables so just take the top 2.-->
+					<choose_team_sid>bolivia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Brazil 1-5 -->
+					<choose_team_sid>brazil1</choose_team_sid>
+					<number_of_teams>5</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>7</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- Chile 1-2 -->
+					<choose_team_sid>chile1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>colombia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>ecuador1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>paraguay1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>peru1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>uruguay1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>venezuela1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+			<!-- Week 27, 28 -->
+			<round_name>Round of 16</round_name>
+			<delay>-9</delay>
+		</cup_round>
+		<cup_round>
+			<!-- Week 32, 33 -->
+			<round_name>Quarter-Finals</round_name>
+			<delay>-6</delay>
+		</cup_round>
+		<cup_round>
+			<!-- Week 37, 38 -->
+			<round_name>Semi-Finals</round_name>
+			<delay>-3</delay>
+		</cup_round>
+		<cup_round>
+			<!-- Week 42 -->
+			<round_name>Finals</round_name>
+			<home_away>0</home_away>
+		</cup_round>
+	</cup_rounds>
+</cup>

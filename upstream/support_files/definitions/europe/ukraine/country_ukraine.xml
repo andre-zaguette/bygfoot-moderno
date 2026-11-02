@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Ukraine</name>
+  <symbol>flag_ukraine.png</symbol>
+  <sid>ukraine</sid>
+  <rating>7</rating>
+
+  <leagues>
+    <league>ukraine1</league>
+    <league>ukraine2</league>
+    <league>ukraine3a</league>
+    <league>ukraine3b</league>
+    <league>ukraine4a</league>
+    <league>ukraine4b</league>
+    <league>ukraine4c</league>
+  </leagues>
+
+  <cups>
+    <cup>ukraine_cup</cup>
+    <cup>ukraine_supercup</cup>
+    <cup>ukraine_prom_games2a</cup>
+    <cup>ukraine_prom_games2b</cup>
+    <cup>ukraine_prom_games3a</cup>
+    <cup>ukraine_prom_games3b</cup>
+    <cup>ukraine_prom_games4</cup>
+  </cups>
+
+</country>

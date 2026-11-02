@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Deutschland</name>
+  <rating>10</rating>
+  <symbol>flag_germany.png</symbol>
+  <sid>germany</sid>
+
+  <leagues>
+    <league>germany1</league>
+    <league>germany2</league>
+    <league>germany3</league>
+    <league>germany4a</league>
+    <league>germany4b</league>
+    <league>germany4c</league>
+    <league>germany4d</league>
+    <league>germany4e</league>
+  </leagues>
+
+  <cups>
+    <cup>germany_dfb</cup>
+    <cup>germany_supercup</cup>
+    <cup>germany_prom_games1</cup>
+    <cup>germany_prom_games2</cup>
+    <cup>germany_prom_games3</cup>
+  </cups>
+
+</country>

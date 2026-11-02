@@ -1,0 +1,24 @@
+<!-- 2025 -->
+<league>
+  <sid>canada_cpl</sid>
+  <layer>2</layer>
+  <name>Canada Premier League</name>
+  <symbol>flag_canada.png</symbol>
+  <short_name>CPL</short_name>
+  <!-- April 5 -> Oct 18 -->
+  <first_week>1</first_week>
+  <average_talent>7000</average_talent>
+  <yellow_red>3</yellow_red>
+  <round_robins>4</round_robins>
+  <names_file>usa</names_file>
+  <teams>
+    <team><team_name>A. Ottawa</team_name></team>
+    <team><team_name>C. Calgary</team_name></team>
+    <team><team_name>F. Hamilton</team_name></team>
+    <team><team_name>Halifax W.</team_name></team>
+    <team><team_name>I. Toronto</team_name></team>
+    <team><team_name>P. Vancouver</team_name></team>
+    <team><team_name>S. Québec</team_name></team>
+    <team><team_name>Vancouver F.</team_name></team>
+  </teams>
+</league>

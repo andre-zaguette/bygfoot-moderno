@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Albania</name>
+  <symbol>flag_albania.png</symbol>
+  <sid>albania</sid>
+  <rating>2</rating>
+
+  <leagues>
+    <league>albania1</league>
+    <league>albania2a</league>
+    <league>albania2b</league>
+    <league>albania3a</league>
+    <league>albania3b</league>
+    <league>albania4</league>
+    </leagues>
+
+  <cups>
+    <cup>albania_cup</cup>
+    <cup>albania_supercup</cup>
+    <cup>albania_prom_games2a</cup>
+    <cup>albania_prom_games2b</cup>
+  </cups>
+
+</country>

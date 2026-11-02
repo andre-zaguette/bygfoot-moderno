@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>england3</sid>
+  <name>Football League One</name>
+  <short_name>League One</short_name>
+  <symbol>flag_england.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>6800</average_talent>
+  <names_file>england</names_file>
+  <yellow_red>5</yellow_red>
+  <two_match_week_start>7</two_match_week_start> 
+  <two_match_week_end>8</two_match_week_end>
+  <two_match_week_start>13</two_match_week_start> 
+  <two_match_week_end>14</two_match_week_end>
+  <two_match_week_start>24</two_match_week_start> 
+  <two_match_week_end>25</two_match_week_end>
+  <two_match_week_start>31</two_match_week_start> 
+  <two_match_week_end>32</two_match_week_end>
+  <two_match_week_start>36</two_match_week_start> 
+  <two_match_week_end>37</two_match_week_end>
+
+  <prom_rel>
+
+    <prom_games>
+      <prom_games_dest_sid>england2</prom_games_dest_sid>
+      <prom_games_cup_sid>england_prom_games3</prom_games_cup_sid>
+    </prom_games>
+    
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>england2</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>21</rank_start>
+      <rank_end>24</rank_end>
+      <dest_sid>england4</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Barnsley</team_name>
+    </team>
+    <team>
+      <team_name>Blackpool</team_name>
+    </team>
+    <team>
+      <team_name>Bradford</team_name>
+    </team>
+    <team>
+      <team_name>Burton</team_name>
+    </team>
+    <team>
+      <team_name>England 805</team_name>
+    </team>
+    <team>
+      <team_name>Chesterfield</team_name>
+    </team>
+    <team>
+      <team_name>Colchester</team_name>
+    </team>
+    <team>
+      <team_name>Coventry</team_name>
+    </team>
+    <team>
+      <team_name>Crewe</team_name>
+    </team>
+    <team>
+      <team_name>Doncaster</team_name>
+    </team>
+    <team>
+      <team_name>England 811</team_name>
+    </team>
+    <team>
+      <team_name>Gillingham</team_name>
+    </team>
+    <team>
+      <team_name>Millwall</team_name>
+    </team>
+    <team>
+      <team_name>Oldham</team_name>
+    </team>
+    <team>
+      <team_name>England 815</team_name>
+    </team>
+    <team>
+      <team_name>P. V. Stoke</team_name>
+    </team>
+    <team>
+      <team_name>England 817</team_name>
+    </team>
+    <team>
+      <team_name>England 818</team_name>
+    </team>
+    <team>
+      <team_name>Sheffield U.</team_name>
+    </team>
+    <team>
+      <team_name>Shrewsbury</team_name>
+    </team>
+    <team>
+      <team_name>Swindon</team_name>
+    </team>
+    <team>
+      <team_name>Southend</team_name>
+    </team>
+    <team>
+      <team_name>Walsall</team_name>
+    </team>
+    <team>
+      <team_name>Wigan</team_name>
+    </team>
+  </teams>
+</league>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Czech Republic</name>
+  <symbol>flag_czech.png</symbol>
+  <sid>czech</sid>
+  <rating>6</rating>
+
+  <leagues>
+    <league>czech1</league>
+    <league>czech2</league>
+    <league>czech3a</league>
+    <league>czech3b</league>
+    <league>czech3c</league>
+    <league>czech4a</league>
+    <league>czech4b</league>
+    <league>czech4c</league>
+    <league>czech4d</league>
+    <league>czech4e</league>
+    <league>czech4f</league>
+  </leagues>
+
+  <cups>
+    <cup>czech_cup</cup>
+    <cup>czech_supercup</cup>
+    <cup>czech_prom_games1</cup>
+    <cup>czech_prom_games2</cup>
+    <cup>czech_prom_games3</cup>
+  </cups>
+
+</country>

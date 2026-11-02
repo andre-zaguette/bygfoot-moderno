@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Kazakhstan</name>
+  <symbol>flag_kazakhstan.png</symbol>
+  <sid>kazakhstan</sid>
+  <rating>3</rating>
+
+  <leagues>
+    <league>kazakhstan1</league>
+    <league>kazakhstan2</league>
+  </leagues>
+
+  <cups>
+    <cup>kazakhstan_cup</cup>
+    <cup>kazakhstan_supercup</cup>
+    <cup>kazakhstan_prom_games1</cup>
+  </cups>
+
+</country>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Ligue2 Quebec Promotion Playoff</name>
+  <short_name>L2QC Promotion</short_name>
+  <symbol>flag_canada.png</symbol>
+  <sid>ligue2_quebec_promotion_playoff</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <property>include_reserve_teams</property>
+  <cup_rounds>
+    <cup_round>
+      <round_name>Semifinals</round_name>
+      <home_away>0</home_away>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>ligue3_quebec</choose_team_sid>
+          <number_of_teams>4</number_of_teams>
+          <start_idx>2</start_idx>
+          <end_idx>5</end_idx>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    <cup_round>
+      <round_name>Finals</round_name>
+      <home_away>0</home_away>
+    </cup_round>
+  </cup_rounds>
+</cup>

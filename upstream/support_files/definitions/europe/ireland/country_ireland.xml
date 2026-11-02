@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Ireland</name>
+  <rating>2</rating>
+  <symbol>flag_ireland.png</symbol>
+  <sid>ireland</sid>
+
+  <leagues>
+    <league>ireland1</league>
+    <league>ireland2</league>
+    <league>ireland3a</league>
+    <league>ireland3b</league>
+  </leagues>
+
+  <cups>
+    <cup>ireland_cup</cup>
+    <cup>ireland_league</cup>
+    <cup>ireland_prescup</cup>
+    <cup>ireland_prom_games1</cup>
+  </cups>
+
+</country>

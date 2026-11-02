@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Moldova</name>
+  <symbol>flag_moldova.png</symbol>
+  <sid>moldova</sid>
+  <rating>2</rating>
+
+  <leagues>
+    <league>moldova1</league>
+    <league>moldova2</league>
+    <league>moldova3a</league>
+    <league>moldova3b</league>
+    <league>moldova3c</league>
+  </leagues>
+
+  <cups>
+    <cup>moldova_cup</cup>
+    <cup>moldova_supercup</cup>
+    <cup>moldova_prom_games1</cup>
+  </cups>
+
+</country>

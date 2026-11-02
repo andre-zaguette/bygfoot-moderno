@@ -1,0 +1,298 @@
+/*
+  debug.c
+
+  Bygfoot Football Manager -- a small and simple GTK2-based
+  football management game.
+
+  http://bygfoot.sourceforge.net
+
+  Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+#include "callbacks.h"
+#include "debug.h"
+#include "file.h"
+#include "game_gui.h"
+#include "league.h"
+#include "live_game.h"
+#include "option.h"
+#include "strategy.h"
+#include "support.h"
+#include "team.h"
+#include "user.h"
+#include "variables.h"
+
+void
+debug_print_message(gchar *format, ...)
+{
+    gchar text[SMALL];
+    va_list args;
+    gchar buf[SMALL];
+    gchar bygfoot_dir[SMALL];
+    size_t bytes;
+    FILE *fil = NULL;
+#ifdef GLIB_VERSION_2_62
+    GDateTime *logtime;
+#else
+    GTimeVal logtime;
+#endif
+    gchar *logtime_string;
+     
+    if(format != NULL)
+    {
+	va_start (args, format);
+	g_vsprintf(buf, format, args);
+	va_end (args);
+    }
+
+    if(debug_output != DEBUG_OUT_LOGFILE)
+        g_warning("%s\n", buf);
+
+    if(debug_output != DEBUG_OUT_STDOUT)
+    {   
+#ifdef GLIB_VERSION_2_62
+        gint64 current_time = g_get_real_time();
+        logtime = g_date_time_new_from_unix_utc(current_time);
+        if (logtime == NULL)
+          logtime = g_date_time_new_now_utc();
+        logtime_string = g_date_time_format_iso8601(logtime);
+        g_date_time_unref(logtime);
+#else
+        g_get_current_time(&logtime);
+        logtime_string = g_time_val_to_iso8601(&logtime);
+#endif
+        sprintf(text, "%s %s\n", logtime_string, buf);
+        g_free(logtime_string);
+
+        if (!file_get_bygfoot_dir(bygfoot_dir, SMALL))
+	    return;
+
+        bytes = snprintf(buf, SMALL, "%s%sbygfoot.log", bygfoot_dir, G_DIR_SEPARATOR_S);
+	if (bytes >= SMALL)
+	    return;
+        
+        fil = fopen(buf, "a");
+        if(fil == NULL)
+        {
+            g_warning("Couldn't open log file %s\n", buf);
+            return;
+        }
+
+        fprintf(fil, "%s\n", text);
+        fclose(fil);
+    }
+}
+
+/** Take some debug action depending on the text. Text is a prefix and a number. */
+void
+debug_action(Bygfoot *bygfoot, const gchar *text)
+{
+#ifdef DEBUG
+    printf("debug_action\n");
+#endif
+
+    gchar buf[SMALL];
+    gint value = -1;
+    gint i, j;
+
+    printf("debact: %s\n", text);
+
+    sscanf(text, "%[^-0-9]%d", buf, &value);
+
+    if(g_str_has_prefix(text, "deb"))
+    {
+	debug_level = value;
+	game_gui_print_message("Debug value set to %d.", value);
+    }
+    else if(g_str_has_prefix(text, "cap"))
+    {
+	current_user.tm->stadium.capacity += value;
+	game_gui_print_message("Stadium capacity changed by %d. New: %d.", value,
+                               current_user.tm->stadium.capacity);
+    }
+    else if(g_str_has_prefix(text, "saf"))
+    {
+	current_user.tm->stadium.safety += ((gfloat)value / 100);
+	current_user.tm->stadium.safety = 
+	    CLAMP(current_user.tm->stadium.safety, 0, 1);
+	game_gui_print_message("Stadium safety changed by %d. New: %.2f", value,
+                               current_user.tm->stadium.safety);
+    }
+    else if(g_str_has_prefix(text, "mon"))
+    {
+	current_user.money += value;
+	game_gui_print_message("Money changed by %d. New: %d.", value,
+                               current_user.money);
+    }
+    else if(g_str_has_prefix(text, "suc"))
+    {
+	current_user.counters[COUNT_USER_SUCCESS] += value;
+	game_gui_print_message("Success counter changed by %d. New: %d.", value,
+                               current_user.counters[COUNT_USER_SUCCESS]);
+    }
+    else if(g_str_has_prefix(text, "scout"))
+    {
+	current_user.scout = value;
+	game_gui_print_message("Scout changed to %d.", value);
+    }
+    else if(g_str_has_prefix(text, "phys"))
+    {
+	current_user.physio = value;
+	game_gui_print_message("Physio changed to %d.", value);
+    }
+    else if(g_str_has_prefix(text, "yc"))
+    {
+	current_user.youth_academy.coach = value;
+	game_gui_print_message("Youth coach changed to %d.", value);
+    }
+    else if(g_str_has_prefix(text, "pospref"))
+    {
+	current_user.youth_academy.pos_pref = value;
+	game_gui_print_message("Recruiting pref changed to %d.", value);
+    }
+    else if(g_str_has_prefix(text, "goto"))
+    {
+        if(debug < 50)
+            debug_level = 50;
+
+        if(option_int("int_opt_user_show_live_game", &current_user.options))
+            option_set_int("int_opt_user_show_live_game", &current_user.options, 0);
+
+        sett_set_int("int_opt_goto_mode", 1);
+        if(value < 100)
+            while(week < value)
+            {
+                on_button_new_week_clicked(NULL, bygfoot);
+                game_gui_set_main_window_header();
+                while (gtk_events_pending ())
+                    gtk_main_iteration ();
+            }        
+        else
+            while(season < value - 100)
+            {
+                on_button_new_week_clicked(NULL, bygfoot);
+                game_gui_set_main_window_header();
+                while (gtk_events_pending ())
+                    gtk_main_iteration ();
+            }
+        sett_set_int("int_opt_goto_mode", 0);
+    }
+    else if(g_str_has_prefix(text, "testcom") ||
+	    g_str_has_prefix(text, "tc"))
+    {
+	stat5 = -value - 1000;
+	game_gui_print_message("Commentary type displayed: %d.", value);
+    }
+    else if(g_str_has_prefix(text, "printweeks"))
+    {
+        for(i = 0; i < country.cups->len; i++)
+        {
+            Cup *cup = g_ptr_array_index(country.cups, i);
+            if(cup->add_week != 1000)
+            {
+                g_print("Cup: %s\n", cup->c.name);
+                for(j = 0; j < cup->rounds->len; j++)
+                    g_print("  Round %2d: Week %2d (w/o delay: %2d)\n",
+                            j, cup_get_first_week_of_cup_round(cup, j, TRUE),
+                            cup_get_first_week_of_cup_round(cup, j, FALSE));                
+            }
+        }
+    }
+    else if(g_str_has_prefix(text, "help"))
+    {
+	g_print("Debug options:\n"
+                "deb \t set debug value\n"
+                "writer \t set debug-writer value\n"
+                "cap \t change stadium capacity\n"
+                "saf \t change stadium safety\n"
+                "mon \t change money\n"
+                "suc \t change success counter\n"
+                "scout \t change scout\n"
+                "physio \t change physio\n"
+                "printweeks \t print the starting weeks of all cup rounds\n"
+                "youth coach \t change youth coach\n"
+                "pospref \t change recruiting pref\n"
+                "goto \t Press 'new week' automatically until\n"
+                "     \t the appropriate week is reached\n"
+                "     \t Supply 100+X to go to season X (e.g. 102)\n"
+                "testcom|tc \t Test a specific live game commentary.\n"
+                "           \t Find the numbers in live_game_struct.h (LiveGameEventType)\n"
+                "           \t Use 'goto' afterwards.\n"
+                "help \t display this help\n");
+    }
+
+    setsav0;
+}
+
+gboolean
+debug_reset_counter(gpointer data)
+{
+#ifdef DEBUG
+    printf("debug_reset_counter\n");
+#endif
+
+    counters[COUNT_SHOW_DEBUG] = 0;
+
+    return FALSE;
+}
+
+void
+debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff, Bygfoot *bygfoot)
+{
+#ifdef DEBUG
+    printf("debug_calibrate_betting_odds\n");
+#endif
+
+    gint i, skilldiff, matches;
+    League *league = g_ptr_array_index(country.leagues, 0);
+    Fixture *fix = &g_array_index(league->fixtures, Fixture, 0);
+    LiveGame live_game;
+
+    fix->home_advantage = FALSE;
+    
+    for(skilldiff=0;skilldiff<=skilldiffmax;skilldiff++)
+    {
+	gint res[3] = {0, 0, 0};
+
+	for(matches=0;matches<matches_per_skilldiff;matches++)
+	{
+	    fix->attendance = -1;
+	    fix->result[0][0] = fix->result[1][0] = 0;
+	    for(i=0;i<fix->teams[0]->players->len;i++)
+	    {
+                Player *player0 = g_ptr_array_index(fix->teams[0]->players, i);
+                Player *player1 = g_ptr_array_index(fix->teams[1]->players, i);
+                strategy_repair_player(player0);
+                strategy_repair_player(player1);
+                player0->skill = 90;
+                player1->skill = 90 - skilldiff;
+                player0->fitness = 0.9;
+                player1->fitness = 0.9;
+	    }
+
+	    live_game_calculate_fixture(fix, &live_game, bygfoot);
+	    if(fix->result[0][0] < fix->result[1][0])
+		res[2]++;
+	    else
+		res[(fix->result[0][0] == fix->result[1][0])]++;
+	}
+
+	g_print("sd %3d res %3d %3d %3d prob %.2f %.2f %.2f\n", skilldiff,
+		res[0], res[1], res[2], (gfloat)res[0] / (gfloat)matches, 
+		(gfloat)res[1] / (gfloat)matches, (gfloat)res[2] / (gfloat)matches);
+    }
+}

@@ -1,0 +1,42 @@
+<!-- FIXME: We don't have the split tables or cup definitions for all South
+American countries, so for now we just select teams from the first division.-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Copa Sudamericana</name>
+	<short_name>CS</short_name>
+	<symbol>wc_samerica.png</symbol>
+	<sid>sudamericana_knockout_round</sid>
+	<yellow_red>3</yellow_red>
+	<add_week>23</add_week> <!-- We can't use 1000 here, because it
+		                     will wait until the end of libertadores,
+		                     not just the 4th round. -->
+	<last_week>24</last_week>
+	<week_gap>1</week_gap>
+	<property>international</property>
+	<property>highlight2</property>
+	<cup_rounds>
+		<cup_round>
+			<!-- Week 23, 24 -->
+			<round_name>Knockout Round</round_name>
+			<wait_for_cup round="2">sudamericana_group_stage</wait_for_cup>
+			<wait_for_cup round="4">libertadores</wait_for_cup>
+			<choose_teams>
+			        <!-- 8 2nd place finishers from group stage of sudamericana -->
+				<choose_team>
+					<choose_team_sid>sudamericana_group_stage</choose_team_sid>
+					<number_of_teams>8</number_of_teams>
+					<start_idx>9</start_idx>
+					<end_idx>16</end_idx>
+				</choose_team>
+			        <!-- 8 3nd place finishers from group stage of libertadores -->
+				<choose_team>
+					<choose_team_sid>libertadores</choose_team_sid>
+					<number_of_teams>8</number_of_teams>
+					<start_idx>17</start_idx>
+					<end_idx>24</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>

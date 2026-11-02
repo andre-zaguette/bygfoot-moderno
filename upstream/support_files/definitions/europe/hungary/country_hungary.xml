@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Hungary</name>
+  <symbol>flag_hungary.png</symbol>
+  <sid>hungary</sid>
+  <rating>4</rating>
+
+  <leagues>
+    <league>hungary1</league>
+    <league>hungary2</league>
+    <league>hungary3a</league>
+    <league>hungary3b</league>
+    <league>hungary3c</league>
+    <league>hungary4</league>
+    </leagues>
+
+  <cups>
+    <cup>hungary_cup</cup>
+    <cup>hungary_supercup</cup>
+  </cups>
+
+</country>

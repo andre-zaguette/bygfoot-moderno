@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Canadian Championship</name>
+  <short_name>Canadian Championship</short_name>
+  <symbol>flag_canada.png</symbol>
+  <sid>canadian_championship</sid>
+  <add_week>0</add_week>
+  <last_week>25</last_week>
+  <property>national</property>
+  <week_gap>5</week_gap>
+  <!-- In the unlikely even that one of the provincial leagues wins
+       the cup, we will end up with an extra team in this round, so
+       in this case we will just exclude the last place cpl team.
+       There's no easy way to do this, so we need to get creative
+       with the choose_teams.
+
+  -->
+  <cup_rounds>
+    <cup_round>
+      <round_name>Preliminary Round</round_name>
+      <home_away>0</home_away>
+      <byes>0</byes>
+      <!-- April 29: Week 4 -->
+      <delay>4</delay>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>canada_cpl</choose_team_sid>
+          <number_of_teams>7</number_of_teams>
+          <start_idx>1</start_idx>
+          <end_idx>8</end_idx>
+        </choose_team>
+        <choose_team>
+          <choose_team_sid>canada_mls</choose_team_sid>
+          <number_of_teams>2</number_of_teams>
+          <start_idx>1</start_idx>
+          <end_idx>3</end_idx>
+        </choose_team>
+        <!-- At this point depending on last years champion we have:
+           1. CPL: 7 CPL teams, 2 MLS teams, and 4 provincial teams
+              * Need 1 MLS team.
+           2. MLS: 7 CPL teams, 2 MLS teams, and 4 provincial teams
+              * Need 1 CPL team.
+           3. Provincial: 7 CPL teams, 2 MLS teams, and 4 provincial teams.
+              * Need 1 MLS team.
+           4. Provincial 1st palce team: 7 CPL teams, 2 MLS teams, and 3 provincial teams.
+              * Need 1 MLS team, 1 CPL team.
+        -->
+        <choose_team>
+          <choose_team_sid>league1_ontario_premier</choose_team_sid>
+          <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>1</end_idx>
+          <alternatives>
+             <choose_team>
+               <!-- CPL team for scenario 4 -->
+               <choose_team_sid>canada_cpl</choose_team_sid>
+               <number_of_teams>1</number_of_teams>
+               <start_idx>8</start_idx>
+               <end_idx>8</end_idx>
+             </choose_team>
+          </alternatives>
+        </choose_team>
+        <choose_team>
+          <choose_team_sid>league1_alberta</choose_team_sid>
+          <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>1</end_idx>
+          <alternatives>
+             <choose_team>
+               <!-- CPL team for scenario 4 -->
+               <choose_team_sid>canada_cpl</choose_team_sid>
+               <number_of_teams>1</number_of_teams>
+               <start_idx>8</start_idx>
+               <end_idx>8</end_idx>
+             </choose_team>
+          </alternatives>
+        </choose_team>
+        <choose_team>
+          <choose_team_sid>league1_british_columbia</choose_team_sid>
+          <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>1</end_idx>
+          <alternatives>
+             <choose_team>
+               <!-- CPL team for scenario 4 -->
+               <choose_team_sid>canada_cpl</choose_team_sid>
+               <number_of_teams>1</number_of_teams>
+               <start_idx>8</start_idx>
+               <end_idx>8</end_idx>
+             </choose_team>
+          </alternatives>
+        </choose_team>
+        <choose_team>
+          <choose_team_sid>ligue1_quebec</choose_team_sid>
+          <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>1</end_idx>
+          <alternatives>
+             <choose_team>
+               <!-- CPL team for scenario 4 -->
+               <choose_team_sid>canada_cpl</choose_team_sid>
+               <number_of_teams>1</number_of_teams>
+               <start_idx>8</start_idx>
+               <end_idx>8</end_idx>
+             </choose_team>
+          </alternatives>
+        </choose_team>
+        <choose_team>
+          <!-- In scenarios 1,3,4, this will select the mls team, and in
+               scenario 2, it will select the cpl team. -->
+          <choose_team_sid>canada_mls</choose_team_sid>
+          <number_of_teams>1</number_of_teams>
+	  <start_idx>3</start_idx>
+	  <end_idx>3</end_idx>
+          <alternatives>
+             <choose_team>
+               <choose_team_sid>canada_cpl</choose_team_sid>
+               <number_of_teams>1</number_of_teams>
+               <start_idx>8</start_idx>
+               <end_idx>8</end_idx>
+             </choose_team>
+          </alternatives>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    <cup_round>
+      <!-- Week 8, 13 -->
+      <round_name>Quarterfinals</round_name>
+      <home_away>1</home_away>
+      <delay>3</delay>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>canadian_championship</choose_team_sid>
+          <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>1</end_idx>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    <cup_round>
+      <!-- Week 18, 23 -->
+      <round_name>Semifinals</round_name>
+      <home_away>1</home_away>
+      <delay>3</delay>
+    </cup_round>
+    <cup_round>
+      <!-- Week 25 -->
+      <round_name>Finals</round_name>
+      <home_away>0</home_away>
+    </cup_round>
+  </cup_rounds>
+</cup>
+

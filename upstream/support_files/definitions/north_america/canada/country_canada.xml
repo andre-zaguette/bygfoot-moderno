@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>canada</name>
+  <rating>9</rating>
+  <symbol>flag_canada.png</symbol>
+  <sid>canada</sid>
+
+  <leagues>
+    <league>canada_mls</league>
+    <league>canada_cpl</league>
+    <league>league1_alberta</league>
+    <league>league1_british_columbia</league>
+    <league>league1_ontario_premier</league>
+    <league>league1_ontario_championship</league>
+    <league>league2_ontario_teams</league>
+    <league>ligue1_quebec</league>
+    <league>ligue2_quebec</league>
+    <league>ligue3_quebec</league>
+  </leagues>
+
+  <cups>
+    <cup>canadian_championship</cup>
+    <cup>canada_cpl1</cup>
+    <cup>canada_cpl1s</cup>
+    <cup>canada_cpl2s</cup>
+    <cup>canada_cpl_final</cup>
+    <cup>league1_ontario_championship_promotion_playoff</cup>
+    <cup>league1_ontario_cup</cup>
+    <cup>league1_ontario_premier_promotion_playoff</cup>
+    <cup>league2_ontario</cup>
+    <cup>ligue1_quebec_promotion_playoff</cup>
+    <cup>ligue2_quebec_promotion_playoff</cup>
+    <cup>coupe_l1qc</cup>
+  </cups>
+
+</country>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>League 2 Ontario</name>
+  <short_name>L2O</short_name>
+  <symbol>flag_canada.png</symbol>
+  <sid>league2_ontario</sid>
+  <add_week>0</add_week>
+  <last_week>20</last_week>
+  <property>national</property>
+  <property>include_reserve_teams</property>
+
+  <cup_rounds>
+    <cup_round>
+      <round_name>League</round_name>
+      <!-- There are 25 teams, so this will create groups of 9, 8, 8, so
+           16 weeks of the first round games. -->
+      <number_of_groups>3</number_of_groups>
+      <number_of_advance>1</number_of_advance>
+      <number_of_best_advance>1</number_of_best_advance>
+      <round_robins>2</round_robins>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>league2_ontario_teams</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    <cup_round>
+      <round_name>Semifinals</round_name>
+      <home_away>0</home_away>
+    </cup_round>
+    <cup_round>
+      <round_name>Finals</round_name>
+      <home_away>0</home_away>
+    </cup_round>
+  </cup_rounds>
+</cup>

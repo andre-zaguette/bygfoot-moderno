@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Georgia</name>
+  <symbol>flag_georgia.png</symbol>
+  <sid>georgia</sid>
+  <rating>3</rating>
+
+  <leagues>
+    <league>georgia1</league>
+    <league>georgia2</league>
+    <league>georgia3</league>
+    <league>georgia4</league>
+    </leagues>
+
+  <cups>
+    <cup>georgia_cup</cup>
+    <cup>georgia_supercup</cup>
+    <cup>georgia_prom_games1a</cup>
+    <cup>georgia_prom_games1b</cup>
+    <cup>georgia_prom_games2a</cup>
+    <cup>georgia_prom_games2b</cup>
+    <cup>georgia_prom_games3a</cup>
+    <cup>georgia_prom_games3b</cup>
+  </cups>
+
+</country>

@@ -1,0 +1,106 @@
+<!-- FIXME: We don't have the split tables or cup definitions for all South
+American countries, so for now we just select teams from the first division.-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Copa Sudamericana</name>
+	<short_name>CS</short_name>
+	<symbol>wc_samerica.png</symbol>
+	<sid>sudamericana_group_stage</sid>
+	<group>1</group>
+	<yellow_red>3</yellow_red>
+	<add_week>-1</add_week>
+	<last_week>16</last_week>
+	<week_gap>1</week_gap>
+	<property>international</property>
+	<property>highlight2</property>
+	<break_in length="1">11</break_in>
+	<break_in length="1">13</break_in>
+	<cup_rounds>
+		<cup_round>
+			<byes>0</byes>
+			<!-- Same as libertadores 3rd stage: Week 5 -->
+			<round_name>First Stage</round_name>
+			<delay>-1</delay>
+			<home_away>0</home_away>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>bolivia1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>10</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>chile1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>10</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>colombia1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>10</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>ecuador1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>10</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>paraguay1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>10</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>peru1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>10</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>uruguay1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>10</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>venezuela1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>10</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+			<!-- Same as libertadores group stage: Week 9, 10, 12, 14, 15, 16 -->
+			<round_name>Group Stage</round_name>
+			<number_of_groups>8</number_of_groups>
+			<round_robins>2</round_robins>
+			<delay>2</delay>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>argentina1</choose_team_sid>
+					<number_of_teams>6</number_of_teams>
+					<start_idx>7</start_idx>
+					<end_idx>14</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>brazil1</choose_team_sid>
+					<number_of_teams>6</number_of_teams>
+					<start_idx>8</start_idx>
+					<end_idx>15</end_idx>
+				</choose_team>
+				<choose_team>
+					<!-- 4 teams eliminated from the third stage.-->
+					<choose_team_sid>libertadores</choose_team_sid>
+					<preload>0</preload>
+					<skip_group_check>1</skip_group_check>
+					<losers_round>3</losers_round>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>

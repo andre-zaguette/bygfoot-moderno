@@ -1,0 +1,51 @@
+<!-- 2025 -->
+<league>
+  <sid>league1_ontario_championship</sid>
+  <layer>4</layer>
+  <name>League 1 Ontario Championship</name>
+  <symbol>flag_canada.png</symbol>
+  <short_name>L1ON Championship</short_name>
+  <!-- April 5 -> Aug 8 -->
+  <first_week>1</first_week>
+  <average_talent>5000</average_talent>
+  <yellow_red>3</yellow_red>
+  <round_robins>2</round_robins>
+  <names_file>usa</names_file>
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>league1_ontario_premier</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+    <prom_rel_element>
+      <rank_start>12</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>league2_ontario_teams</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+    <prom_games>
+      <prom_games_dest_sid>league1_ontario_premier</prom_games_dest_sid>
+      <prom_games_cup_sid>league1_ontario_premier_promotion_playoff</prom_games_cup_sid>
+      <prom_games_loser_sid>league1_ontario_championship</prom_games_loser_sid>
+    </prom_games>
+  </prom_rel>
+  <teams>
+    <team><team_name>Guelph U.</team_name></team>
+    <team><team_name>Hamilton U.</team_name></team>
+    <team><team_name>Scarborough M.</team_name></team>
+    <team><team_name>N. Mississauga</team_name></team>
+    <team><team_name>Pickering</team_name></team>
+    <team><team_name>Sudbury C.</team_name></team>
+    <team><team_name>Scarborough B.</team_name></team>
+    <team><team_name>Unionville M.</team_name></team>
+    <team><team_name>Waterloo U.</team_name></team>
+    <team><team_name>Whitby</team_name></team>
+    <team><team_name>Windsor</team_name></team>
+    <team>
+      <team_name>I. Toronto Academy</team_name>
+      <first_team>I. Toronto</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+  </teams>
+</league>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Armenia</name>
+  <symbol>flag_armenia.png</symbol>
+  <sid>armenia</sid>
+  <rating>2</rating>
+
+  <leagues>
+    <league>armenia1</league>
+    <league>armenia2</league>
+    </leagues>
+
+  <cups>
+    <cup>armenia_cup</cup>
+    <cup>supercup_league_vs_cup</cup>
+  </cups>
+
+</country>

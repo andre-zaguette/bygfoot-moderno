@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Montenegro</name>
+  <symbol>flag_montenegro.png</symbol>
+  <sid>montenegro</sid>
+  <rating>2</rating>
+
+  <leagues>
+    <league>montenegro1</league>
+    <league>montenegro2</league>
+    <league>montenegro3a</league>
+    <league>montenegro3b</league>
+    <league>montenegro3c</league>
+    </leagues>
+
+  <cups>
+    <cup>montenegro_cup</cup>
+    <cup>montenegro_prom_games1</cup>
+    <cup>montenegro_prom_games2</cup>
+  </cups>
+
+</country>

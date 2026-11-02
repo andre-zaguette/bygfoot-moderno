@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Finland</name>
+  <rating>3</rating>
+  <symbol>flag_finland.png</symbol>
+  <sid>finland</sid>
+
+  <leagues>
+    <league>finland1</league>
+    <league>finland2</league>
+    <league>finland3a</league>
+    <league>finland3b</league>
+    <league>finland3c</league>
+   </leagues>
+
+  <cups>
+    <cup>finland_suomen_cup</cup>
+    <cup>finland_kakkosen_cup</cup>
+    <cup>finland_prom_games1</cup>
+    <cup>finland_prom_games3</cup>
+  </cups>
+
+</country>
