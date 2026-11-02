@@ -38,11 +38,20 @@ jobs:
         run: sh tests/golden-seeds/test-compare-golden.sh
       - name: Hashes das seeds de ouro
         run: python3 -I tools/golden-hash.py > golden-${{ matrix.os }}.txt && cat golden-${{ matrix.os }}.txt
+      - name: Diagnóstico (saída completa e ordem dos diretórios)
+        if: always()
+        run: |
+          mkdir -p diag
+          sh spike/headless/bf-headless --seed 0 > diag/out-${{ matrix.os }}.txt || true
+          python3 -I -c "import os;[print(n) for n in os.listdir('upstream/support_files/definitions')]" > diag/readdir-definitions-${{ matrix.os }}.txt
       - name: Publicar hashes
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: golden-${{ matrix.os }}
-          path: golden-${{ matrix.os }}.txt
+          path: |
+            golden-${{ matrix.os }}.txt
+            diag/
   compare:
     needs: headless
     runs-on: ubuntu-latest
