@@ -27,7 +27,7 @@ jobs:
           install: >-
             mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-gtk3
             mingw-w64-x86_64-json-c mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gettext
-            mingw-w64-x86_64-pkgconf mingw-w64-x86_64-python make git diffutils
+            mingw-w64-x86_64-pkgconf mingw-w64-x86_64-python make git diffutils patch
       - name: Compilar o upstream
         run: sh tools/build-upstream.sh
       - name: Verificar upstream intacto
