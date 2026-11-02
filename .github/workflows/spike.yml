@@ -1,5 +1,4 @@
-# ATENÇÃO: este workflow NUNCA foi executado. Não há repositório remoto ainda.
-# Ele é o plano para verificar macOS, Linux e Windows na Fase 1.
+# Compila o upstream nos 3 sistemas, roda os testes e compara os hashes das seeds de ouro entre eles.
 name: spike-headless
 on: [push, pull_request]
 jobs:
@@ -35,3 +34,25 @@ jobs:
         run: sh tools/verify-upstream-pristine.sh 9b7b0062
       - name: Testes do spike
         run: sh tests/spike/test-headless.sh
+      - name: Testes de seeds de ouro (comparador)
+        run: sh tests/golden-seeds/test-compare-golden.sh
+      - name: Hashes das seeds de ouro
+        run: python3 -I tools/golden-hash.py > golden-${{ matrix.os }}.txt && cat golden-${{ matrix.os }}.txt
+      - name: Publicar hashes
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-${{ matrix.os }}
+          path: golden-${{ matrix.os }}.txt
+  compare:
+    needs: headless
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: golden
+          merge-multiple: true
+      - name: Comparar macOS, Linux e Windows
+        run: |
+          ls -l golden
+          python3 -I tools/compare-golden.py golden/golden-macos-latest.txt golden/golden-ubuntu-latest.txt golden/golden-windows-latest.txt
