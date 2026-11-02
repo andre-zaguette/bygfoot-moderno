@@ -11,7 +11,7 @@ bad() { echo "apply-patches: $1" >&2; rm -rf "$DEST"; exit 1; }
 
 [ -f "$PD/MANIFEST.md" ] || bad "falta $PD/MANIFEST.md"
 # toda linha de tabela do manifesto cuja 1ª coluna termina em .patch deve existir
-listed=$(sed -n 's/^| *\([^ |]*\.patch\) *|.*/\1/p' "$PD/MANIFEST.md")
+listed=$(sed -n 's/^| *\([0-9][^ |]*\.patch\) *|.*/\1/p' "$PD/MANIFEST.md")
 for p in $listed; do [ -f "$PD/$p" ] || bad "o MANIFEST lista $p, que não existe"; done
 # todo .patch da pasta deve estar no manifesto
 for f in "$PD"/*.patch; do

@@ -7,7 +7,7 @@ fail() { echo "FALHA: $1"; exit 1; }
 mk() { # monta upstream e patches sintéticos em $T/u e $T/p
   rm -rf "$T/u" "$T/p" "$T/d"; mkdir -p "$T/u/src" "$T/p"
   printf 'a\nb\nc\n' > "$T/u/src/f.c"
-  printf '| arquivo | upstream | motivo | candidato |\n|---|---|---|---|\n' > "$T/p/MANIFEST.md"
+  printf '| arquivo.patch | arquivo do upstream | motivo | candidato nº (docs/spikes/headless-result.md) |\n|---|---|---|---|\n' > "$T/p/MANIFEST.md"
 }
 good_patch() { cat > "$T/p/0001-x.patch" <<'P'
 --- a/src/f.c
