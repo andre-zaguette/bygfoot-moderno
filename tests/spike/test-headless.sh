@@ -59,4 +59,5 @@ goals=sum(1 for u in units if u["event"] in (10,11))
 assert goals==sum(final[0]["final"]), f"{goals} gols nos eventos, placar {final[0]['final']}"
 assert units[-1]["result"]==final[0]["final"], "último lance != placar final"
 PY
+python3 -I "$ROOT/tests/spike/test_extract_units.py" > /dev/null || fail "extract_units não produz UTF-8 com stdout cp1252"
 echo "OK"

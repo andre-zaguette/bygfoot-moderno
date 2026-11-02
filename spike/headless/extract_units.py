@@ -9,6 +9,9 @@ import sys
 
 
 def main(path):
+    # Saída sempre em UTF-8 com \n, também no Windows (onde o stdout usa a página de código local e CRLF).
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     with open(path, encoding="utf-8") as f:
         dump = json.load(f)
     users = dump.get("users") or []
