@@ -31,7 +31,7 @@ rm sujeira.txt
 sh tools/sync-upstream.sh "$PIN" > "$T/o" 2>&1; rc=$?
 tail -5 "$T/o"
 [ $rc = 0 ] || fail "sync: esperado exit 0, veio $rc"
-grep -q "^SEEDS_IGUAIS$\|^SEEDS_MUDARAM " "$T/o" || fail "saída sem SEEDS_IGUAIS/SEEDS_MUDARAM"
+grep -Eq "^(SEEDS_IGUAIS|SEEDS_MUDARAM .*)$" "$T/o" || fail "saída sem SEEDS_IGUAIS/SEEDS_MUDARAM"
 grep -q "^commit $PIN$" tools/upstream-pin.txt || fail "upstream-pin.txt não aponta o novo commit"
 sh tools/verify-upstream-pristine.sh "$PIN" > /dev/null || fail "upstream/ não está intacto após o sync"
 echo "OK"
