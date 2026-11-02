@@ -31,4 +31,14 @@ expect2 "aspas em --team"       --seed 1 --team 'V. "Gotu'
 expect2 "barra em --country"    --seed 1 --country 'faroe\islands'
 expect2 "quebra de linha em --team" --seed 1 --team "$(printf 'a\nb')"
 expect2 "argumento desconhecido" --seed 1 --nada
+
+# Time inexistente: o motor cai; o wrapper sai 3, sem nada no stdout e com mensagem clara.
+"$BF" --seed 1 --team "Time Inexistente" > "$T/out" 2> "$T/err"; rc=$?
+[ "$rc" = "3" ] || fail "time inexistente: esperado exit 3, veio $rc"
+[ ! -s "$T/out" ] || fail "time inexistente: stdout deveria estar vazio"
+grep -q "time" "$T/err" || fail "time inexistente: stderr sem a palavra 'time'"
+# --weeks acima do teto: recusado com exit 2 citando o teto, sem rodar o motor.
+run5 --seed 1 --weeks 300; rc=$?
+[ "$rc" = "2" ] || fail "--weeks 300: esperado exit 2, veio $rc"
+grep -q "teto" "$T/err" || fail "--weeks 300: mensagem não cita o teto"
 echo "OK"

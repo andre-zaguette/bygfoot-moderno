@@ -9,6 +9,7 @@ HERE=$(cd "$(dirname "$0")" && pwd)
 ROOT=$(cd "$HERE/../.." && pwd)
 BIN=${BYGFOOT_BIN:-$ROOT/build/upstream/bygfoot}
 SUPPORT=${BYGFOOT_SUPPORT:-$ROOT/upstream/support_files}
+MAX_WEEKS=100   # ver docs/spikes/weeks-limit.md
 seed=; team="V. Gotu"; weeks=2; country=faroe_islands
 die() { echo "bf-headless: $1" >&2; exit "${2:-2}"; }
 while [ $# -gt 0 ]; do
@@ -35,6 +36,7 @@ case $seed in ''|*[!0-9]*) die "seed deve ser inteiro sem sinal: '$seed'" ;; esa
 # --random-seed do upstream é inteiro COM sinal; acima do limite ele avisa e usa seed aleatória.
 [ ${#seed} -le 10 ] && [ "$seed" -le 2147483647 ] 2>/dev/null || die "seed fora do intervalo 0..2147483647: $seed"
 case $weeks in ''|*[!0-9]*) die "weeks deve ser inteiro: '$weeks'" ;; esac
+[ ${#weeks} -le 4 ] && [ "$weeks" -le "$MAX_WEEKS" ] 2>/dev/null || die "weeks acima do teto ($MAX_WEEKS): $weeks"
 [ -x "$BIN" ] || die "binário não encontrado: $BIN (rode tools/build-upstream.sh)" 3
 [ -d "$SUPPORT" ] || die "support_files não encontrado: $SUPPORT" 3
 
@@ -56,6 +58,6 @@ rc=$?
 [ -s "$T/out.json" ] || { [ -s "$T/stdout.log" ] && cp "$T/stdout.log" "$T/out.json"; }
 [ -s "$T/err.txt" ] || { [ -s "$T/stderr.log" ] && cp "$T/stderr.log" "$T/err.txt"; }
 if [ $rc -ne 0 ] || [ ! -s "$T/out.json" ]; then
-  echo "bf-headless: o motor saiu com $rc" >&2; head -c 2000 "$T/err.txt" >&2; exit 3
+  echo "bf-headless: o motor saiu com $rc (time não encontrado ou motor caiu)" >&2; head -c 2000 "$T/err.txt" >&2; exit 3
 fi
 python3 -I "$HERE/extract_units.py" "$T/out.json" || { echo "bf-headless: falha ao extrair lances" >&2; exit 3; }

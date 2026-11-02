@@ -1,0 +1,7 @@
+# seed|time|semanas   (# inicia comentário)
+0|V. Gotu|2
+1|V. Gotu|2
+431199|V. Gotu|2
+2147483647|V. Gotu|2
+20261102|V. Gotu|2
+431199|B. Tórshavn|2
