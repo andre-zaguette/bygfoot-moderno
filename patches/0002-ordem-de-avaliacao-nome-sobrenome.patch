@@ -1,0 +1,18 @@
+--- a/src/name.c
++++ b/src/name.c
+@@ -105,9 +105,13 @@
+ 
+     gchar buf[SMALL];
+ 
+-    sprintf(buf, "%s %s", name_get_random_first_name(namelist),
+-	    name_get_random_last_name(namelist));
++    /* BYGFOOT_PATCH: a ordem de avaliação dos argumentos é indefinida em C;
++       fixa nome antes do sobrenome (ordem do clang), para clang e gcc sortearem igual. */
++    gchar *first_name = name_get_random_first_name(namelist);
++    gchar *last_name = name_get_random_last_name(namelist);
+ 
++    sprintf(buf, "%s %s", first_name, last_name);
++
+     return g_strdup(buf);
+ }
+ 
