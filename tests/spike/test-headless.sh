@@ -40,6 +40,15 @@ cmp -s "$T/a1" "$T/l1" && cmp -s "$T/a1" "$T/l2" || fail "saída depende do loca
 wait $p1 || fail "execução paralela 1 falhou"; wait $p2 || fail "execução paralela 2 falhou"
 cmp -s "$T/a1" "$T/p1" && cmp -s "$T/a1" "$T/p2" || fail "execuções simultâneas divergiram"
 
+# 7. comportamento do Windows: o upstream redireciona stdout/stderr para stdout.log/stderr.log na pasta atual
+cat > "$T/fake-win-bygfoot" <<FAKE
+#!/bin/sh
+exec "$ROOT/build/upstream/bygfoot" "\$@" > stdout.log 2> stderr.log
+FAKE
+chmod +x "$T/fake-win-bygfoot"
+BYGFOOT_BIN="$T/fake-win-bygfoot" "$BF" --seed 431199 > "$T/w1" 2> "$T/w1.err" || fail "falhou com binário que escreve em stdout.log: $(head -c 200 "$T/w1.err")"
+cmp -s "$T/a1" "$T/w1" || fail "saída mudou quando o motor escreve em stdout.log"
+
 # 6. gols nos eventos somam o placar final
 python3 -I - "$T/a1" <<'PY' || fail "gols dos eventos != placar final"
 import json,sys

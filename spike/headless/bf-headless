@@ -52,6 +52,9 @@ cat > "$T/cmds.json" <<JSON
 JSON
 (cd "$T" && env -u DISPLAY LC_ALL=C LANG=C HOME="$T/home" "$BIN" --json "$T/cmds.json" --random-seed "$seed" > "$T/out.json" 2> "$T/err.txt")
 rc=$?
+# No Windows o upstream redireciona stdout/stderr para stdout.log/stderr.log na pasta atual (main.c, G_OS_WIN32).
+[ -s "$T/out.json" ] || { [ -s "$T/stdout.log" ] && cp "$T/stdout.log" "$T/out.json"; }
+[ -s "$T/err.txt" ] || { [ -s "$T/stderr.log" ] && cp "$T/stderr.log" "$T/err.txt"; }
 if [ $rc -ne 0 ] || [ ! -s "$T/out.json" ]; then
   echo "bf-headless: o motor saiu com $rc" >&2; head -c 2000 "$T/err.txt" >&2; exit 3
 fi
