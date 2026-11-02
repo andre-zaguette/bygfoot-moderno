@@ -1,5 +1,5 @@
 #!/bin/sh
-# bf-headless --seed N [--team NOME] [--weeks K] [--country SID]
+# bf-headless --seed N [--team NOME] [--weeks K] [--country SID] [--format lines|timeline-v1]
 # Roda o binário ORIGINAL do Bygfoot em modo console (--json), sem janela, e imprime
 # uma linha JSON por lance (LiveGameUnit) da última partida do time do usuário,
 # terminando com {"final":[casa,fora], ...}.
@@ -10,17 +10,18 @@ ROOT=$(cd "$HERE/../.." && pwd)
 BIN=${BYGFOOT_BIN:-$ROOT/build/upstream/bygfoot}
 SUPPORT=${BYGFOOT_SUPPORT:-$ROOT/upstream/support_files}
 MAX_WEEKS=100   # ver docs/spikes/weeks-limit.md
-seed=; team="V. Gotu"; weeks=2; country=faroe_islands
+seed=; team="V. Gotu"; weeks=2; country=faroe_islands; format=lines
 die() { echo "bf-headless: $1" >&2; exit "${2:-2}"; }
 while [ $# -gt 0 ]; do
   case $1 in
-    --seed|--team|--weeks|--country) [ $# -ge 2 ] || die "falta valor para $1" ;;
+    --seed|--team|--weeks|--country|--format) [ $# -ge 2 ] || die "falta valor para $1" ;;
   esac
   case $1 in
     --seed) seed=$2 ;;
     --team) team=$2 ;;
     --weeks) weeks=$2 ;;
     --country) country=$2 ;;
+    --format) format=$2 ;;
     *) die "argumento desconhecido: $1" ;;
   esac
   shift 2
@@ -31,6 +32,7 @@ for v in "$team" "$country"; do
     die "--team/--country não aceitam aspas, barra invertida nem caracteres de controle"
   fi
 done
+case $format in lines|timeline-v1) ;; *) die "formato desconhecido: $format (use lines ou timeline-v1)" ;; esac
 [ -n "$seed" ] || die "falta --seed"
 case $seed in ''|*[!0-9]*) die "seed deve ser inteiro sem sinal: '$seed'" ;; esac
 # --random-seed do upstream é inteiro COM sinal; acima do limite ele avisa e usa seed aleatória.
@@ -60,4 +62,5 @@ rc=$?
 if [ $rc -ne 0 ] || [ ! -s "$T/out.json" ]; then
   echo "bf-headless: o motor saiu com $rc (time não encontrado ou motor caiu)" >&2; head -c 2000 "$T/err.txt" >&2; exit 3
 fi
-python3 -I "$HERE/extract_units.py" "$T/out.json" || { echo "bf-headless: falha ao extrair lances" >&2; exit 3; }
+COMMIT=$(sed -n 's/^commit //p' "$ROOT/tools/upstream-pin.txt")
+python3 -I "$HERE/extract_units.py" "$T/out.json" --format "$format" --seed "$seed" --country "$country" --team "$team" --weeks "$weeks" --commit "$COMMIT" || { echo "bf-headless: falha ao extrair lances" >&2; exit 3; }

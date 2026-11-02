@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "match-timeline-v1",
+  "title": "MatchTimeline v1",
+  "description": "Partida produzida pelo motor do Bygfoot (bf-headless --format timeline-v1). O renderer 2D só representa este documento; nunca calcula resultado. Não há coordenadas: o replay é uma aproximação visual. As invariantes (placar só muda em gol, último result == match.final, START_MATCH no início, END_MATCH no fim) são verificadas por tests/contract/test_timeline_v1.py, não por este schema.",
+  "type": "object",
+  "required": ["schemaVersion", "source", "match", "units"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "source": {
+      "type": "object",
+      "required": ["engine", "upstreamCommit", "seed", "country", "team", "weeks"],
+      "additionalProperties": false,
+      "properties": {
+        "engine": { "const": "bygfoot" },
+        "upstreamCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "seed": { "type": "integer", "minimum": 0, "maximum": 2147483647 },
+        "country": { "type": "string" },
+        "team": { "type": "string" },
+        "weeks": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "match": {
+      "type": "object",
+      "required": ["fixtureId", "home", "away", "final"],
+      "additionalProperties": false,
+      "properties": {
+        "fixtureId": { "type": "integer" },
+        "home": { "type": "string" },
+        "away": { "type": "string" },
+        "final": { "$ref": "#/$defs/score" }
+      }
+    },
+    "units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["minute", "time", "possession", "area", "result", "event"],
+        "additionalProperties": false,
+        "properties": {
+          "minute": { "type": "integer", "minimum": -1, "description": "O motor emite -1 em alguns lances (observado: defesa após chance); trate como 'sem minuto próprio'." },
+          "time": { "type": "integer", "minimum": 0, "maximum": 3, "description": "0 1º tempo, 1 2º tempo, 2 prorrogação, 3 pênaltis" },
+          "possession": { "type": "integer", "minimum": 0, "maximum": 1, "description": "0 casa, 1 fora" },
+          "area": { "type": "integer", "minimum": 0, "maximum": 2, "description": "0 defesa, 1 meio, 2 ataque" },
+          "result": { "$ref": "#/$defs/score" },
+          "event": {
+            "type": "object",
+            "required": ["type", "team"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "type": "integer", "minimum": 0, "maximum": 40, "description": "LiveGameEventType de upstream/src/live_game_struct.h (10 gol, 11 gol contra, 1 início, 4 fim)" },
+              "team": { "type": "integer", "minimum": -1, "maximum": 1 },
+              "player": { "$ref": "#/$defs/player" },
+              "player2": { "$ref": "#/$defs/player" },
+              "commentary": { "type": "string", "description": "Texto em inglês do upstream; a interface traduz por conta própria." }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "score": { "type": "array", "items": { "type": "integer", "minimum": 0 }, "minItems": 2, "maxItems": 2 },
+    "player": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": { "id": { "type": "integer" }, "name": { "type": "string" } }
+    }
+  }
+}

@@ -1,0 +1,2572 @@
+{
+ "match": {
+  "away": "V. Gotu",
+  "final": [
+   1,
+   2
+  ],
+  "fixtureId": 28,
+  "home": "N. Runavík"
+ },
+ "schemaVersion": 1,
+ "source": {
+  "country": "faroe_islands",
+  "engine": "bygfoot",
+  "seed": 431199,
+  "team": "V. Gotu",
+  "upstreamCommit": "9b7b0062ddb90a620865314dddf0c4b1c0a23660",
+  "weeks": 2
+ },
+ "units": [
+  {
+   "area": 1,
+   "event": {
+    "commentary": "The teams are well matched. We are in for a real battle.",
+    "team": 1,
+    "type": 1
+   },
+   "minute": 0,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Rømer controls the ball with his boot and flicks on to Foged",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "player2": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "V. Gotu change to a ATTACK style",
+    "team": 1,
+    "type": 36
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Great footwork, a clever pass",
+    "player": {
+     "id": 61,
+     "name": "Stian Mørch"
+    },
+    "player2": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 2,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Mørch lobs the ball towards Josefsen",
+    "player": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "player2": {
+     "id": 61,
+     "name": "Stian Mørch"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 3,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Another thinking move through the centre",
+    "player": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "player2": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 4,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lundberg shoots from close range",
+    "player": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "team": 1,
+    "type": 6
+   },
+   "minute": 5,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Jønsson's fingertips flick it wide",
+    "player": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Vincent Jønsson"
+    },
+    "team": 1,
+    "type": 15
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Albertsen takes the corner",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "team": 1,
+    "type": 18
+   },
+   "minute": 6,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A quick passing move down the left",
+    "player": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "team": 1,
+    "type": 0
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Josefsen slips past his man and latches onto Lundberg's perfectly weighted cross.",
+    "player": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "player2": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 7,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A well-angled header towards the net from Josefsen",
+    "player": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "team": 1,
+    "type": 7
+   },
+   "minute": 8,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Jønsson makes a remarkable reflex save to tip it wide",
+    "player": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Vincent Jønsson"
+    },
+    "team": 1,
+    "type": 15
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Albertsen takes the corner",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "team": 1,
+    "type": 18
+   },
+   "minute": 9,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Albertsen's head finds the end of the long cross",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "team": 1,
+    "type": 7
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "The ball smacks into the crossbar with Jønsson stranded",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Vincent Jønsson"
+    },
+    "team": 1,
+    "type": 16
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Hermann twisting and turning again",
+    "player": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "player2": {
+     "id": 54,
+     "name": "Troels Lorenzen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 10,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Hermann feeds a great ball through to Rasmussen",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 11,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A long pass from Rasmussen releases Andersson",
+    "player": {
+     "id": 59,
+     "name": "Erik Andersson"
+    },
+    "player2": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 12,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "13 minutes on the clock, and chances from both teams already",
+    "player": {
+     "id": 58,
+     "name": "Kjeld Nicolajsen"
+    },
+    "player2": {
+     "id": 59,
+     "name": "Erik Andersson"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 13,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A delightful little pass finds Ellegaard",
+    "player": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "player2": {
+     "id": 58,
+     "name": "Kjeld Nicolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 14,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Lorenzen loses his marker",
+    "player": {
+     "id": 54,
+     "name": "Troels Lorenzen"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 15,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Lorenzen needles the ball through the opponent's feet and finds Kock",
+    "player": {
+     "id": 52,
+     "name": "Joakim Kock"
+    },
+    "player2": {
+     "id": 54,
+     "name": "Troels Lorenzen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 16,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Kock latches onto Kock's pass",
+    "player": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "player2": {
+     "id": 52,
+     "name": "Joakim Kock"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 17,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Kock passes",
+    "player": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "player2": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 18,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Now N. Runavík can mount a challenge through Andersson",
+    "player": {
+     "id": 59,
+     "name": "Erik Andersson"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 19,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Bad control by Andersson lets Rømer steal the ball from him",
+    "player": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "player2": {
+     "id": 59,
+     "name": "Erik Andersson"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 20,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Rømer drops the ball at Bach's feet",
+    "player": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "player2": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 21,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A classy ball from Bach sends Mørch one on one with the keeper",
+    "player": {
+     "id": 61,
+     "name": "Stian Mørch"
+    },
+    "player2": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "team": 1,
+    "type": 6
+   },
+   "minute": 22,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Celebrations abound! They won't forget that strike in a hurry",
+    "player": {
+     "id": 61,
+     "name": "Stian Mørch"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Vincent Jønsson"
+    },
+    "team": 1,
+    "type": 10
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Hermann twisting desperately to lose his man",
+    "player": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 23,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "N. Runavík are on the attack",
+    "player": {
+     "id": 58,
+     "name": "Kjeld Nicolajsen"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 24,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A lofted pass from Nicolajsen finds its mark",
+    "player": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "player2": {
+     "id": 58,
+     "name": "Kjeld Nicolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 25,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A well-timed passing move down the left",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 26,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Nicolajsen shoots from close range",
+    "player": {
+     "id": 58,
+     "name": "Kjeld Nicolajsen"
+    },
+    "player2": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "team": 0,
+    "type": 6
+   },
+   "minute": 27,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Westergaard's fingertips flick it wide",
+    "player": {
+     "id": 58,
+     "name": "Kjeld Nicolajsen"
+    },
+    "player2": {
+     "id": 60,
+     "name": "Hagen Westergaard"
+    },
+    "team": 0,
+    "type": 15
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Rosenberg takes the corner",
+    "player": {
+     "id": 53,
+     "name": "Knut Rosenberg"
+    },
+    "team": 0,
+    "type": 18
+   },
+   "minute": 28,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Kock twisting and turning again",
+    "player": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "team": 0,
+    "type": 0
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Kock feeds a brilliant ball through to Kock",
+    "player": {
+     "id": 52,
+     "name": "Joakim Kock"
+    },
+    "player2": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 29,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "N. Runavík loses the ball too quickly",
+    "player": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "player2": {
+     "id": 52,
+     "name": "Joakim Kock"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 30,
+   "possession": 1,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Another brilliant move across the pitch",
+    "player": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "player2": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 31,
+   "possession": 1,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Kock makes a great interception",
+    "player": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "player2": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 32,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "N. Runavík need to show a bit more spark up front",
+    "player": {
+     "id": 56,
+     "name": "Per Fuglsang"
+    },
+    "player2": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 33,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A lovely pass from Fuglsang releases Kock",
+    "player": {
+     "id": 52,
+     "name": "Joakim Kock"
+    },
+    "player2": {
+     "id": 56,
+     "name": "Per Fuglsang"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 34,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A good passing move across the pitch and down the right",
+    "player": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "player2": {
+     "id": 52,
+     "name": "Joakim Kock"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 35,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A neat dummy run and pass",
+    "player": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 36,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Now N. Runavík can mount a challenge through Kock",
+    "player": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 37,
+   "possession": 0,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Albertsen gatecrashes Kock's party and comes away with the prize",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "player2": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 38,
+   "possession": 1,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Great footwork, a clever pass",
+    "player": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 39,
+   "possession": 1,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "N. Runavík are on the defence",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "player2": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 40,
+   "possession": 1,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Foged finds some space and tries his luck.",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "team": 1,
+    "type": 6
+   },
+   "minute": 41,
+   "possession": 1,
+   "result": [
+    0,
+    1
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Foged wheels away in celebration",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Vincent Jønsson"
+    },
+    "team": 1,
+    "type": 10
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Rasmussen latches onto Ellegaard's through ball",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 42,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "N. Runavík have changed their style to ALL OUT ATTACK",
+    "team": 0,
+    "type": 37
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Rosenberg doesn't look too happy as he is replaced by Tolstrup",
+    "player": {
+     "id": 49,
+     "name": "Jacob Tolstrup"
+    },
+    "player2": {
+     "id": 53,
+     "name": "Knut Rosenberg"
+    },
+    "team": 0,
+    "type": 31
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "N. Runavík restructure themselves into a 343 formation",
+    "team": 0,
+    "type": 32
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "V. Gotu change to a DEFEND style",
+    "team": 1,
+    "type": 34
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Nicolajsen to Rasmussen",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "player2": {
+     "id": 58,
+     "name": "Kjeld Nicolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 43,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Rasmussen tries his luck from 30 yards",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "team": 0,
+    "type": 6
+   },
+   "minute": 44,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "That was in by all accounts, but they forgot to tell Westergaard, who somehow saved the day",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "player2": {
+     "id": 60,
+     "name": "Hagen Westergaard"
+    },
+    "team": 0,
+    "type": 14
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A clever passing move across the pitch and down the right",
+    "player": {
+     "id": 63,
+     "name": "Eluf Hammer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 45,
+   "possession": 1,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "So far, V. Gotu and their manager have done everything right.",
+    "team": -1,
+    "type": 2
+   },
+   "minute": 46,
+   "possession": 1,
+   "result": [
+    0,
+    2
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A neat dummy run and pass",
+    "player": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 46,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Andersson",
+    "player": {
+     "id": 59,
+     "name": "Erik Andersson"
+    },
+    "player2": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 47,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Ellegaard loses his marker",
+    "player": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "player2": {
+     "id": 59,
+     "name": "Erik Andersson"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 48,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Ellegaard shoots from close range",
+    "player": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "team": 0,
+    "type": 6
+   },
+   "minute": 49,
+   "possession": 0,
+   "result": [
+    0,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A curving ball beats Westergaard to the line. Goal!",
+    "player": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "player2": {
+     "id": 60,
+     "name": "Hagen Westergaard"
+    },
+    "team": 0,
+    "type": 10
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Bach controls the ball with his heel and flicks on to Bødker",
+    "player": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "player2": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 50,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "N. Runavík change to a ATTACK style",
+    "team": 0,
+    "type": 36
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Kragh on for Kock",
+    "player": {
+     "id": 50,
+     "name": "Valentin Kragh"
+    },
+    "player2": {
+     "id": 55,
+     "name": "Kresten Kock"
+    },
+    "team": 0,
+    "type": 31
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "N. Runavík have changed their structure to 334",
+    "team": 0,
+    "type": 32
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Mørch passes",
+    "player": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "player2": {
+     "id": 61,
+     "name": "Stian Mørch"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 51,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A lofted pass from Rømer finds its mark",
+    "player": {
+     "id": 63,
+     "name": "Eluf Hammer"
+    },
+    "player2": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 52,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Fuglsang for carrying the ball away after the whistle",
+    "player": {
+     "id": 63,
+     "name": "Eluf Hammer"
+    },
+    "player2": {
+     "id": 56,
+     "name": "Per Fuglsang"
+    },
+    "team": 0,
+    "type": 20
+   },
+   "minute": 53,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Blom threads it through the player's legs and finds Bach",
+    "player": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "player2": {
+     "id": 62,
+     "name": "Stig Blom"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 54,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A ball in by Bach finds Lundberg",
+    "player": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "player2": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 55,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lundberg lobs the ball towards Blom",
+    "player": {
+     "id": 62,
+     "name": "Stig Blom"
+    },
+    "player2": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 56,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "V. Gotu are on the attack",
+    "player": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "player2": {
+     "id": 62,
+     "name": "Stig Blom"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 57,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "An accurate cross finds Albertsen",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "player2": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 58,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Lundberg twisting and turning again",
+    "player": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 59,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Lundberg needles the ball to Hammer",
+    "player": {
+     "id": 63,
+     "name": "Eluf Hammer"
+    },
+    "player2": {
+     "id": 65,
+     "name": "Henning Lundberg"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 60,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Now V. Gotu can mount a challenge through Bødker",
+    "player": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "player2": {
+     "id": 63,
+     "name": "Eluf Hammer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 61,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Mørch",
+    "player": {
+     "id": 61,
+     "name": "Stian Mørch"
+    },
+    "player2": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 62,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A long floating pass from Mørch finds Josefsen",
+    "player": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "player2": {
+     "id": 61,
+     "name": "Stian Mørch"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 63,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A delightful little pass finds Hammer",
+    "player": {
+     "id": 63,
+     "name": "Eluf Hammer"
+    },
+    "player2": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 64,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Bødker latches onto Hammer's through ball",
+    "player": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "player2": {
+     "id": 63,
+     "name": "Eluf Hammer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 65,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Another thinking move across the pitch",
+    "player": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "player2": {
+     "id": 64,
+     "name": "Holger Bødker"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 66,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A good passing move across the pitch and down the right",
+    "player": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "player2": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 67,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A flick on from Bach waits for the one two",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "player2": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 68,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Foged feeds a brilliant ball through to Rømer",
+    "player": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "player2": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 69,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Bach rips through the centre",
+    "player": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "player2": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 70,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Hermann takes a quick throw-in",
+    "player": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "player2": {
+     "id": 68,
+     "name": "Albin Bach"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 71,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A well-timed passing flick down the right",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 72,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "N. Runavík loses the ball too quickly",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "player2": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 73,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Josefsen loses his marker",
+    "player": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 74,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "He just floated in mid-air, then thunder-headed it towards home",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "player2": {
+     "id": 66,
+     "name": "Ragnvald Josefsen"
+    },
+    "team": 1,
+    "type": 7
+   },
+   "minute": 75,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Jønsson gathers it with ease",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Vincent Jønsson"
+    },
+    "team": 1,
+    "type": 14
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Kock twisting desperately to lose his man",
+    "player": {
+     "id": 52,
+     "name": "Joakim Kock"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 76,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "N. Runavík have changed their style to ALL OUT ATTACK",
+    "team": 0,
+    "type": 37
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "N. Runavík have changed their boost to ON",
+    "team": 0,
+    "type": 40
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu are on the backfoot",
+    "player": {
+     "id": 59,
+     "name": "Erik Andersson"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 77,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "The slide tackle by Albertsen was worthy of topflight baseball.",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "player2": {
+     "id": 59,
+     "name": "Erik Andersson"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 78,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Great footwork, a clever pass",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 79,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "That came off the back of Foged's head!",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "team": 1,
+    "type": 7
+   },
+   "minute": 80,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Jønsson breathes again as the ball finds its way into his arms.",
+    "player": {
+     "id": 69,
+     "name": "Kai Foged"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Vincent Jønsson"
+    },
+    "team": 1,
+    "type": 14
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Kock collects Nicolajsen's pass",
+    "player": {
+     "id": 52,
+     "name": "Joakim Kock"
+    },
+    "player2": {
+     "id": 58,
+     "name": "Kjeld Nicolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 81,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "9 minutes left. V. Gotu try a change of tactics with ALL OUT DEFEND style",
+    "team": 1,
+    "type": 33
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu have changed their boost to ON",
+    "team": 1,
+    "type": 40
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Another decent move across the pitch",
+    "player": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 82,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A short floating pass from Hermann finds Tolstrup",
+    "player": {
+     "id": 49,
+     "name": "Jacob Tolstrup"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Niels Hermann"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 83,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A lovely pass from Tolstrup releases Fuglsang",
+    "player": {
+     "id": 56,
+     "name": "Per Fuglsang"
+    },
+    "player2": {
+     "id": 49,
+     "name": "Jacob Tolstrup"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 84,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Rasmussen dribbles past his marker",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "player2": {
+     "id": 56,
+     "name": "Per Fuglsang"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 85,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Rasmussen to Ellegaard",
+    "player": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "player2": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 86,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Ellegaard heads the ball towards Rasmussen",
+    "player": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Torvald Ellegaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 87,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A flick on from Rasmussen waits for the one two",
+    "player": {
+     "id": 54,
+     "name": "Troels Lorenzen"
+    },
+    "player2": {
+     "id": 57,
+     "name": "Mogens Rasmussen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 88,
+   "possession": 0,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lorenzen is left stranded as Rømer takes the ball",
+    "player": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "player2": {
+     "id": 54,
+     "name": "Troels Lorenzen"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 89,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Rømer threads the ball to Albertsen",
+    "player": {
+     "id": 70,
+     "name": "Ruben Albertsen"
+    },
+    "player2": {
+     "id": 67,
+     "name": "Klemens Rømer"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 90,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "N. Runavík were slaughtered by 1 goals.",
+    "team": -1,
+    "type": 4
+   },
+   "minute": 91,
+   "possession": 1,
+   "result": [
+    1,
+    2
+   ],
+   "time": 1
+  }
+ ]
+}

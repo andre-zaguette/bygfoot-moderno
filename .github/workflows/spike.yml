@@ -47,6 +47,8 @@ jobs:
           BF_SRC=build/patched-src BF_BUILD=build/patched sh tools/build-upstream.sh build/patched-build.log
       - name: Seeds de ouro com remendos contra o esperado
         run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tests/golden-seeds/test-golden.sh patched
+      - name: Teste de contrato MatchTimeline v1 (motor remendado)
+        run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" python3 -I tests/contract/test_timeline_v1.py
       - name: Hashes com remendos (6 seeds)
         run: BYGFOOT_BIN="$PWD/build/patched/bygfoot" python3 -I tools/golden-hash.py > golden-patched-${{ matrix.os }}.txt && cat golden-patched-${{ matrix.os }}.txt
       - name: Hashes com remendos (bateria maior)
