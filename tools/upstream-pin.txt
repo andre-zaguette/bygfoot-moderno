@@ -1,0 +1,3 @@
+# Fixação do upstream (usada pelo verificador quando o commit não existe localmente, ex.: clone raso do CI)
+commit 9b7b0062ddb90a620865314dddf0c4b1c0a23660
+tree 8819514a4ca6ecc19a427c7742a66642560684a4
