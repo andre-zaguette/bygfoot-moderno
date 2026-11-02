@@ -20,4 +20,5 @@ JSON
 (cd "$T" && env -u DISPLAY LC_ALL=C LANG=C HOME="$T/home" "$BIN" --json "$T/cmds.json" --random-seed "$seed" > "$T/out.json" 2> "$T/err.txt")
 [ -s "$T/out.json" ] || { [ -s "$T/stdout.log" ] && cp "$T/stdout.log" "$T/out.json"; }
 [ -s "$T/out.json" ] || { echo "dump-state: sem saída" >&2; head -c 1000 "$T/err.txt" >&2; exit 3; }
+[ -z "$STATE_SAMPLE" ] || { python3 -I "$HERE/state-sample.py" "$T/out.json"; exit $?; }
 python3 -I "$HERE/state-digest.py" "$T/out.json" "${DIGEST_DEPTH:-6}"
