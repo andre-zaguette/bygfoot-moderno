@@ -13,12 +13,22 @@ seed=; team="V. Gotu"; weeks=2; country=faroe_islands
 die() { echo "bf-headless: $1" >&2; exit "${2:-2}"; }
 while [ $# -gt 0 ]; do
   case $1 in
-    --seed) seed=$2; shift 2 ;;
-    --team) team=$2; shift 2 ;;
-    --weeks) weeks=$2; shift 2 ;;
-    --country) country=$2; shift 2 ;;
+    --seed|--team|--weeks|--country) [ $# -ge 2 ] || die "falta valor para $1" ;;
+  esac
+  case $1 in
+    --seed) seed=$2 ;;
+    --team) team=$2 ;;
+    --weeks) weeks=$2 ;;
+    --country) country=$2 ;;
     *) die "argumento desconhecido: $1" ;;
   esac
+  shift 2
+done
+# team e country vão para dentro de um JSON escrito à mão: recusar aspas, barra invertida e controles.
+for v in "$team" "$country"; do
+  if [ "$(printf '%s' "$v" | LC_ALL=C tr -d '[:cntrl:]\042\134')" != "$v" ]; then
+    die "--team/--country não aceitam aspas, barra invertida nem caracteres de controle"
+  fi
 done
 [ -n "$seed" ] || die "falta --seed"
 case $seed in ''|*[!0-9]*) die "seed deve ser inteiro sem sinal: '$seed'" ;; esac

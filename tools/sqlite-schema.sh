@@ -1,5 +1,6 @@
 #!/bin/sh
 # Uso: sqlite-schema.sh <pasta-src>
+# Limitação conhecida: um CREATE entre aspas dentro de comentário também é listado (não ocorre no upstream fixado).
 # Lista, em ordem estável, cada CREATE TABLE/INDEX/VIEW escrito no código C, como "arquivo:linha: SQL".
 dir=${1:?uso: $0 <pasta-src>}
 ls "$dir" | LC_ALL=C sort | while read -r f; do

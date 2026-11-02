@@ -20,13 +20,15 @@ Tudo rodado em macOS arm64 nesta sessão (detalhes em `docs/spikes/`):
 
 ## Decisão
 
-**Seguir com o Caminho A (fork do Bygfoot).** Na Fase 1, a primeira integração é o **frontend de console existente, como processo separado conversando por JSON**, em vez de extrair uma biblioteca C sem GTK. A extração de biblioteca fica como opção para depois, se a medição mostrar que o processo separado não basta.
+**Seguir com o Caminho A (fork do Bygfoot), condicionado às condições da tabela abaixo.** Na Fase 1, a primeira integração é o **frontend de console existente, como processo separado conversando por JSON**, em vez de extrair uma biblioteca C sem GTK. A extração de biblioteca fica como opção para depois, se a medição mostrar que o processo separado não basta.
 
 O Caminho B (motor em Rust) continua como plano B, acionado se uma das condições abaixo falhar.
 
-**Resultado do G1 (macOS): cumprido para "simular sem janela, com resultado repetível". Pendente para "dados versionados" e para Windows e Linux.**
+**Resultado do G1: parcial. Cumprido só no macOS, e só para "simular sem janela, com resultado repetível". Não cumprido ou não verificado: "dados versionados" (o upstream não versiona o save), Windows e Linux. A decisão acima vale enquanto essas condições forem resolvidas na Fase 1.**
 
 ## O que o G1 NÃO provou (condições para manter a decisão)
+
+Note: "dados versionados" aparece aqui como ausência no upstream. Ainda não foi testado que a nossa camada consegue acrescentar essa versão por cima; isso é trabalho da Fase 1.
 
 | Condição | Estado | Se falhar |
 |---|---|---|
