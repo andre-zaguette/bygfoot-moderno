@@ -50,12 +50,23 @@ Uma execução de `--seed 431199` (carregar país, criar jogo, simular 2 semanas
 | 4 | `start_end.c:615-619` | partidas sem usuário usam um `LiveGame` descartável | só a **última partida do time do usuário** tem a linha do tempo. Para ver qualquer confronto seria preciso um remendo ou um modo "grava lances". |
 | 5 | `dump_bygfoot` | despeja o estado inteiro (112 MB) | falta um comando que devolva só os lances de um jogo. |
 | 6 | `lg_commentary` | avisos `didn't find fitting commentary for unit type 15/18` em stderr | ruído, sem efeito na simulação. |
+| 7 | `main.c:459-464` (`G_OS_WIN32`) | no Windows o programa redireciona stdout e stderr para `stdout.log` e `stderr.log` na pasta atual | o modo console não escreve nada no stdout. O wrapper lê `stdout.log` como alternativa. |
 
 ## O que este spike NÃO provou
 
-- **Windows e Linux:** só rodei no macOS (arm64). O `.github/workflows/spike.yml` da Tarefa 8 é o plano para os outros dois.
+- **Mesmo resultado entre sistemas:** cada sistema foi comparado só consigo mesmo. Não comparei a saída do macOS com a do Linux ou do Windows.
 - **"Sem GTK" de verdade:** o binário ainda liga com GTK. Extrair uma biblioteca sem GTK é trabalho da Fase 1.
 - **Uma partida avulsa por ids** (`--home`/`--away` do plano): o motor simula o calendário de um país, não um confronto isolado.
 - **Streaming em tempo real:** os lances saem todos juntos, no fim. A hipótese de que o laço `live_game_create_unit` permite gerar lance a lance (usada no roadmap) segue **não verificada** em execução.
 - **Equivalência com a interface gráfica:** não comparei estes resultados com os de uma partida jogada na janela.
 - **Dados reais:** usei o país `faroe_islands` (nomes reais de clubes, ver `docs/LEGAL_REVIEW.md`). Isto é um spike, não um conteúdo do produto.
+
+## Verificação em Windows e Linux (CI do GitHub, execução 41377028975)
+
+`.github/workflows/spike.yml` rodou em `macos-latest`, `ubuntu-latest` e `windows-latest` (MSYS2, MinGW64), e os três terminaram em sucesso: build do upstream, `verify-upstream-pristine.sh` e `tests/spike/test-headless.sh`. Foram precisas várias correções no Windows, todas minhas e não do upstream (cada uma foi reproduzida localmente num teste antes de corrigir):
+
+- o verificador do upstream precisava do objeto do commit, que um clone raso não tem (agora usa `tools/upstream-pin.txt`);
+- o MSYS2 não trazia `git` nem `cmp` (pacotes `git` e `diffutils`);
+- conversão de fim de linha: `.gitattributes` com `* -text`;
+- a saída em `stdout.log` (candidato a remendo 7);
+- o Python do Windows escrevia o stdout em cp1252 com CRLF (agora UTF-8 com LF).

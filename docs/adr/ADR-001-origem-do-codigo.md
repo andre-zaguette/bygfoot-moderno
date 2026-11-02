@@ -24,7 +24,7 @@ Tudo rodado em macOS arm64 nesta sessão (detalhes em `docs/spikes/`):
 
 O Caminho B (motor em Rust) continua como plano B, acionado se uma das condições abaixo falhar.
 
-**Resultado do G1: parcial. Cumprido só no macOS, e só para "simular sem janela, com resultado repetível". Não cumprido ou não verificado: "dados versionados" (o upstream não versiona o save), Windows e Linux. A decisão acima vale enquanto essas condições forem resolvidas na Fase 1.**
+**Resultado do G1: parcial. Cumprido para "simular sem janela, com resultado repetível" em macOS, Linux e Windows, medido no CI do GitHub (execução 41377028975: build do upstream, upstream intacto e `tests/spike/test-headless.sh` verdes nos três). Não cumprido: "dados versionados" (o upstream não versiona o save). Não verificado: se o mesmo seed dá o mesmo resultado ENTRE sistemas (cada sistema só foi comparado consigo mesmo). A decisão acima vale enquanto essas condições forem resolvidas na Fase 1.**
 
 ## O que o G1 NÃO provou (condições para manter a decisão)
 
@@ -32,7 +32,7 @@ Note: "dados versionados" aparece aqui como ausência no upstream. Ainda não fo
 
 | Condição | Estado | Se falhar |
 |---|---|---|
-| Rodar em Windows e Linux | não testado; `.github/workflows/spike.yml` escrito, nunca executado | tratar na Fase 1; se o console não rodar em algum, pivotar ou remendar |
+| Rodar em Windows e Linux | **verificado no CI** (macOS, Ubuntu e Windows via MSYS2/MinGW64): compila e passa os testes do spike. Windows precisou de contornos (ver `docs/spikes/headless-result.md`) | manter o CI verde; resultados idênticos entre sistemas ainda não foram comparados |
 | Dados versionados | **o save do upstream não declara versão** (a tag de versão do formato antigo está comentada em `load_save.c:206`; não há `PRAGMA user_version`) | o `SimulationAdapter` adiciona versão de contrato por cima; o formato interno do upstream continua sendo dele |
 | Lances em tempo real | os lances saem todos juntos no fim; a hipótese de geração lance a lance não foi verificada em execução | a animação usa a linha do tempo completa; pausar e mexer na tática no meio do jogo (Fase 3) pode exigir um remendo ou outro desenho |
 | Partida avulsa por ids | o motor simula o calendário de um país; só a última partida do usuário guarda os lances | remendo no upstream ou "gravar lances" para qualquer partida |
