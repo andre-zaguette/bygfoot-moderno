@@ -1,0 +1,7 @@
+build/
+node_modules/
+target/
+*.log
+!docs/spikes/*.log
+.superpowers/
+.DS_Store

@@ -44,14 +44,14 @@ Os prazos são estimativas de planejamento, não compromissos nem previsões der
 ## 2. Contexto verificado do projeto original
 
 - **Bygfoot 3.0.0:** anunciado oficialmente em 17/02/2026. A página oficial cita novo formato de save SQLite e simulações mais rápidas.
-- **Código-fonte:** GitLab `bygfoot/bygfoot`; aplicativo histórico implementado majoritariamente em C e GTK 2.
+- **Código-fonte:** GitLab `bygfoot/bygfoot`; aplicativo histórico implementado majoritariamente em C. Verificado em 2026-11-01 no clone de estudo: a tag `3.0.0` (`767acfa`) é anterior ao `HEAD` (`9b7b006`), que já inclui o port de GTK 2 para GTK 3 e a migração do build para CMake. A Fase 0 decide qual versão fixar.
 - **Licença:** o pacote Fedora da versão 3.0.0 identifica **GPL-2.0-only**; verificar `COPYING`, avisos e arquivos individualmente no checkout que será usado.
 - **Projeto de referência alternativo:** OpenFootManager usa Rust + React + Tauri + SQLite, com licença GPLv3. Serve como referência de arquitetura/UX; **não copiar código entre projetos sem análise de licenças e proveniência**.
 - **Limitação conhecida:** a existência do save em SQLite **não prova** que o motor C já exponha APIs headless, eventos espaciais ou esquema estável para terceiros. Essas características exigem inspeção e protótipo.
 
 ### 2.1. Decisão de origem do código (obrigatória antes da implementação)
 
-**Caminho A — Fork/adaptação GPL do Bygfoot (preferencial se viável):** extrair a lógica para uma biblioteca C ou processo de simulação sem GTK, preservar avisos e obrigações GPL, distribuir fontes e componentes conforme licença aplicável. A ligação com frontend/bundling devem ser revisados juridicamente; usar IPC **não garante automaticamente** independência de licenças.
+**Caminho A — Fork/adaptação GPL do Bygfoot (caminho principal, confirmado pela pessoa responsável em 2026-11-01; vale se o gate G1 aprovar):** manter o código do upstream em `upstream/` sem edição, com remendos mínimos e listados em `patches/MANIFEST.md`, para que o fork continue recebendo atualizações. Extrair a lógica para uma biblioteca C ou processo de simulação sem GTK, preservar avisos e obrigações GPL, distribuir fontes e componentes conforme licença aplicável. A ligação com frontend/bundling devem ser revisados juridicamente; usar IPC **não garante automaticamente** independência de licenças.
 
 **Caminho B — Motor original em Rust:** construir regras de domínio e simulação próprias, com especificação funcional, testes e dados próprios, sem copiar código protegido do Bygfoot. **Importação de dados** e reutilização de ideias/formatos precisam de revisão de compatibilidade e direitos.
 
@@ -96,7 +96,7 @@ Os prazos são estimativas de planejamento, não compromissos nem previsões der
 | Temporada | tabela, calendário, classificação, campeão | copas, acesso/rebaixamento | continentes e seleções |
 | Save | criar, carregar, backup e versão de esquema | migração de saves legados | compartilhamento de mods |
 | Interface | desktop acessível, dark/light, PT-BR | inglês, personalização maior | controller/Steam Deck |
-| Distribuição | Windows e Linux | macOS | Steam/itch.io |
+| Distribuição | Windows, Linux e macOS | Assinatura e notarização automatizadas | Steam/itch.io |
 
 **Definição de MVP:** é possível começar uma carreira com 1 clube, jogar **22 rodadas** de uma liga de 12 clubes em turno e returno, alterar escalações e táticas, contratar/vender sob regras delimitadas, salvar/carregar em qualquer rodada e terminar a temporada com uma classificação correta.
 
@@ -181,6 +181,7 @@ O engine decide placar, cartões, faltas, substituições, chances, finalizaçõ
 - Animações por interpolação entre eventos; câmera fixa; velocidade `1x`, `2x`, `4x`, pausa e replay.
 - Indicadores de posse, trajetória da bola, destaque do jogador, caixa de comentários e minimapa tático quando pertinente.
 - Para um engine que não calcula trajetórias exatas, o replay será **uma representação estilizada** da sequência causal, não física real.
+- **Camada de coreografia (decidida em 2026-11-01):** o `LiveGameUnit` do Bygfoot traz posse, área (defesa, meio, ataque), minuto, placar e evento, sem coordenadas. Para a fluidez de um replay a 60 fps, uma camada de coreografia (apenas visual, com seed fixa) inventa passes entre jogadores, corridas do bloco, mergulho do goleiro e comemoração, sempre terminando no resultado que o motor mandou. Ela nunca decide placar, autor do gol nem classificação. Simulação espacial real continua sendo o Nível 2.
 - O resultado final e o placar precisam existir independentemente de PixiJS.
 
 ### Nível 2 — Simulação espacial (depois do MVP)
@@ -227,6 +228,8 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 - Componentes testados com dados realistas (~300 jogadores e temporadas com partidas concluídas).
 
 ## 8. Roadmap em 12 sprints (2 semanas cada)
+
+**Ajuste de ordem (2026-11-01):** a partida em tempo real (Sprint 07, "Reprodução 2D v1", com a camada de coreografia) passa a vir **antes** das telas de gestão (Sprints 03 e 04). Fases do roadmap visual: 0 spike (sem 1–2), 1 núcleo headless nos 3 sistemas (3–5), 2 app Tauri e primeira partida (6–8), 3 partida ao vivo (9–12), 4 telas de gestão (13–17), 5 temporada completa (18–21), 6 acabamento e lançamento (22–26), 7 simulação espacial opcional (depois do v0.1). Onde esta lista divergir dos sprints abaixo, vale a lista.
 
 **Regra:** cada sprint precisa entregar software demonstrável ou risco técnico resolvido; tarefas de simulação e integração têm prioridade sobre refinamento cosmético. A lista abaixo é um backlog inicial, não uma garantia de esforço exato.
 
@@ -336,7 +339,7 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 
 ### Sprint 11 — Semanas 21–22 | Distribuição e playtest
 
-- [ ] `BF-100` Builds assináveis/instaláveis para Windows e Linux, com inventário de dependências.
+- [ ] `BF-100` Builds assináveis/instaláveis para Windows, Linux e macOS, com inventário de dependências.
 - [ ] `BF-101` Packaging de engine C e assets, quando usados, conforme obrigações de distribuição.
 - [ ] `BF-102` Geração de changelog, terceiros, licenças, instruções de instalação e logs seguros.
 - [ ] `BF-103` Teste de instalação limpa em máquina sem ferramentas de desenvolvedor.
@@ -348,7 +351,7 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 
 - [ ] `BF-110` Corrigir bugs bloqueadores; auditar questões legais/atribuição.
 - [ ] `BF-111` Confirmar campanha completa com save/load e táticas.
-- [ ] `BF-112` Validar build limpa no Windows/Linux, sem privilégios desnecessários.
+- [ ] `BF-112` Validar build limpa no Windows/Linux/macOS, sem privilégios desnecessários.
 - [ ] `BF-113` Publicar README, imagens reais do aplicativo e roadmap pós-MVP.
 - [ ] `BF-114` Tag e release `v0.1.0` (ou versão escolhida após auditoria).
 
@@ -606,7 +609,7 @@ O layout é sugerido e pode ser ajustado às convenções de Tauri, desde que as
 
 ### 14.1. Instrução persistente do agente
 
-Usar o arquivo **`CLAUDE.md`** que acompanha este roadmap. Ele define stack, modo de trabalho, limites de escopo e critérios para o agente declarar uma tarefa concluída. O agente deve iniciar cada sessão lendo `CLAUDE.md`, `docs/GDD.md`, ADRs aplicáveis e a task vigente.
+Usar o arquivo **`CLAUDE.md`** que acompanha este roadmap. Mudanças no código C de `upstream/` só entram como remendos pequenos, atrás de `BYGFOOT_HEADLESS`, cada um registrado em `patches/MANIFEST.md`. Ele define stack, modo de trabalho, limites de escopo e critérios para o agente declarar uma tarefa concluída. O agente deve iniciar cada sessão lendo `CLAUDE.md`, `docs/GDD.md`, ADRs aplicáveis e a task vigente.
 
 ### 14.2. Prompts iniciais prontos
 
@@ -651,7 +654,7 @@ Usar o arquivo **`CLAUDE.md`** que acompanha este roadmap. Ele define stack, mod
 - [ ] Campeonato completo de 12 clubes/22 rodadas com classificação correta.
 - [ ] Save/load/backup funcional em rodada intermediária e final.
 - [ ] Gameplay offline, sem necessidade de credenciais.
-- [ ] Builds Windows/Linux testadas em instalação limpa.
+- [ ] Builds Windows/Linux/macOS testadas em instalação limpa.
 - [ ] Playtests conduzidos e problemas críticos resolvidos.
 - [ ] Atendidas as obrigações de atribuição/redistribuição e auditadas marcas/assets.
 

@@ -14,7 +14,11 @@ Gerenciador de futebol offline-first para desktop, com interface moderna e parti
 - Tauri v2 / Rust para a camada local, SQLite para persistência.
 - PixiJS 8 para o renderer de partidas 2D.
 - Motor de simulação atrás de `SimulationAdapter` versionado.
-- Reutilizar Bygfoot C somente se for possível extrair execução headless e cumprir as obrigações de licença. Não misturar diretamente código GPL-2.0-only e GPLv3 sem revisão.
+- **Caminho A (fork do Bygfoot) é o principal**, confirmado em 2026-11-01. O motor em Rust (Caminho B) é plano B se o gate G1 falhar. Reutilizar o Bygfoot C só se for possível extrair execução headless e cumprir as obrigações de licença. Não misturar diretamente código GPL-2.0-only e GPLv3 sem revisão.
+- O fork precisa continuar atualizável: o código do upstream fica em `upstream/`, sem edição. Mudanças no C só como remendos mínimos atrás de `BYGFOOT_HEADLESS`, cada um registrado em `patches/MANIFEST.md`. Depois de cada sync com o upstream, rodar o teste de seeds fixas.
+- Plataformas do MVP: **macOS, Windows e Linux** (build em CI nos três desde o início).
+- A fluidez do replay vem de uma camada de coreografia puramente visual (seed fixa). Ela nunca decide placar, autor de gol ou classificação.
+- Ordem das fases: a partida ao vivo (Fase 3) vem antes das telas de gestão (Fase 4).
 - Godot é alternativa arquitetural, não dependência do MVP.
 
 ## Regras técnicas inegociáveis
