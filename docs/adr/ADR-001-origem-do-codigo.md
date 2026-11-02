@@ -40,7 +40,7 @@ Note: "dados versionados" aparece aqui como ausência no upstream. Ainda não fo
 
 ## Consequências
 
-- Remendos no upstream: **candidatos listados, nenhum aplicado**. São 6 (`docs/spikes/headless-result.md`): locale do JSON, `--random-seed` com sinal, busca de `support_files`/`-s`, lances de qualquer partida, comando de exportação de lances, avisos de comentário. Os três primeiros já têm contorno no wrapper.
+- Remendos no upstream: **candidatos listados, nenhum aplicado**. São 7 (`docs/spikes/headless-result.md`): locale do JSON, `--random-seed` com sinal, busca de `support_files`/`-s`, lances de qualquer partida, comando de exportação de lances, avisos de comentário, saída em `stdout.log` no Windows. Os três primeiros já têm contorno no wrapper.
 - O binário original continua ligado ao GTK. O produto empacotado carregaria as bibliotecas GTK, a menos que a Fase 1 extraia uma biblioteca. Isso pesa no instalador de Windows e macOS.
 - O pós-processamento em Python do spike é descartável; o produto fará em Rust.
 
