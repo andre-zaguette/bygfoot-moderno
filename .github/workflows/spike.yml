@@ -50,6 +50,8 @@ jobs:
           mkdir -p diag
           sh spike/headless/bf-headless --seed 0 > diag/out-${{ matrix.os }}.txt || true
           BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh spike/headless/bf-headless --seed 1 > diag/out-patched-seed1-${{ matrix.os }}.txt || true
+          sh tools/dump-state.sh 1 > diag/state-${{ matrix.os }}.txt || true
+          BYGFOOT_BIN="$PWD/build/patched/bygfoot" sh tools/dump-state.sh 1 > diag/state-patched-${{ matrix.os }}.txt || true
           python3 -I -c "import os;[print(n) for n in os.listdir('upstream/support_files/definitions')]" > diag/readdir-definitions-${{ matrix.os }}.txt
       - name: Publicar hashes
         if: always()
