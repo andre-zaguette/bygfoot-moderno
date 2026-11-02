@@ -52,7 +52,7 @@ jobs:
           BF_TRACE="$PWD/diag/trace-full.txt" BYGFOOT_BIN="$PWD/build/trace/bygfoot" sh tools/dump-state.sh 1 > /dev/null
           head -3000 diag/trace-full.txt > diag/trace-${{ matrix.os }}.txt
           rm diag/trace-full.txt
-          (cd build/trace-src && patch -p1 < ../../tests/diag/trace-units.patch)
+          (cd build/trace-src && patch -p1 < ../../tests/diag/trace-draws.patch && patch -p1 < ../../tests/diag/trace-units.patch)
           BF_SRC=build/trace-src BF_BUILD=build/trace sh tools/build-upstream.sh build/trace2-build.log
           BF_TRACE="$PWD/diag/trace-units-full.txt" BYGFOOT_BIN="$PWD/build/trace/bygfoot" sh spike/headless/bf-headless --seed 1 > /dev/null
           grep '^U ' diag/trace-units-full.txt | tr -d '\r' | head -4000 > diag/units-${{ matrix.os }}.txt
