@@ -13,7 +13,10 @@
 - Os lances divergem desde a **linha 1**: macOS começa com posse do time 1, Ubuntu com posse do time 0; Windows e macOS coincidem na linha 1 mas divergem na linha 3. Placar final: macOS 1-0, Ubuntu 1-0, Windows 2-0.
 - A ordem em que o sistema devolve os arquivos de `support_files/definitions` (o que `g_dir_read_name` usa, sem ordenar, em `upstream/src/file.c`) é **diferente nos três**: macOS e Ubuntu em ordens distintas e não ordenadas, Windows em ordem alfabética.
 
-## O que isto prova e o que não prova
+## Desfecho (atualizado)
 
-Prova: a divergência existe e vem do estado do sorteio antes do primeiro lance, não dos nomes nem do calendário.
-**Não prova** a causa. A ordem de diretório é hipótese (ordem de carga muda a ordem em que o gerador de números aleatórios é consumido); ponto flutuante e a versão da GLib continuam candidatos. O teste que decide: aplicar um remendo que ordena as listagens e conferir se os 3 hashes passam a coincidir. Isso está no `ADR-002`.
+A causa foi encontrada e corrigida com três remendos (`patches/0001..0003`), descritos no [ADR-002](../adr/ADR-002-determinismo-entre-sistemas.md): ordem de leitura de diretório e duas expressões em que dois argumentos consomem sorteios (ordem de avaliação indefinida em C).
+
+- Com os remendos, os 3 sistemas dão hashes idênticos: 6 seeds de ouro (execução 41472997729) e bateria de 16 seeds por 30 semanas (execução 41476866071).
+- O upstream original continua divergindo em 6 de 6 e segue medido a cada execução, só como informação.
+- Limites: ver "Consequências e riscos" no ADR-002 (cobertura de código exercitado, `powf` em `value`/`wage`).
