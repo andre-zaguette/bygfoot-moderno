@@ -1,0 +1,2 @@
+# Não converter fim de linha: o upstream/ precisa ficar byte a byte igual, e os scripts sh não podem receber CRLF no Windows.
+* -text
