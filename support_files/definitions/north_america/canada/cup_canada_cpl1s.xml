@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>CPL Playoff First Semifinal</name>
+  <short_name>CPL 1st Semifinal</short_name>
+  <symbol>flag_canada.png</symbol>
+  <sid>canada_cpl1s</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>omit_from_history</property>
+  <property>highlight2</property>
+  <cup_rounds>
+    <cup_round>
+      <round_name>First Semifinal</round_name>
+      <home_away>0</home_away>
+      <delay>1</delay>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>canada_cpl</choose_team_sid>
+          <number_of_teams>2</number_of_teams>
+          <start_idx>1</start_idx>
+          <end_idx>2</end_idx>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+  </cup_rounds>
+</cup>
+

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>league2_ontario_teams</sid>
+  <layer>5</layer>
+  <name>League2 Ontario Teams</name>
+  <short_name>L20 Teams</short_name>
+  <symbol>flag_canada.png</symbol>
+  <first_week>1</first_week>
+  <average_talent>4000</average_talent>
+  <names_file>usa</names_file>
+  <round_robins>2</round_robins>
+  <yellow_red>3</yellow_red>
+  <property>inactive</property>
+
+  <prom_rel>
+    <prom_games>
+      <!-- 1st place Winner of League2 Ontario -->
+      <prom_games_dest_sid>league1_ontario_championship</prom_games_dest_sid>
+      <prom_games_cup_sid>league2_ontario</prom_games_cup_sid>
+    </prom_games>
+    <prom_games>
+      <prom_games_cup_sid>league1_ontario_championship_promotion_playoff</prom_games_cup_sid>
+      <prom_games_dest_sid>league1_ontario_championship</prom_games_dest_sid>
+      <prom_games_loser_sid>league2_ontario_teams</prom_games_loser_sid>
+    </prom_games>
+  </prom_rel>
+
+  <teams>
+    <!-- Northeast -->
+    <team>
+      <team_name>Vaughan A. B</team_name>
+      <first_team>Vaughan A.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Markham A. U. B</team_name>
+      <first_team>Markham A. U.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Whitby B</team_name>
+      <first_team>Whitby</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Barrie R. B</team_name>
+      <first_team>Barrie R.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Scarborough B. B</team_name>
+      <first_team>Scarborough B.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Scarborough M. B</team_name>
+      <first_team>Scarborough M.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Unionville M. B</team_name>
+      <first_team>Unionville M.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Sudbury C. B</team_name>
+      <first_team>Sudbury C.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Pickering B</team_name>
+      <first_team>Pickering</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <!-- Central -->
+    <team>
+      <team_name>Burlington B</team_name>
+      <first_team>Burlington</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Oakville R. C.</team_name>
+    </team>
+    <team>
+      <team_name>Woodbridge S. B</team_name>
+      <first_team>Woodbridge S.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>N. Toronto N. B</team_name>
+      <first_team>N. Toronto N.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Oakville B</team_name>
+      <first_team>Oakville</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Milton S. B</team_name>
+      <first_team>Milton S.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Mississauga S. B</team_name>
+      <first_team>Mississauga S.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>N. Mississauga B</team_name>
+      <first_team>N. Mississauga</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <!-- Southwest -->
+    <team>
+      <team_name>Cambridge U.</team_name>
+    </team>
+    <team>
+      <team_name>St. Catharines R. W. B</team_name>
+      <first_team>St. Catharines R. W.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>St. Thomas R.</team_name>
+    </team>
+    <team>
+      <team_name>Waterloo U. B</team_name>
+      <first_team>Waterloo U.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Windsor B</team_name>
+      <first_team>Windsor</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Guelph U. B</team_name>
+      <first_team>Guelph U.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>London B</team_name>
+      <first_team>London</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Hamilton U. B</team_name>
+      <first_team>Hamilton U.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+  </teams>
+</league>
+

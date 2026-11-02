@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Azerbaijan</name>
+  <symbol>flag_azerbaijan.png</symbol>
+  <sid>azerbaijan</sid>
+  <rating>4</rating>
+
+  <leagues>
+    <league>azerbaijan1</league>
+    <league>azerbaijan2</league>
+    </leagues>
+
+  <cups>
+    <cup>azerbaijan_cup</cup>
+  </cups>
+
+</country>

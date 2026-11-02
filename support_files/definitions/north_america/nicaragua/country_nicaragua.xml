@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>nicaragua</name>
+  <rating>9</rating>
+  <symbol>flag_nicaragua.png</symbol>
+  <sid>nicaragua</sid>
+
+  <leagues>
+    <league>nicaragua1</league>
+  </leagues>
+
+</country>

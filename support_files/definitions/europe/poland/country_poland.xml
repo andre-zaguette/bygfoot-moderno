@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Poland</name>
+  <rating>5</rating>
+  <symbol>flag_poland.png</symbol>
+  <sid>poland</sid>
+
+  <leagues>
+    <league>poland1</league>
+    <league>poland2</league>
+    <league>poland3</league>
+    <league>poland4a</league>
+    <league>poland4b</league>
+    <league>poland4c</league>
+    <league>poland4d</league>
+ </leagues>
+
+  <cups>
+    <cup>poland_puchar</cup>
+    <cup>poland_superpuchar</cup>
+    <cup>poland_prom_games1</cup> 
+    <cup>poland_prom_games2</cup> 
+  </cups>
+
+</country>

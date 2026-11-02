@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Kosovo</name>
+  <symbol>flag_kosovo.png</symbol>
+  <sid>kosovo</sid>
+  <rating>1</rating>
+
+  <leagues>
+    <league>kosovo1</league>
+  </leagues>
+
+  <cups>
+    <cup>kosovo_cup</cup>
+  </cups>
+
+</country>

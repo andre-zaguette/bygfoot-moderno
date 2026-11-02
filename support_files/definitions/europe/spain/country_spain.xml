@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Spain</name>
+  <rating>10</rating>
+  <symbol>flag_spain.png</symbol>
+  <sid>spain</sid>
+
+  <leagues>
+    <league>spain1</league>
+    <league>spain2</league>
+    <league>spain3a</league>
+    <league>spain3b</league>
+    <league>spain3c</league>
+    <league>spain3d</league>
+    <league>spain4</league>
+    <league>spain5</league>
+  </leagues>
+
+  <cups>
+    <cup>spain_cdr</cup>
+    <cup>spain_supercopa</cup>
+    <cup>spain_prom_games1</cup>
+    <cup>spain_prom_games3a</cup>
+    <cup>spain_prom_games3b</cup>
+    <cup>spain_prom_games3c</cup>
+    <cup>spain_prom_games3d</cup>
+  </cups>
+
+</country>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Cyprus</name>
+  <symbol>flag_cyprus.png</symbol>
+  <sid>cyprus</sid>
+  <rating>4</rating>
+
+  <leagues>
+    <league>cyprus1</league>
+    <league>cyprus2</league>
+    <league>cyprus3</league>
+    <league>cyprus4</league>
+    </leagues>
+
+  <cups>
+    <cup>cyprus_cup</cup>
+    <cup>cyprus_lower_cup</cup>
+    <cup>cyprus_supercup</cup>
+  </cups>
+
+</country>

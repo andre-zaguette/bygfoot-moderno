@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+	<name>Liechtenstein</name>
+	<symbol>flag_liechtenstein.png</symbol>
+	<sid>liechtenstein</sid>
+	<rating>4</rating>
+
+	<leagues>
+		<league>liechtenstein1</league>
+	</leagues>
+
+	<cups>
+		<cup>liechtenstein_cup</cup>
+	</cups>
+</country>

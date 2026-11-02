@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Italy</name>
+  <rating>10</rating>
+  <symbol>flag_italy.png</symbol>
+  <sid>italy</sid>
+
+  <leagues>
+    <league>italy1</league>
+    <league>italy2</league>
+    <league>italy3a</league>
+    <league>italy3b</league>
+    <league>italy3c</league>
+    <league>italy4a</league>
+    <league>italy4b</league>
+    <league>italy4c</league>
+    <league>italy4d</league>
+    <league>italy4e</league>
+    <league>italy4f</league>
+    <league>italy4g</league>
+    <league>italy4h</league>
+    <league>italy4i</league>
+  </leagues>
+
+  <cups>
+    <cup>italy_coppa</cup>
+    <cup>italy_coppa_serie_c</cup>
+    <cup>italy_coppa_serie_d</cup>
+    <cup>italy_supercoppa</cup>
+    <cup>italy_prom_games2</cup>
+    <cup>italy_prom_games3</cup>
+  </cups>
+
+</country>

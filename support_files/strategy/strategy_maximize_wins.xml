@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strategy>
+  <sid>maximize_wins</sid>
+  <desc>Startegy that maximizes wins by avoiding draws.  Ideal for league play.</desc>
+  <priority>1</priority>
+
+  <prematch>
+    <formation>433</formation>
+    <formation>343</formation>
+    <formation>352</formation>
+    <formation>442</formation>
+    <formation>532</formation>
+
+    <lineup min_fitness="75">best</lineup>
+    <prematch_boost>off</prematch_boost>
+    <prematch_style>attack</prematch_style>
+  </prematch>
+
+  <prematch cond="_GOALSTOWIN_ = 2">
+    <formation>433</formation>
+    <formation>343</formation>
+    <formation>352</formation>
+    <prematch_style>attack</prematch_style>
+  </prematch>
+
+  <prematch cond="_GOALSTOWIN_ > 2">
+    <formation>343</formation>
+    <formation>433</formation>
+    <formation>352</formation>
+    <prematch_boost>on</prematch_boost>
+    <prematch_style>all-out-attack</prematch_style>
+  </prematch>
+
+  <prematch cond="_GOALSTOWIN_ = -2">
+    <formation>532</formation>
+    <formation>442</formation>
+    <formation>352</formation>
+    <prematch_style>defend</prematch_style>
+  </prematch>
+
+  <prematch cond="_GOALSTOWIN_ < -2">
+    <formation>532</formation>
+    <formation>442</formation>
+    <formation>352</formation>
+    <prematch_style>all-out-defend</prematch_style>
+  </prematch>
+
+  <match_action cond="_GOALSTOWIN_ <= -1">
+    <style>defend</style>
+  </match_action>
+
+  <match_action cond="_GOALSTOWIN_ >= 0">
+    <style>attack</style>
+  </match_action>
+
+  <match_action cond="_MI_ >= 80 and _MR_ <= 10 and _GOALSTOWIN_ <= 0 and _GOALSTOWIN_ >=-1">
+    <style>all-out-defend</style>
+    <boost>on</boost>
+  </match_action>
+  
+  <match_action cond="_MI_ >= 80 and _MR_ <= 10 and _GOALSTOWIN_ >=1 and _GOALSTOWIN_ <= 3">
+    <style>all-out-attack</style>
+    <boost>on</boost>
+  </match_action>
+</strategy>

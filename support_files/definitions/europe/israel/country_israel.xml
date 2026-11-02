@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Israel</name>
+  <symbol>flag_israel.png</symbol>
+  <sid>israel</sid>
+  <rating>4</rating>
+
+  <leagues>
+    <league>israel1</league>
+    <league>israel2</league>
+    <league>israel3a</league>
+    <league>israel3b</league>
+    <league>israel4a</league>
+    <league>israel4b</league>
+    <league>israel4c</league>
+    <league>israel4d</league>
+    <league>israel5a</league>
+    <league>israel5b</league>
+    <league>israel5c</league>
+    <league>israel5d</league>
+    <league>israel5e</league>
+    <league>israel5f</league>
+    <league>israel5g</league>
+    <league>israel5h</league>
+  </leagues>
+
+  <cups>
+    <cup>israel_cup</cup>
+    <cup>israel_supercup</cup>
+    <cup>israel_prom_games2</cup>
+    <cup>israel_prom_games3a</cup>
+    <cup>israel_prom_games3b</cup>
+    <cup>israel_rel_games4a</cup>
+    <cup>israel_rel_games4b</cup>
+    <cup>israel_rel_games4c</cup>
+    <cup>israel_rel_games4d</cup>
+    <cup>israel_prom_games5a</cup>
+    <cup>israel_prom_games5b</cup>
+    <cup>israel_prom_games5c</cup>
+    <cup>israel_prom_games5d</cup>
+  </cups>
+
+</country>

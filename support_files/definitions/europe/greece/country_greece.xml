@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Greece</name>
+  <rating>6</rating>
+  <symbol>flag_greece.png</symbol>
+  <sid>greece</sid>
+
+  <leagues>
+    <league>greece1</league>
+    <league>greece2</league>
+    <league>greece3</league>
+    <league>greece4</league>
+    </leagues>
+
+  <cups>
+    <cup>greece_cup</cup>
+    <cup>greece_supercup</cup>
+  </cups>
+
+</country>

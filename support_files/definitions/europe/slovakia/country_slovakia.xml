@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Slovakia</name>
+  <symbol>flag_slovakia.png</symbol>
+  <sid>slovakia</sid>
+  <rating>3</rating>
+
+  <leagues>
+    <league>slovakia1</league>
+    <league>slovakia2</league>
+    <league>slovakia3a</league>
+    <league>slovakia3b</league>
+    <league>slovakia3c</league>
+    <league>slovakia3d</league>
+  </leagues>
+
+  <cups>
+    <cup>slovakia_cup</cup>
+    <cup>slovakia_supercup</cup>
+    <cup>slovakia_prom_games1</cup>
+  </cups>
+</country>

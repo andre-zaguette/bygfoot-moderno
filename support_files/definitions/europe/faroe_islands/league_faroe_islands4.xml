@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>faroe_islands4</sid>
+  <name>3. Deild</name>
+  <short_name>3. Deild</short_name>
+  <symbol>flag_faroe_islands.png</symbol>
+  <average_talent>2400</average_talent>
+  <names_file>denmark</names_file>
+  <property>inactive</property>
+
+  <prom_rel>
+    <prom_games>
+      <prom_games_dest_sid>faroe_islands3</prom_games_dest_sid>
+      <rank_start>1</rank_start>
+      <rank_end>3</rank_end>
+      <prom_games_number_of_advance>2</prom_games_number_of_advance>
+      <prom_games_cup_sid>faroe_islands4a_finals</prom_games_cup_sid>
+    </prom_games>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>V. Sorvagur II</team_name>
+      <first_team>V. Sorvagur</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Streymur III</team_name>
+      <first_team>Streymur</first_team>
+      <reserve_level>3</reserve_level>
+    </team>
+    <team>
+      <team_name>V. Sorvagur III</team_name>
+      <first_team>V. Sorvagur</first_team>
+      <reserve_level>3</reserve_level>
+      <team_average_talent>2000</team_average_talent>
+    </team>
+    <team>
+      <team_name>B. Tórshavn III</team_name>
+      <first_team>B. Tórshavn</first_team>
+      <reserve_level>3</reserve_level>
+    </team>
+    <team>
+      <team_name>B. Toftir III</team_name>
+      <first_team>B. Toftir</first_team>
+      <reserve_level>3</reserve_level>
+    </team>
+    <team>
+      <team_name>Hoyvík II</team_name>
+      <first_team>Hoyvík</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>N. Runavík IV</team_name>
+      <first_team>N. Runavík</first_team>
+      <reserve_level>4</reserve_level>
+    </team>
+    <team>
+      <team_name>U. Tórshavn II</team_name>
+      <first_team>U. Tórshavn</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>V. Gotu IV</team_name>
+      <first_team>V. Gotu</first_team>
+      <reserve_level>4</reserve_level>
+    </team>
+    <team>
+      <team_name>B. Sandur II</team_name>
+      <first_team>B. Sandur</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Streymur IV</team_name>
+      <first_team>Streymur</first_team>
+      <reserve_level>4</reserve_level>
+      <team_average_talent>2000</team_average_talent>
+    </team>
+    <team>
+      <team_name>K. Klaksvik IV</team_name>
+      <first_team>K. Klaksvík</first_team>
+      <reserve_level>4</reserve_level>
+    </team>
+    <team>
+      <team_name>N. Runavík V</team_name>
+      <first_team>N. Runavík</first_team>
+      <team_average_talent>2000</team_average_talent>
+      <reserve_level>5</reserve_level>
+    </team>
+    <team>
+      <team_name>Skála III</team_name>
+      <first_team>Skála I.</first_team>
+      <reserve_level>3</reserve_level>
+    </team>
+    <team>
+      <team_name>Suðuroy II</team_name>
+      <first_team>Suðuroy</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Miðvágur</team_name>
+    </team>
+    <team>
+      <team_name>Fuglafjørdur II</team_name>
+      <first_team>Fuglafjørdur</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>H. Tórshavn III</team_name>
+      <first_team>H. Tórshavn</first_team>
+      <reserve_level>3</reserve_level>
+    </team>
+  </teams>
+</league>
+

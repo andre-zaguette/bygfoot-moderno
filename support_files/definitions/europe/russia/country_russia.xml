@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Russia</name>
+  <symbol>flag_russia.png</symbol>
+  <sid>russia</sid>
+  <rating>7</rating>
+
+  <leagues>
+    <league>russia1</league>
+    <league>russia2</league>
+    <league>russia3a</league>
+    <league>russia3b</league>
+    <league>russia3c</league>
+    <league>russia3d</league>
+    <league>russia3e</league>
+  </leagues>
+
+  <cups>
+    <cup>russia_cup</cup>
+    <cup>russia_supercup</cup>
+    <cup>russia_prom_games1</cup>
+    <cup>russia_prom_games2</cup>
+  </cups>
+
+</country>

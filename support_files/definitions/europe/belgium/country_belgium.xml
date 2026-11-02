@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+  <name>Belgium</name>
+  <rating>7</rating>
+  <symbol>flag_belgium.png</symbol>
+  <sid>belgium</sid>
+
+  <leagues>
+    <league>belgium1</league>
+    <league>belgium2</league>
+    <league>belgium3</league>
+    <league>belgium4a</league>
+    <league>belgium4b</league>
+    <league>belgium4c</league>
+    <league>belgium5a</league>
+    <league>belgium5b</league>
+    <league>belgium5c</league>
+    <league>belgium5d</league>
+  </leagues>
+
+  <cups>
+    <cup>belgium_beker</cup>
+    <cup>belgium_supercup</cup>
+    <cup>belgium_prom_games3</cup>
+    <cup>belgium_prom_games4</cup>
+    <cup>belgium_prom_games5ab</cup>
+    <cup>belgium_prom_games5c</cup>
+    <cup>belgium_prom_games5d</cup>
+  </cups>
+
+</country>

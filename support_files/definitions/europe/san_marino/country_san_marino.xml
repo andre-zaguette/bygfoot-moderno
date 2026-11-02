@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+	<name>San_Marino</name>
+	<symbol>flag_san_marino.png</symbol>
+	<sid>san_marino</sid>
+	<rating>4</rating>
+
+	<leagues>
+		<league>san_marino1</league>
+	</leagues>
+
+	<cups>
+		<cup>san_marino_coppa</cup>
+		<cup>san_marino_playoffs_qualifier</cup>
+		<cup>supercup_san_marino_playoffs</cup>
+		<cup>san_marino_supercoppa</cup>
+	</cups>
+</country>
