@@ -147,3 +147,13 @@ Consequências (hipóteses a confirmar na Fase 1):
   4. confronto direto entre os dois times, quando existem as duas partidas jogadas até a rodada atual. O resto desse ramo (o que acontece sem as duas partidas) não foi lido.
 
 Para o MVP de 12 clubes e 22 rodadas, `round_robins = 2` com 12 times gera 22 rodadas (cada time joga 11 adversários duas vezes). Isso é aritmética, não foi confirmado rodando o gerador.
+
+## 6. Plano do spike e resultado
+
+**Plano:** provar que o motor simula uma partida sem janela, com resultado repetível, antes de qualquer investimento em interface (gate G1).
+
+**O que aconteceu:** a leitura de `main.c` mostrou que o upstream já tem um frontend de console (`--json ARQUIVO`, `BYGFOOT_FRONTEND_CONSOLE`, `json_interface.c`). O spike virou um wrapper em torno do binário original, sem edição em `upstream/` e sem stubs (`spike/headless/bf-headless`).
+
+**Resultado (macOS arm64):** simulou partidas completas sem display, com saída idêntica byte a byte para a mesma seed. Detalhes, medidas e o que **não** foi provado: `docs/spikes/headless-result.md`. Decisão: `docs/adr/ADR-001-origem-do-codigo.md`.
+
+**Correção ao que escrevi na seção 3:** a pendência 1 ("`misc_callback_pause_live_game` e `treeview_show_game_stats` só alcançados com usuário") não foi lida linha a linha. O spike mostrou que o caminho do usuário em modo console roda sem janela, mas **não** expliquei por quê no código. Continua uma pendência de leitura, agora de baixa urgência.

@@ -1,0 +1,37 @@
+# ATENÇÃO: este workflow NUNCA foi executado. Não há repositório remoto ainda.
+# Ele é o plano para verificar macOS, Linux e Windows na Fase 1.
+name: spike-headless
+on: [push, pull_request]
+jobs:
+  headless:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dependências (macOS)
+        if: matrix.os == 'macos-latest'
+        run: brew install cmake gtk+3 json-c
+      - name: Dependências (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y cmake libgtk-3-dev libjson-c-dev libsqlite3-dev gettext pkg-config python3
+      - name: Dependências (Windows, MSYS2)
+        if: matrix.os == 'windows-latest'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          install: >-
+            mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-gtk3
+            mingw-w64-x86_64-json-c mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gettext
+            mingw-w64-x86_64-pkgconf mingw-w64-x86_64-python make
+      - name: Compilar o upstream
+        run: sh tools/build-upstream.sh
+      - name: Verificar upstream intacto
+        run: sh tools/verify-upstream-pristine.sh 9b7b0062
+      - name: Testes do spike
+        run: sh tests/spike/test-headless.sh

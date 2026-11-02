@@ -10,5 +10,8 @@ chk "patches/MANIFEST.md"                         CLAUDE.md                  'pa
 chk "camada de coreografia"                       ROADMAP_BYGFOOT_MODERNO.md 'coreografia'
 chk "Caminho A como principal"                    ROADMAP_BYGFOOT_MODERNO.md 'Caminho A.*principal'
 chk "Caminho A como principal"                    CLAUDE.md                  'Caminho A.*principal'
+chk "ADR-001 com decisão"                     docs/adr/ADR-001-origem-do-codigo.md '^## Decisão'
+chk "ADR-001 com resultado do gate G1"        docs/adr/ADR-001-origem-do-codigo.md '^\*\*Resultado do G1'
+chk "REVERSE_ENGINEERING seção 6"             docs/REVERSE_ENGINEERING.md '^## 6\. '
 [ "$fail" -eq 0 ] && echo OK
 exit "$fail"
