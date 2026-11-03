@@ -98,3 +98,13 @@ test("uma nova simulação sai do modo de assistir", async () => {
   await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
   await waitFor(() => expect(screen.queryByRole("group", { name: /partida ao vivo/i })).not.toBeInTheDocument());
 });
+
+test("o foco acompanha a troca de modo: abre na partida e volta para 'Assistir partida'", async () => {
+  vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  await userEvent.click(await screen.findByRole("button", { name: /assistir partida/i }));
+  expect(screen.getByRole("group", { name: /partida ao vivo/i })).toHaveFocus();
+  await userEvent.click(screen.getByRole("button", { name: /ver só os lances/i }));
+  expect(screen.getByRole("button", { name: /assistir partida/i })).toHaveFocus();
+});

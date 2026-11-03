@@ -26,6 +26,12 @@ const timeline: Timeline = {
   ],
 };
 
+/** Repete `step` até `cond`, com teto: se a reprodução parar, o teste falha em vez de travar. */
+function until(cond: () => boolean, step: () => void, max = 2000) {
+  for (let i = 0; i < max && !cond(); i++) step();
+  if (!cond()) throw new Error("condição não alcançada dentro do teto de iterações");
+}
+
 /** Avança o relógio como o PitchView faria e avisa a interface. */
 function advance(ms: number) {
   act(() => {
@@ -50,9 +56,9 @@ test("o gol só aparece no placar quando o lance do gol é alcançado", () => {
   render(<LiveMatch timeline={timeline} />);
   advance(10_000); // 10 s ≈ minuto 2,5: ainda antes do gol (minuto 40)
   expect(score()).toBe("0 x 0");
-  while (captured.props.playback.state().index < 1) advance(1000);
+  until(() => captured.props.playback.state().index >= 1, () => advance(1000));
   expect(score()).toBe("0 x 0"); // lance 1 alcançado, gol ainda não
-  while (captured.props.playback.state().index < 2) advance(1000);
+  until(() => captured.props.playback.state().index >= 2, () => advance(1000));
   expect(score()).toBe("1 x 0");
 });
 
@@ -100,7 +106,7 @@ test("Espaço com o foco num botão aciona só o botão (não alterna duas vezes
 test("lance sem comentário não mostra 'undefined' e usa legenda neutra", () => {
   render(<LiveMatch timeline={timeline} />);
   captured.props.playback.setSpeed(4);
-  while (captured.props.playback.state().index < 3) advance(1000); // lance do minuto 60, sem comentário
+  until(() => captured.props.playback.state().index >= 3, () => advance(1000)); // lance do minuto 60, sem comentário
   expect(screen.getByTestId("caption").textContent).toBeTruthy();
   expect(document.body).not.toHaveTextContent("undefined");
 });
@@ -116,9 +122,9 @@ test("lances importantes são anunciados numa região aria-live; lances comuns n
   render(<LiveMatch timeline={timeline} />);
   const live = screen.getByTestId("announcer");
   expect(live).toHaveAttribute("aria-live", "polite");
-  while (captured.props.playback.state().index < 1) advance(1000); // lance comum
+  until(() => captured.props.playback.state().index >= 1, () => advance(1000)); // lance comum
   expect(live.textContent).not.toMatch(/Troca de passes/);
-  while (captured.props.playback.state().index < 2) advance(1000); // chega ao gol
+  until(() => captured.props.playback.state().index >= 2, () => advance(1000)); // chega ao gol
   expect(live.textContent).toMatch(/Gol do Azul/);
 });
 
@@ -127,9 +133,9 @@ describe("camada de análise", () => {
 
   test("começa desligada: sem calor no campo, sem painel de passes e sem legenda de nomes", () => {
     render(<LiveMatch timeline={timeline} />);
-    for (const n of [/calor/i, /passes/i, /nomes/i]) expect(toggle(n)).toHaveAttribute("aria-pressed", "false");
+    for (const n of [/calor/i, /combinações/i, /nomes/i]) expect(toggle(n)).toHaveAttribute("aria-pressed", "false");
     expect(captured.props.heat).toBeNull();
-    expect(screen.queryByRole("region", { name: /passes mais frequentes/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("region", { name: /combinações mais citadas/i })).not.toBeInTheDocument();
     expect(screen.queryByTestId("names")).not.toBeInTheDocument();
   });
 
@@ -142,12 +148,12 @@ describe("camada de análise", () => {
     expect(captured.props.heat).toBeNull();
   });
 
-  test("Passes lista os pares citados só depois de acontecerem", async () => {
+  test("Combinações lista os pares citados só depois de acontecerem", async () => {
     render(<LiveMatch timeline={timeline} />);
-    await userEvent.click(toggle(/passes/i));
-    const panel = screen.getByRole("region", { name: /passes mais frequentes/i });
-    expect(panel).toHaveTextContent(/nenhum passe/i);
-    while (captured.props.playback.state().index < 1) advance(1000);
+    await userEvent.click(toggle(/combinações/i));
+    const panel = screen.getByRole("region", { name: /combinações mais citadas/i });
+    expect(panel).toHaveTextContent(/nenhuma combinação/i);
+    until(() => captured.props.playback.state().index >= 1, () => advance(1000));
     expect(panel).toHaveTextContent("Ana");
     expect(panel).toHaveTextContent("Bia");
   });
@@ -155,7 +161,7 @@ describe("camada de análise", () => {
   test("Nomes mostra os jogadores do lance atual", async () => {
     render(<LiveMatch timeline={timeline} />);
     await userEvent.click(toggle(/nomes/i));
-    while (captured.props.playback.state().index < 1) advance(1000);
+    until(() => captured.props.playback.state().index >= 1, () => advance(1000));
     expect(screen.getByTestId("names")).toHaveTextContent("Ana");
     expect(screen.getByTestId("names")).toHaveTextContent("Bia");
   });
@@ -165,5 +171,55 @@ describe("camada de análise", () => {
     expect(screen.queryByTestId("possession")).not.toBeInTheDocument();
     await userEvent.click(toggle(/calor/i));
     expect(screen.getByTestId("possession")).toHaveTextContent(/%/);
+  });
+});
+
+describe("foco, leitor de tela e legenda", () => {
+  test("ao abrir, o foco vai para a partida (atalhos funcionam sem clicar)", () => {
+    render(<LiveMatch timeline={timeline} />);
+    expect(screen.getByRole("group", { name: /partida ao vivo/i })).toHaveFocus();
+  });
+
+  test("ao pular para o fim, o foco vai para 'Rever' e os atalhos continuam valendo", async () => {
+    render(<LiveMatch timeline={timeline} />);
+    await userEvent.click(screen.getByRole("button", { name: /pular para o fim/i }));
+    expect(screen.getByRole("button", { name: /rever/i })).toHaveFocus();
+    await userEvent.keyboard("4");
+    expect(captured.props.playback.state().speed).toBe(4);
+  });
+
+  test("a legenda é lida por leitores de tela (sem aria-hidden) e marca o idioma do motor", () => {
+    render(<LiveMatch timeline={timeline} />);
+    const cap = screen.getByTestId("caption");
+    expect(cap).not.toHaveAttribute("aria-hidden");
+    expect(cap).toHaveAttribute("lang", "en"); // "Começa a partida." vem do motor no fixture, em texto de teste
+  });
+
+  test("o anúncio de gol traz o placar e é repetido mesmo quando o texto é igual", () => {
+    const dup: Timeline = {
+      ...timeline,
+      match: { ...timeline.match, final: [2, 0] },
+      units: [
+        u(0, 1, [0, 0]),
+        u(20, 10, [1, 0]),
+        u(40, 10, [2, 0]),
+        u(90, 4, [2, 0]),
+      ],
+    };
+    render(<LiveMatch timeline={dup} />);
+    const live = screen.getByTestId("announcer");
+    until(() => captured.props.playback.state().index >= 1, () => advance(1000));
+    expect(live.textContent).toMatch(/Gol/);
+    expect(live.textContent).toMatch(/1 x 0/);
+    const first = live.firstElementChild;
+    until(() => captured.props.playback.state().index >= 2, () => advance(1000));
+    expect(live.textContent).toMatch(/2 x 0/);
+    expect(live.firstElementChild).not.toBe(first); // nó novo: o leitor de tela anuncia de novo
+  });
+
+  test("Nomes ligada num lance sem jogador mostra aviso em vez de ficar vazio", async () => {
+    render(<LiveMatch timeline={timeline} />);
+    await userEvent.click(screen.getByRole("button", { name: /nomes/i }));
+    expect(screen.getByTestId("names")).toHaveTextContent(/sem jogador citado/i);
   });
 });

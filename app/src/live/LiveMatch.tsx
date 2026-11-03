@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Timeline } from "../types";
-import { buildChoreography, type EffectKind, type Frame } from "./choreography";
+import { buildChoreography, EFFECT_LABEL, type EffectKind, type Frame } from "./choreography";
 import { createPlayback, type PlaybackState, type Speed } from "./playback";
 import PitchView from "./PitchView";
 import { buildOverlay } from "./overlay";
@@ -9,14 +9,15 @@ import { buildOverlay } from "./overlay";
 const ANNOUNCE: ReadonlySet<EffectKind> = new Set(["start", "goal", "yellow", "red", "penalty", "halftime", "end"]);
 
 function usePrefersReducedMotion(): boolean {
-  const q = typeof window !== "undefined" && window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
-  const [reduced, setReduced] = useState(q?.matches ?? false);
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
-    if (!q) return;
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const q = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(q.matches);
     const on = () => setReduced(q.matches);
     q.addEventListener("change", on);
     return () => q.removeEventListener("change", on);
-  }, [q]);
+  }, []);
   return reduced;
 }
 
@@ -30,11 +31,23 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
   const reducedMotion = usePrefersReducedMotion();
   const [st, setSt] = useState<PlaybackState>(playback.state());
   const [frame, setFrame] = useState<Frame>(frames[0]);
-  const [announce, setAnnounce] = useState("");
+  const [announce, setAnnounce] = useState<{ id: number; label: string; score: [number, number]; text: string; lang: "en" | "pt-BR" } | null>(null);
+  const announceId = useRef(0);
+  const section = useRef<HTMLElement>(null);
+  const replayBtn = useRef<HTMLButtonElement>(null);
   const [layers, setLayers] = useState({ heat: false, passes: false, names: false });
   const anyLayer = layers.heat || layers.passes || layers.names;
   const overlay = useMemo(() => (anyLayer ? buildOverlay(timeline, st.index) : null), [anyLayer, timeline, st.index]);
   const flip = (k: keyof typeof layers) => setLayers((l) => ({ ...l, [k]: !l[k] }));
+
+  // Ao abrir, o foco vai para a partida: os atalhos (Espaço, 1, 2, 4, End) funcionam sem clicar.
+  useEffect(() => { section.current?.focus(); }, []);
+  // Ao terminar (pulando ou chegando ao fim), se o foco estava na partida ou se perdeu, vai para "Rever".
+  useEffect(() => {
+    if (!st.finished) return;
+    const a = document.activeElement;
+    if (a === document.body || a === null || section.current?.contains(a)) replayBtn.current?.focus();
+  }, [st.finished]);
 
   const refresh = () => {
     const s = playback.state();
@@ -44,7 +57,9 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
   const onState = (s: PlaybackState, f: Frame) => {
     setSt(s);
     setFrame(f);
-    if (f.effect && ANNOUNCE.has(f.effect.kind)) setAnnounce(f.caption);
+    if (f.effect && ANNOUNCE.has(f.effect.kind)) {
+      setAnnounce({ id: ++announceId.current, label: EFFECT_LABEL[f.effect.kind], score: f.score, text: f.caption, lang: f.captionLang });
+    }
   };
 
   const setSpeed = (v: Speed) => { playback.setSpeed(v); refresh(); };
@@ -55,10 +70,11 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
   const onKeyDown = (e: React.KeyboardEvent) => {
     const onButton = (e.target as HTMLElement).closest("button") !== null;
     if (e.key === " " && !onButton) { e.preventDefault(); if (!st.finished) togglePlay(); }
+    else if (e.ctrlKey || e.metaKey || e.altKey) return;
     else if (e.key === "1") setSpeed(1);
     else if (e.key === "2") setSpeed(2);
     else if (e.key === "4") setSpeed(4);
-    else if (e.key === "End") skip();
+    else if (e.key === "End") { e.preventDefault(); skip(); }
   };
 
   const { match } = timeline;
@@ -66,7 +82,7 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
   const minute = st.minute;
 
   return (
-    <section className="live" role="group" aria-label="Partida ao vivo" tabIndex={0} onKeyDown={onKeyDown}>
+    <section ref={section} className="live" role="group" aria-label="Partida ao vivo" tabIndex={0} onKeyDown={onKeyDown}>
       <div className="stage">
         <PitchView frames={frames} playback={playback} reducedMotion={reducedMotion} onState={onState} heat={layers.heat && overlay ? overlay.heat : null} />
         <div className="hud">
@@ -83,10 +99,10 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
           <span className="clock">{minute}' {st.finished ? "· fim" : ""}</span>
         </div>
       </div>
-      <p className="caption" data-testid="caption" aria-hidden="true">{frame.caption}</p>
+      <p className="caption" data-testid="caption" lang={frame.captionLang}>{frame.caption}</p>
       <div className="controls">
         {st.finished ? (
-          <button type="button" onClick={replay}>Rever</button>
+          <button ref={replayBtn} type="button" onClick={replay}>Rever</button>
         ) : (
           <button type="button" onClick={togglePlay}>{st.playing ? "Pausar" : "Retomar"}</button>
         )}
@@ -97,7 +113,7 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
         <span role="group" aria-label="Camadas de análise (aproximação visual)" className="layers">
           {(["heat", "passes", "names"] as const).map((k) => (
             <button key={k} type="button" aria-pressed={layers[k]} onClick={() => flip(k)}>
-              {k === "heat" ? "Calor" : k === "passes" ? "Passes" : "Nomes"}
+              {k === "heat" ? "Calor" : k === "passes" ? "Combinações" : "Nomes"}
             </button>
           ))}
         </span>
@@ -107,10 +123,10 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
         <span className="approx">Aproximação visual: o campo representa os lances do motor; ele não decide o resultado.</span>
       </div>
       {layers.passes && overlay && (
-        <section role="region" aria-label="Passes mais frequentes" className="passes">
-          <h3>Passes mais frequentes</h3>
+        <section role="region" aria-label="Combinações mais citadas" className="passes">
+          <h3>Combinações mais citadas</h3>
           {overlay.links.length === 0 ? (
-            <p>Nenhum passe registrado ainda.</p>
+            <p>Nenhuma combinação registrada ainda.</p>
           ) : (
             <ol>
               {overlay.links.slice(0, 5).map((l) => (
@@ -121,10 +137,16 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
               ))}
             </ol>
           )}
-          <p className="approx">Pares de jogadores citados juntos nos lances. O motor não informa a posição de cada um.</p>
+          <p className="approx">Jogadores citados juntos em lances de jogo corrido (em geral, passes). O motor não informa a posição de cada um.</p>
         </section>
       )}
-      <div data-testid="announcer" aria-live="polite" className="sr-only">{announce}</div>
+      <div data-testid="announcer" aria-live="polite" className="sr-only">
+        {announce && (
+          <span key={announce.id}>
+            {announce.label} Placar {announce.score[0]} x {announce.score[1]}. <span lang={announce.lang}>{announce.text}</span>
+          </span>
+        )}
+      </div>
     </section>
   );
 }

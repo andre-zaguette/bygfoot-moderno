@@ -20,6 +20,8 @@ export interface Frame {
   effect: Effect | null;
   score: [number, number];
   caption: string;
+  /** Idioma da legenda: o texto do motor vem em inglês; o texto de reserva é nosso, em português. */
+  captionLang: "en" | "pt-BR";
 }
 
 const KIND: Record<number, EffectKind> = {
@@ -31,7 +33,7 @@ const KIND: Record<number, EffectKind> = {
   38: "style", 39: "style", 40: "style",
 };
 
-const FALLBACK: Record<EffectKind, string> = {
+export const EFFECT_LABEL: Record<EffectKind, string> = {
   start: "Começa a partida.", halftime: "Fim do primeiro tempo.", extratime: "Começa a prorrogação.",
   end: "Fim de jogo.", chance: "Chance de gol.", penalty: "Pênalti.", freekick: "Falta perigosa.",
   goal: "Gol!", post: "Na trave.", miss: "Chute para fora.", save: "Grande defesa.",
@@ -122,7 +124,8 @@ export function buildChoreography(t: Timeline): Frame[] {
       players: { home: place(BASE, true), away: place(BASE, false) },
       effect,
       score: [u.result[0], u.result[1]],
-      caption: u.event.commentary?.trim() || (kind ? FALLBACK[kind] : "O jogo segue."),
+      caption: u.event.commentary?.trim() || (kind ? EFFECT_LABEL[kind] : "O jogo segue."),
+      captionLang: u.event.commentary?.trim() ? "en" : "pt-BR",
     });
     prev = u.result;
   });

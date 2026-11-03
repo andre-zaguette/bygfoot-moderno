@@ -51,9 +51,9 @@ test("pênaltis (time 3) usam duração fixa por lance, sem inventar minutos", (
   p.play();
   let ticks = 0;
   while (!p.state().finished && ticks < 100000) { p.tick(100); ticks++; }
-  // 2 lances de pênalti x 1500 ms (+ o intervalo mínimo entre 1º e 2º lance)
-  expect(p.state().elapsedMs).toBeGreaterThanOrEqual(3000);
-  expect(p.state().elapsedMs).toBeLessThan(10000);
+  expect(ticks).toBeLessThan(100000);
+  // 2 lances de pênalti x 1500 ms, exatamente
+  expect(p.state().elapsedMs).toBe(3000);
   expect(p.state().minute).toBe(120);
 });
 
@@ -99,4 +99,19 @@ test("restart volta ao início", () => {
   const p = createPlayback([u(0), u(10)], opts);
   p.play(); p.seekToEnd(); p.restart();
   expect(p.state()).toMatchObject({ index: 0, finished: false, elapsedMs: 0 });
+});
+
+test("nenhum lance é pulado, nem no maior avanço possível por tick (250 ms a 4x)", () => {
+  // lances colados no mesmo minuto: o intervalo mínimo entre eles é o que protege os anúncios de gol
+  const p = createPlayback([u(0), u(0), u(0), u(1), u(1), u(1), u(2)], opts);
+  p.play(); p.setSpeed(4);
+  let prev = 0, guard = 0;
+  while (!p.state().finished && guard++ < 10000) {
+    p.tick(250);
+    const i = p.state().index;
+    expect(i - prev).toBeLessThanOrEqual(1);
+    prev = i;
+  }
+  expect(guard).toBeLessThan(10000);
+  expect(prev).toBe(6);
 });

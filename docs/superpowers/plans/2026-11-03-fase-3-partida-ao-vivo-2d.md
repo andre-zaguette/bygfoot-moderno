@@ -8,7 +8,7 @@
 
 **Tech Stack:** PixiJS 8 (única dependência nova, versão exata fixada na Task 4), React, TypeScript, Vitest, Tauri 2 (já existentes).
 
-**Spec:** `ROADMAP_BYGFOOT_MODERNO.md` (seções 6 e 7), `CLAUDE.md` (regras 2, 3, 4 e política de UI), `docs/adr/ADR-003-*.md`, protótipos escolhidos pelo usuário: B (transmissão) + C (análise) em https://claude.ai/artifact/NgQ2BcDUu1f6JpSDD7QGYp
+**Spec:** `ROADMAP_BYGFOOT_MODERNO.md` (seções 6 e 7), `CLAUDE.md` (regras 2, 3, 4 e política de UI), `docs/adr/ADR-003-*.md`, visual escolhido pelo usuário: B (transmissão) + C (análise)
 
 ## Global Constraints
 

@@ -109,3 +109,29 @@ test("a posse empurra o bloco do time que ataca para perto do gol adversário", 
   expect(home.ball.x).toBeGreaterThan(FIELD_W / 2);
   expect(away.ball.x).toBeLessThan(FIELD_W / 2);
 });
+
+test("prorrogação e pênaltis (time 2 e 3) geram quadros válidos e mantêm o placar do motor", () => {
+  const t = synthetic([
+    unit({ minute: 0, type: 1 }),
+    unit({ minute: 105, time: 2, type: 3, result: [1, 1] }),
+    unit({ minute: -1, time: 3, type: 26, possession: 1, result: [1, 1] }),
+    unit({ minute: -1, time: 3, type: 0, possession: 0, result: [2, 1] }),
+    unit({ minute: 120, time: 3, type: 4, result: [2, 1] }),
+  ], [2, 1]);
+  const f = buildChoreography(t);
+  expect(f).toHaveLength(5);
+  f.forEach((fr, i) => expect(fr.score).toEqual(t.units[i].result));
+  expect(f[1].effect?.kind).toBe("extratime");
+  expect(f[2].effect?.kind).toBe("shootout");
+});
+
+test("a legenda diz de que língua é: texto do motor em inglês, texto de reserva em português", () => {
+  const t = synthetic([
+    unit({ minute: 0, type: 1 }),
+    { ...unit({ minute: 5 }), event: { type: 0, team: 0, commentary: "Nice move." } },
+    unit({ minute: 90, type: 4 }),
+  ], [0, 0]);
+  const f = buildChoreography(t);
+  expect(f[1].captionLang).toBe("en");
+  expect(f[0].captionLang).toBe("pt-BR");
+});

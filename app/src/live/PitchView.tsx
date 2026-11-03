@@ -2,11 +2,10 @@ import { useEffect, useRef } from "react";
 import { Application, Graphics, Text } from "pixi.js";
 import { tokens } from "../design/tokens";
 import { FIELD_H, FIELD_W, type Frame } from "./choreography";
-import { lerpFrame } from "./interpolate";
+import { stepFrame } from "./step";
 import type { Playback, PlaybackState } from "./playback";
 
 const hex = (c: string) => parseInt(c.replace("#", ""), 16);
-const smooth = (t: number) => t * t * (3 - 2 * t);
 
 export interface PitchViewProps {
   frames: Frame[];
@@ -99,11 +98,7 @@ export default function PitchView({ frames, playback, reducedMotion, onState, he
         const { frames: fr, playback: pb, reducedMotion: rm, onState: cb } = live.current;
         if (a.screen.width !== lastW) { lastW = a.screen.width; layout(); heatKey = ""; }
         drawHeat(live.current.heat);
-        pb.tick(a.ticker.deltaMS);
-        const st = pb.state();
-        const cur = fr[st.index];
-        const next = fr[Math.min(st.index + 1, fr.length - 1)];
-        const f = lerpFrame(cur, next, smooth(st.progress), rm);
+        const { st, cur, frame: f, key, changed } = stepFrame(fr, pb, rm, a.ticker.deltaMS, lastKey);
         shadows.clear();
         [...f.players.home, ...f.players.away].forEach((p, i) => {
           players[i].position.set(p.x * s, p.y * s);
@@ -112,11 +107,14 @@ export default function PitchView({ frames, playback, reducedMotion, onState, he
         });
         ball.position.set(f.ball.x * s, f.ball.y * s);
         ballShadow.position.set(f.ball.x * s + 0.4 * s, f.ball.y * s + 1.2 * s);
-        const key = `${st.index}|${st.playing}|${st.speed}|${st.finished}`;
-        if (key !== lastKey) { lastKey = key; cb?.(st, cur); }
+        if (changed) { lastKey = key; cb?.(st, cur); }
       };
       a.ticker.add(onTick);
-      cleanup = () => a.ticker.remove(onTick);
+      // O ResizePlugin do Pixi só escuta a janela; o contêiner também muda sozinho (barra de rolagem,
+      // painel de combinações). Observa o contêiner e deixa o Pixi redimensionar.
+      const ro = new ResizeObserver(() => a.resize());
+      ro.observe(el);
+      cleanup = () => { ro.disconnect(); a.ticker.remove(onTick); };
     })();
 
     return () => {

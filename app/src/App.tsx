@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as api from "./api";
 import type { Timeline, UiError } from "./types";
 import LiveMatch from "./live/LiveMatch";
@@ -65,6 +65,13 @@ export default function App() {
 
 function Result({ timeline, watching, onWatch }: { timeline: Timeline; watching: boolean; onWatch: (w: boolean) => void }) {
   const { match, units } = timeline;
+  const assistBtn = useRef<HTMLButtonElement>(null);
+  const wasWatching = useRef(false);
+  // Ao voltar de "assistir", devolve o foco ao botão que abriu o modo (senão cai no <body>).
+  useEffect(() => {
+    if (!watching && wasWatching.current) assistBtn.current?.focus();
+    wasWatching.current = watching;
+  }, [watching]);
   if (watching) {
     return (
       <section aria-label="Partida">
@@ -80,7 +87,7 @@ function Result({ timeline, watching, onWatch }: { timeline: Timeline; watching:
         <span data-testid="score">{match.final[0]} x {match.final[1]}</span>
         <span>{match.away}</span>
       </h2>
-      <p><button type="button" onClick={() => onWatch(true)}>Assistir partida</button></p>
+      <p><button ref={assistBtn} type="button" onClick={() => onWatch(true)}>Assistir partida</button></p>
       <ol className="units">
         {units.map((u, i) => (
           <li key={i}>

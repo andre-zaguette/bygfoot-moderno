@@ -5,7 +5,7 @@ const mk = (bx: number, px: number, caption: string, score: [number, number]): F
   unitIndex: 0, minute: 10,
   ball: { x: bx, y: 20 },
   players: { home: Array.from({ length: 11 }, () => ({ x: px, y: 10 })), away: Array.from({ length: 11 }, () => ({ x: px + 5, y: 50 })) },
-  effect: null, score, caption,
+  effect: null, score, caption, captionLang: "pt-BR",
 });
 const a = mk(10, 20, "A", [0, 0]);
 const b = mk(30, 40, "B", [1, 0]);

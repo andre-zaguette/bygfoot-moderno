@@ -23,7 +23,7 @@ test("o peso total dos passes só cresce com o índice e bate com a contagem de 
       expect(w).toBeGreaterThanOrEqual(prev);
       prev = w;
     }
-    const expected = t.units.filter((u) => u.event.player && u.event.player2).length;
+    const expected = t.units.filter((u) => u.event.type === 0 && u.event.player && u.event.player2).length;
     expect(prev).toBe(expected);
   }
 });
@@ -66,4 +66,25 @@ test("o par A→B e B→A contam como o mesmo passe", () => {
   expect(links).toHaveLength(2);
   expect(links[0].weight).toBe(2);
   expect(links[0].team).toBe(0);
+});
+
+test("só jogo corrido (tipo 0) conta como combinação: gol, falta, cartão e substituição não", () => {
+  const two = (type: number) => ({
+    minute: 5, time: 0, possession: 0 as const, area: 1, result: [0, 0] as [number, number],
+    event: { type, team: 0, player: { id: 1, name: "Atacante" }, player2: { id: 2, name: "Goleiro rival" } },
+  });
+  const t = { ...fixtures[0], units: [two(10), two(19), two(20), two(31), two(0)] } as Timeline;
+  const { links } = buildOverlay(t, 4);
+  expect(links).toHaveLength(1);
+  expect(links[0].weight).toBe(1);
+});
+
+test("o desempate de pesos iguais não depende do idioma do sistema: ordena por id, não por nome", () => {
+  const mk = (p: number, q: number, pn: string, qn: string) => ({
+    minute: 5, time: 0, possession: 0 as const, area: 1, result: [0, 0] as [number, number],
+    event: { type: 0, team: -1, player: { id: p, name: pn }, player2: { id: q, name: qn } },
+  });
+  const t = { ...fixtures[0], units: [mk(5, 6, "Øvre", "Åse"), mk(1, 2, "Zeta", "Yara")] } as Timeline;
+  const { links } = buildOverlay(t, 1);
+  expect(links.map((l) => l.a.id)).toEqual([1, 5]);
 });
