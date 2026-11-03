@@ -2,7 +2,7 @@
 
 Fork modernizado do [Bygfoot](https://gitlab.com/bygfoot/bygfoot): gerenciador de futebol offline, com interface nova e partida acompanhada em 2D, para macOS, Windows e Linux.
 
-**Estado:** Fase 2 (app desktop Tauri + primeira partida) pronta na branch `fase-2-app`, aguardando revisão e merge; Fase 1 (núcleo headless nos 3 sistemas) já está em `main`. O app roda só em modo de desenvolvimento (precisa do motor compilado, ver ADR-003). Nada aqui é um jogo jogável ainda.
+**Estado:** Fase 2 (app desktop Tauri + primeira partida) mesclada em `main`, junto com a Fase 1 (núcleo headless nos 3 sistemas). O app roda só em modo de desenvolvimento (precisa do motor compilado, ver ADR-003). Nada aqui é um jogo jogável ainda.
 
 - Plano: `ROADMAP_BYGFOOT_MODERNO.md`
 - Regras do projeto: `CLAUDE.md`
