@@ -72,8 +72,8 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
           </div>
           <span className="clock">{minute}' {st.finished ? "· fim" : ""}</span>
         </div>
-        <p className="caption" data-testid="caption" aria-hidden="true">{frame.caption}</p>
       </div>
+      <p className="caption" data-testid="caption" aria-hidden="true">{frame.caption}</p>
       <div className="controls">
         {st.finished ? (
           <button type="button" onClick={replay}>Rever</button>
