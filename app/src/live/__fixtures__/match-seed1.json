@@ -1,0 +1,2488 @@
+{
+ "match": {
+  "away": "V. Gotu",
+  "final": [
+   2,
+   1
+  ],
+  "fixtureId": 25,
+  "home": "N. Runavík"
+ },
+ "schemaVersion": 1,
+ "source": {
+  "country": "faroe_islands",
+  "engine": "bygfoot",
+  "patches": [
+   "0001-ordenar-listagem-de-diretorios.patch",
+   "0002-ordem-de-avaliacao-nome-sobrenome.patch",
+   "0003-ordem-de-avaliacao-transferencias.patch"
+  ],
+  "seed": 1,
+  "team": "V. Gotu",
+  "upstreamCommit": "9b7b0062ddb90a620865314dddf0c4b1c0a23660",
+  "weeks": 2
+ },
+ "units": [
+  {
+   "area": 1,
+   "event": {
+    "commentary": "V. Gotu come into this match as underdogs.",
+    "team": 1,
+    "type": 1
+   },
+   "minute": 0,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Svane tries to run off a harsh challenge",
+    "player": {
+     "id": 67,
+     "name": "Ingvar Svane"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "team": 0,
+    "type": 19
+   },
+   "minute": 1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Another decent move through the centre",
+    "player": {
+     "id": 65,
+     "name": "Otto Willumsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 2,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A great passing move across the pitch and down the left",
+    "player": {
+     "id": 68,
+     "name": "Sigmund Månsson"
+    },
+    "player2": {
+     "id": 65,
+     "name": "Otto Willumsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 3,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Månsson slips into the box, turns inside the defence and fires",
+    "player": {
+     "id": 68,
+     "name": "Sigmund Månsson"
+    },
+    "team": 1,
+    "type": 6
+   },
+   "minute": 4,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Månsson curls the ball over",
+    "player": {
+     "id": 68,
+     "name": "Sigmund Månsson"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Nathanael Roed"
+    },
+    "team": 1,
+    "type": 13
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu are on the defence",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 5,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "An outstanding cross finds Pallesen",
+    "player": {
+     "id": 45,
+     "name": "Valentin Pallesen"
+    },
+    "player2": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 6,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A ball in by Pallesen finds Nikolajsen",
+    "player": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "player2": {
+     "id": 45,
+     "name": "Valentin Pallesen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 7,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Nikolajsen traps it with his heel and passes to Mogensen",
+    "player": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "player2": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 8,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Now N. Runavík can mount a challenge through Odgaard",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "player2": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 9,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Lindhardt rips through the midfield",
+    "player": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "player2": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 10,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Green for stopping Tang taking a quick free kick",
+    "player": {
+     "id": 61,
+     "name": "Marius Tang"
+    },
+    "player2": {
+     "id": 50,
+     "name": "Jesper Green"
+    },
+    "team": 0,
+    "type": 20
+   },
+   "minute": 11,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Callesen",
+    "player": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 12,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A short floating pass from Callesen finds Krarup",
+    "player": {
+     "id": 64,
+     "name": "Egil Krarup"
+    },
+    "player2": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 13,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A subpar pass by Krarup results in a throw-in for N. Runavík",
+    "player": {
+     "id": 58,
+     "name": "Olav Kjeldsen"
+    },
+    "player2": {
+     "id": 64,
+     "name": "Egil Krarup"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 14,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Green twisting desperately to lose his man",
+    "player": {
+     "id": 50,
+     "name": "Jesper Green"
+    },
+    "player2": {
+     "id": 58,
+     "name": "Olav Kjeldsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 15,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Green drops the ball at Nikolajsen's feet",
+    "player": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "player2": {
+     "id": 50,
+     "name": "Jesper Green"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 16,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Nikolajsen passes",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "player2": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 17,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A long pass from Odgaard releases Lindhardt",
+    "player": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "player2": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 18,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "That wasn't Lindhardt's greatest pass as Skou intercepts",
+    "player": {
+     "id": 66,
+     "name": "Ib Skou"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 19,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Skou heads the ball towards Callesen",
+    "player": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "player2": {
+     "id": 66,
+     "name": "Ib Skou"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 20,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Great footwork, a clever pass",
+    "player": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "player2": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 21,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lange latches onto Lynge's through ball",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "player2": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 22,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lynge twisting and turning again",
+    "player": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 23,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A flicking header towards the net from Lynge",
+    "player": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "team": 1,
+    "type": 7
+   },
+   "minute": 24,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Roed makes a remarkable reflex save to tip it wide",
+    "player": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Nathanael Roed"
+    },
+    "team": 1,
+    "type": 15
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lange takes the corner",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": 1,
+    "type": 18
+   },
+   "minute": 25,
+   "possession": 1,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "The slide tackle by Bülow was worthy of topflight baseball.",
+    "player": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": 1,
+    "type": 5
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Dalgaard rips up the midfield",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 26,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Dalgaard needles the ball to Nikolajsen",
+    "player": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "player2": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 27,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Nikolajsen threads it through the player's legs and finds Lindholm",
+    "player": {
+     "id": 59,
+     "name": "Nikolaj Lindholm"
+    },
+    "player2": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 28,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Pallesen's scissor kick heads towards the top right-hand corner",
+    "player": {
+     "id": 45,
+     "name": "Valentin Pallesen"
+    },
+    "player2": {
+     "id": 59,
+     "name": "Nikolaj Lindholm"
+    },
+    "team": 0,
+    "type": 6
+   },
+   "minute": 29,
+   "possession": 0,
+   "result": [
+    0,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Goal!! Stæhr's desperate dive can't keep Pallesen's shot out",
+    "player": {
+     "id": 45,
+     "name": "Valentin Pallesen"
+    },
+    "player2": {
+     "id": 60,
+     "name": "Sigurd Stæhr"
+    },
+    "team": 0,
+    "type": 10
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A quick passing move down the right",
+    "player": {
+     "id": 65,
+     "name": "Otto Willumsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 30,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Bülow is on the ground, and he's not smiling",
+    "player": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": 1,
+    "type": 19
+   },
+   "minute": 31,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Dalgaard",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "player2": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 32,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Månsson has a large cut above his right eye, but it's quickly patched up, and he'll be able to continue",
+    "player": {
+     "id": 68,
+     "name": "Sigmund Månsson"
+    },
+    "team": 1,
+    "type": 25
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A great passing move across the pitch and down the right",
+    "player": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "player2": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 33,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A lofted pass from Mogensen finds its mark",
+    "player": {
+     "id": 45,
+     "name": "Valentin Pallesen"
+    },
+    "player2": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 34,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Pallesen drops the ball at Odgaard's feet",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "player2": {
+     "id": 45,
+     "name": "Valentin Pallesen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 35,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Odgaard to Lindhardt",
+    "player": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "player2": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 36,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Warming wins the ball with a hard challenge",
+    "player": {
+     "id": 62,
+     "name": "Jørgen Warming"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 37,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Warming heads the ball towards Callesen",
+    "player": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "player2": {
+     "id": 62,
+     "name": "Jørgen Warming"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 38,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A delightful little pass finds Krarup",
+    "player": {
+     "id": 64,
+     "name": "Egil Krarup"
+    },
+    "player2": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 39,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "N. Runavík are on the backfoot",
+    "player": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "player2": {
+     "id": 64,
+     "name": "Egil Krarup"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 40,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Willumsen latches onto Callesen's pass",
+    "player": {
+     "id": 65,
+     "name": "Otto Willumsen"
+    },
+    "player2": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 41,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Lange twisting and turning again",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "player2": {
+     "id": 65,
+     "name": "Otto Willumsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 42,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lange needles a great ball to Lynge",
+    "player": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 43,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A slow floating pass from Lynge finds Svane",
+    "player": {
+     "id": 67,
+     "name": "Ingvar Svane"
+    },
+    "player2": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 44,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "V. Gotu's manager cops a rollicking from the fans as he leaves the dugout",
+    "team": -1,
+    "type": 2
+   },
+   "minute": 45,
+   "possession": 1,
+   "result": [
+    1,
+    0
+   ],
+   "time": 0
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "N. Runavík are on the attack",
+    "player": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 46,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A great pass from Mogensen sends Pallesen one on one with the goalie",
+    "player": {
+     "id": 45,
+     "name": "Valentin Pallesen"
+    },
+    "player2": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "team": 0,
+    "type": 6
+   },
+   "minute": 47,
+   "possession": 0,
+   "result": [
+    1,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "N. Runavík have struck pay dirt. What a goal!",
+    "player": {
+     "id": 45,
+     "name": "Valentin Pallesen"
+    },
+    "player2": {
+     "id": 60,
+     "name": "Sigurd Stæhr"
+    },
+    "team": 0,
+    "type": 10
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A great passing move across the pitch and down the right",
+    "player": {
+     "id": 65,
+     "name": "Otto Willumsen"
+    },
+    "player2": {
+     "id": 68,
+     "name": "Sigmund Månsson"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 48,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "N. Runavík have changed their style to DEFEND",
+    "team": 0,
+    "type": 34
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "V. Gotu change to a ALL OUT ATTACK style",
+    "team": 1,
+    "type": 37
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Kromann comes off the bench to replace Warming",
+    "player": {
+     "id": 78,
+     "name": "Preben Kromann"
+    },
+    "player2": {
+     "id": 62,
+     "name": "Jørgen Warming"
+    },
+    "team": 1,
+    "type": 31
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "V. Gotu have changed their structure to 343",
+    "team": 1,
+    "type": 32
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A ball in by Skou finds Callesen",
+    "player": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "player2": {
+     "id": 66,
+     "name": "Ib Skou"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 49,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A delightful little pass finds Svane",
+    "player": {
+     "id": 67,
+     "name": "Ingvar Svane"
+    },
+    "player2": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 50,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Kromann's black belt in Karate came in handy then, when he floored Dalgaard",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "player2": {
+     "id": 78,
+     "name": "Preben Kromann"
+    },
+    "team": 1,
+    "type": 19
+   },
+   "minute": 51,
+   "possession": 0,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Now N. Runavík can mount a challenge through Odgaard",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 52,
+   "possession": 0,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Odgaard shoots from 18 yards; looks like it's spinning",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "team": 0,
+    "type": 6
+   },
+   "minute": 53,
+   "possession": 0,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "He'd done all the hard work, but he couldn't finish it off",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "player2": {
+     "id": 60,
+     "name": "Sigurd Stæhr"
+    },
+    "team": 0,
+    "type": 13
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Willumsen heads the ball towards Tang",
+    "player": {
+     "id": 61,
+     "name": "Marius Tang"
+    },
+    "player2": {
+     "id": 65,
+     "name": "Otto Willumsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 54,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Tang is left stranded as Bülow takes the ball",
+    "player": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "player2": {
+     "id": 61,
+     "name": "Marius Tang"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 55,
+   "possession": 0,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A well-timed passing flick down the right",
+    "player": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 56,
+   "possession": 0,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A short floating pass from Lindhardt finds Bülow",
+    "player": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 57,
+   "possession": 0,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A loose ball falls straight to Kromann",
+    "player": {
+     "id": 78,
+     "name": "Preben Kromann"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "team": -1,
+    "type": 5
+   },
+   "minute": 58,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lange",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "player2": {
+     "id": 78,
+     "name": "Preben Kromann"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 59,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Skou twisting and turning again",
+    "player": {
+     "id": 66,
+     "name": "Ib Skou"
+    },
+    "player2": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 60,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lynge collects Skou's pass",
+    "player": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "player2": {
+     "id": 66,
+     "name": "Ib Skou"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 61,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Kromann rips through the centre",
+    "player": {
+     "id": 78,
+     "name": "Preben Kromann"
+    },
+    "player2": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 62,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Green has a large cut above his left eye, but it's quickly patched up, and he'll be able to continue",
+    "player": {
+     "id": 50,
+     "name": "Jesper Green"
+    },
+    "team": 0,
+    "type": 25
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "An outstanding cross finds Lynge",
+    "player": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 63,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "N. Runavík are on the backfoot",
+    "player": {
+     "id": 78,
+     "name": "Preben Kromann"
+    },
+    "player2": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 64,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lindhardt for a foul on Kromann",
+    "player": {
+     "id": 78,
+     "name": "Preben Kromann"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "team": 0,
+    "type": 20
+   },
+   "minute": 65,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "A neat dummy run and pass",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 66,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "V. Gotu have changed their boost to ON",
+    "team": 1,
+    "type": 40
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lynge feeds a wonderful ball through to Lange",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "player2": {
+     "id": 69,
+     "name": "Haldor Lynge"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 67,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lange is on the ground, and he's not smiling",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "player2": {
+     "id": 58,
+     "name": "Olav Kjeldsen"
+    },
+    "team": 0,
+    "type": 19
+   },
+   "minute": 68,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Great footwork, a clever pass",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 69,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lange charges towards goal and shoots!",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "team": 1,
+    "type": 6
+   },
+   "minute": 70,
+   "possession": 1,
+   "result": [
+    2,
+    0
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Lange's dance ignites the fans. He celebrates in his own fashion",
+    "player": {
+     "id": 70,
+     "name": "Alfred Lange"
+    },
+    "player2": {
+     "id": 51,
+     "name": "Nathanael Roed"
+    },
+    "team": 1,
+    "type": 10
+   },
+   "minute": -1,
+   "possession": 1,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Another thinking move down the wing",
+    "player": {
+     "id": 59,
+     "name": "Nikolaj Lindholm"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 71,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "V. Gotu have changed their style to ATTACK",
+    "team": 1,
+    "type": 36
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Lindholm dribbles past his marker",
+    "player": {
+     "id": 59,
+     "name": "Nikolaj Lindholm"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 72,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Dalgaard twisting and turning again",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "player2": {
+     "id": 59,
+     "name": "Nikolaj Lindholm"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 73,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Tang'll have to go after what seems a painful hamstring injury",
+    "player": {
+     "id": 61,
+     "name": "Marius Tang"
+    },
+    "team": 1,
+    "type": 24
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu make a substitution: Warming comes on to replace Tang",
+    "player": {
+     "id": 62,
+     "name": "Jørgen Warming"
+    },
+    "player2": {
+     "id": 61,
+     "name": "Marius Tang"
+    },
+    "team": 1,
+    "type": 31
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Månsson for throwing the ball away after the whistle",
+    "player": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "player2": {
+     "id": 68,
+     "name": "Sigmund Månsson"
+    },
+    "team": 1,
+    "type": 20
+   },
+   "minute": 74,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A superb pass from Nikolajsen releases Odgaard",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "player2": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 75,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu change to a ALL OUT ATTACK style",
+    "team": 1,
+    "type": 37
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A well-timed passing move down the right",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "player2": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 76,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Krarup for intentional handball",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "player2": {
+     "id": 64,
+     "name": "Egil Krarup"
+    },
+    "team": 1,
+    "type": 21
+   },
+   "minute": 77,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Krarup has been sent off",
+    "player": {
+     "id": 64,
+     "name": "Egil Krarup"
+    },
+    "team": 1,
+    "type": 23
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu restructure themselves into a 243 formation",
+    "team": 1,
+    "type": 32
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu need some fresh legs. Nielsen comes on to replace Kromann",
+    "player": {
+     "id": 73,
+     "name": "Dagfinn Nielsen"
+    },
+    "player2": {
+     "id": 78,
+     "name": "Preben Kromann"
+    },
+    "team": 1,
+    "type": 31
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu have changed their structure to 342",
+    "team": 1,
+    "type": 32
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A lofted pass from Bülow finds its mark",
+    "player": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "player2": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 78,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "A short floating pass from Nikolajsen finds Dalgaard",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "player2": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 79,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Bülow slips past his man and collects Dalgaard's perfectly weighted cross.",
+    "player": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "player2": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 80,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "N. Runavík have changed their style to ALL OUT DEFEND",
+    "team": 0,
+    "type": 33
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "N. Runavík have changed their boost to ON",
+    "team": 0,
+    "type": 40
+   },
+   "minute": -1,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "V. Gotu are on the defence",
+    "player": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "player2": {
+     "id": 54,
+     "name": "Arvid Mogensen"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 81,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "A slicing challenge by Callesen on Bülow",
+    "player": {
+     "id": 41,
+     "name": "Lars Bülow"
+    },
+    "player2": {
+     "id": 63,
+     "name": "Bjarne Callesen"
+    },
+    "team": 1,
+    "type": 19
+   },
+   "minute": 82,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Odgaard twisting desperately to lose his man",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 83,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Lindhardt rips up the centre",
+    "player": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "player2": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 84,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 0,
+   "event": {
+    "commentary": "Great footwork, a clever pass",
+    "player": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 85,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Lindhardt spins past his man",
+    "player": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "player2": {
+     "id": 52,
+     "name": "Gustav Dalgaard"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 86,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 1,
+   "event": {
+    "commentary": "Odgaard",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "player2": {
+     "id": 46,
+     "name": "Peder Lindhardt"
+    },
+    "team": -1,
+    "type": 0
+   },
+   "minute": 87,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Warming for handball",
+    "player": {
+     "id": 53,
+     "name": "Gunnar Odgaard"
+    },
+    "player2": {
+     "id": 62,
+     "name": "Jørgen Warming"
+    },
+    "team": 1,
+    "type": 20
+   },
+   "minute": 88,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Nikolajsen is on the ground, and he's not smiling",
+    "player": {
+     "id": 48,
+     "name": "Bernt Nikolajsen"
+    },
+    "player2": {
+     "id": 67,
+     "name": "Ingvar Svane"
+    },
+    "team": 1,
+    "type": 19
+   },
+   "minute": 89,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  },
+  {
+   "area": 2,
+   "event": {
+    "commentary": "Well, that's that. It ends 2 : 1",
+    "team": -1,
+    "type": 4
+   },
+   "minute": 90,
+   "possession": 0,
+   "result": [
+    2,
+    1
+   ],
+   "time": 1
+  }
+ ]
+}
