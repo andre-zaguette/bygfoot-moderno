@@ -20,6 +20,7 @@ Status: aceita (Fase 2, 2026-11-03)
 ## Limites conhecidos (dívida assumida)
 - **`source.patches` e `upstreamCommit` são declarativos.** Vêm de `patches/` e de `tools/upstream-pin.txt`, não de uma medição do binário. Se `BYGFOOT_BIN` apontar para um motor sem os remendos, a timeline ainda os declara. Um manifesto gravado pelo build ao lado do binário resolveria; fica para a Fase 6.
 - **Windows (CI):** `sh`, `python3` e as DLLs do motor dependem de o MSYS2 estar no fim do PATH. O workflow falha se o MSYS2 com os pacotes não for encontrado, mas o desenho ainda é frágil a mudanças na imagem do runner.
+- **Timeout no Windows:** o `taskkill /T` não alcança processos do MSYS2 como filhos, então o motor pode sobreviver órfão após o prazo (a interface recebe `timeout` na hora). No macOS e no Linux o grupo de processos inteiro é encerrado.
 - **Concorrência:** nada impede várias chamadas simultâneas ao comando (cada uma inicia um motor).
 - Saída do motor sem teto de tamanho (risco baixo com `weeks ≤ 100`).
 - O binário embute o caminho do checkout em que foi compilado (`CARGO_MANIFEST_DIR`): nunca distribuir assim.

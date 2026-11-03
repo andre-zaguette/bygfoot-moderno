@@ -136,8 +136,10 @@ fn run_with_deadline(
             Ok(None) if start.elapsed() >= timeout => {
                 kill_tree(&mut child);
                 let _ = child.wait();
-                let _ = t_out.join();
-                let _ = t_err.join();
+                // Não espera as threads de leitura: um neto que sobreviva (no Windows o
+                // taskkill não enxerga processos do MSYS2 como filhos) segura o pipe aberto.
+                // As threads terminam sozinhas quando o pipe fechar.
+                drop((t_out, t_err));
                 return Err(EngineError::Timeout(timeout));
             }
             Ok(None) => std::thread::sleep(Duration::from_millis(25)),
