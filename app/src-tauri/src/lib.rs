@@ -49,7 +49,12 @@ pub fn engine_from(root: &Path, bin_env: Option<PathBuf>) -> Engine {
 }
 
 fn repo_root() -> PathBuf {
-    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..").canonicalize().unwrap_or_else(|_| PathBuf::from("."))
+    // Sem canonicalize(): no Windows ele devolve `\\?\D:\...`, que o sh do MSYS2 não entende.
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .and_then(Path::parent)
+        .map(Path::to_path_buf)
+        .unwrap_or_else(|| PathBuf::from("."))
 }
 
 pub mod commands {
@@ -102,6 +107,7 @@ mod tests {
     fn engine_paths_follow_the_repo_layout_and_env_override() {
         let root = repo_root();
         let e = engine_from(&root, None);
+        assert!(!e.wrapper.to_string_lossy().starts_with(r"\\?\"), "caminho verbatim quebra o sh do MSYS2");
         assert!(e.wrapper.ends_with("spike/headless/bf-headless") && e.wrapper.is_file());
         assert!(e.binary.ends_with(DEFAULT_BIN));
         assert_eq!(e.patches.len(), 3, "os 3 remendos de patches/ devem ser declarados");
