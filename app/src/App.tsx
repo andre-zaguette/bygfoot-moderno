@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as api from "./api";
 import type { Timeline, UiError } from "./types";
+import LiveMatch from "./live/LiveMatch";
 
 const MAX_SEED = 2147483647;
 
@@ -12,6 +13,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<UiError | null>(null);
   const [timeline, setTimeline] = useState<Timeline | null>(null);
+  const [watching, setWatching] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -26,6 +28,7 @@ export default function App() {
       return;
     }
     setError(null);
+    setWatching(false);
     setLoading(true);
     try {
       setTimeline(await api.simulateMatch({ seed: s, country, team, weeks: w }));
@@ -55,13 +58,21 @@ export default function App() {
         <button type="submit" disabled={loading}>{loading ? "Simulando…" : "Simular partida"}</button>
       </form>
       {error && <p role="alert" className="error">{error.message}</p>}
-      {timeline ? <Result timeline={timeline} /> : !loading && <p className="empty">Nenhuma partida simulada ainda.</p>}
+      {timeline ? <Result timeline={timeline} watching={watching} onWatch={setWatching} /> : !loading && <p className="empty">Nenhuma partida simulada ainda.</p>}
     </main>
   );
 }
 
-function Result({ timeline }: { timeline: Timeline }) {
+function Result({ timeline, watching, onWatch }: { timeline: Timeline; watching: boolean; onWatch: (w: boolean) => void }) {
   const { match, units } = timeline;
+  if (watching) {
+    return (
+      <section aria-label="Partida">
+        <LiveMatch timeline={timeline} />
+        <p><button type="button" onClick={() => onWatch(false)}>Ver só os lances</button></p>
+      </section>
+    );
+  }
   return (
     <section aria-label="Resultado">
       <h2 className="scoreboard">
@@ -69,6 +80,7 @@ function Result({ timeline }: { timeline: Timeline }) {
         <span data-testid="score">{match.final[0]} x {match.final[1]}</span>
         <span>{match.away}</span>
       </h2>
+      <p><button type="button" onClick={() => onWatch(true)}>Assistir partida</button></p>
       <ol className="units">
         {units.map((u, i) => (
           <li key={i}>

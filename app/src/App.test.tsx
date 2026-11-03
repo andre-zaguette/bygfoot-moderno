@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+vi.mock("./live/PitchView", () => ({ default: () => <div data-testid="pitch" /> }));
 import App from "./App";
 import * as api from "./api";
 import type { Timeline } from "./types";
@@ -74,4 +75,26 @@ test("recusa seed inválida sem chamar o motor", async () => {
   await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
   expect(screen.getByRole("alert")).toHaveTextContent(/seed/i);
   expect(spy).not.toHaveBeenCalled();
+});
+
+test("depois de simular, dá para assistir a partida e o placar final é o do motor", async () => {
+  vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  await userEvent.click(await screen.findByRole("button", { name: /assistir partida/i }));
+  expect(screen.getByRole("group", { name: /partida ao vivo/i })).toBeInTheDocument();
+  expect(screen.getByTestId("pitch")).toBeInTheDocument();
+  await userEvent.click(screen.getByRole("button", { name: /pular para o fim/i }));
+  expect(screen.getAllByTestId("score").some((n) => n.textContent === "1 x 2")).toBe(true);
+  await userEvent.click(screen.getByRole("button", { name: /ver só os lances/i }));
+  expect(screen.queryByRole("group", { name: /partida ao vivo/i })).not.toBeInTheDocument();
+});
+
+test("uma nova simulação sai do modo de assistir", async () => {
+  vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  await userEvent.click(await screen.findByRole("button", { name: /assistir partida/i }));
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  await waitFor(() => expect(screen.queryByRole("group", { name: /partida ao vivo/i })).not.toBeInTheDocument());
 });
