@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-simulate-match"
+description = "Enables the simulate_match command without any pre-configured scope."
+commands.allow = ["simulate_match"]
+
+[[permission]]
+identifier = "deny-simulate-match"
+description = "Denies the simulate_match command without any pre-configured scope."
+commands.deny = ["simulate_match"]

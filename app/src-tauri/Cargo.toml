@@ -1,0 +1,23 @@
+[package]
+name = "bygfoot-moderno-app"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-2.0-or-later"
+description = "Casca desktop (Tauri) do Bygfoot Moderno"
+publish = false
+
+[lib]
+name = "bygfoot_moderno_app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+engine-adapter = { path = "../../engine-adapter" }
+
+[dev-dependencies]
+tauri = { version = "2", features = ["test"] }
+serde_json = "1"
