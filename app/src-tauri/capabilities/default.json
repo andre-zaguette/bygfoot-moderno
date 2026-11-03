@@ -3,5 +3,5 @@
   "identifier": "default",
   "description": "Permissões mínimas da janela principal (sem rede, sem sistema de arquivos).",
   "windows": ["main"],
-  "permissions": ["core:default", "allow-simulate-match"]
+  "permissions": ["allow-simulate-match"]
 }

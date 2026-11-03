@@ -1,7 +1,7 @@
 // Espelha schemas/match-timeline-v1.schema.json (o motor é a única fonte de verdade).
 export interface Player { id: number; name: string }
 export interface MatchEvent {
-  type: number; team: number; commentary: string; player?: Player; player2?: Player;
+  type: number; team: number; commentary?: string; player?: Player; player2?: Player;
 }
 export interface Unit {
   minute: number; time: number; possession: number; area: number;

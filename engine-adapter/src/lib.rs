@@ -5,7 +5,7 @@
 mod engine;
 mod timeline;
 
-pub use engine::{Engine, SimulateParams};
+pub use engine::{Engine, SimulateParams, DEFAULT_TIMEOUT};
 pub use timeline::{parse_timeline, Event, MatchInfo, Player, Source, Timeline, Unit};
 
 #[derive(Debug, thiserror::Error)]
@@ -19,6 +19,9 @@ pub enum EngineError {
     /// O motor rodou e falhou (ex.: time inexistente).
     #[error("o motor falhou (código {code}): {stderr}")]
     EngineFailed { code: i32, stderr: String },
+    /// O motor não terminou no prazo e foi encerrado.
+    #[error("o motor excedeu {0:?} e foi interrompido")]
+    Timeout(std::time::Duration),
     /// A saída não é JSON do formato esperado.
     #[error("saída do motor ilegível: {0}")]
     BadOutput(String),

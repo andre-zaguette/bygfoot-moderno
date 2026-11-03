@@ -17,6 +17,19 @@ const timeline: Timeline = {
 
 afterEach(() => vi.restoreAllMocks());
 
+test("lance sem comentário (opcional no contrato) não quebra nem mostra 'undefined'", async () => {
+  const semTexto: Timeline = {
+    ...timeline,
+    units: [timeline.units[0], { minute: 12, time: 0, possession: 0, area: 1, result: [0, 0], event: { type: 7, team: 0 } }, timeline.units[1]],
+  };
+  vi.spyOn(api, "simulateMatch").mockResolvedValue(semTexto);
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  expect(await screen.findByText("Gol de Stian!")).toBeInTheDocument();
+  expect(document.body).not.toHaveTextContent("undefined");
+  expect(screen.getAllByRole("listitem")).toHaveLength(3);
+});
+
 test("mostra o formulário e nenhum resultado no início", () => {
   render(<App />);
   expect(screen.getByRole("button", { name: /simular partida/i })).toBeEnabled();

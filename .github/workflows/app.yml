@@ -10,6 +10,7 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - name: Dependências do motor (macOS)
@@ -65,7 +66,7 @@ jobs:
           if [ "${{ matrix.os }}" = windows-latest ]; then
             # o wrapper precisa de sh/python3 e o motor das DLLs do MSYS2; no FIM do PATH para não sobrepor DLLs do sistema (o Tauri quebra: ENTRYPOINT_NOT_FOUND)
             MSYS="$(cygpath -u "$RUNNER_TEMP")/msys64"   # onde o setup-msys2 instala os pacotes
-            [ -d "$MSYS/mingw64/bin" ] || MSYS=/c/msys64
+            [ -f "$MSYS/mingw64/bin/python3.exe" ] || { echo "MSYS2 com os pacotes não encontrado em $MSYS"; exit 1; }
             export PATH="$PATH:$MSYS/usr/bin:$MSYS/mingw64/bin"
             export BYGFOOT_BIN="$(cygpath -m "$PWD/build/patched/bygfoot.exe")"
           else

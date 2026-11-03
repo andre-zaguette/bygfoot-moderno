@@ -18,6 +18,7 @@ impl From<EngineError> for UiError {
             EngineError::InvalidParams(_) => "invalid_params",
             EngineError::Unavailable(_) => "engine_unavailable",
             EngineError::EngineFailed { .. } => "engine_failed",
+            EngineError::Timeout(_) => "timeout",
             EngineError::BadOutput(_) => "bad_output",
             EngineError::InvalidTimeline(_) => "invalid_timeline",
         };
@@ -41,11 +42,11 @@ pub fn engine_from(root: &Path, bin_env: Option<PathBuf>) -> Engine {
         })
         .unwrap_or_default();
     patches.sort();
-    Engine {
-        wrapper: root.join("spike/headless/bf-headless"),
-        binary: bin_env.unwrap_or_else(|| root.join(DEFAULT_BIN)),
+    Engine::new(
+        root.join("spike/headless/bf-headless"),
+        bin_env.unwrap_or_else(|| root.join(DEFAULT_BIN)),
         patches,
-    }
+    )
 }
 
 fn repo_root() -> PathBuf {
@@ -89,6 +90,7 @@ mod tests {
             (EngineError::InvalidParams("x".into()), "invalid_params"),
             (EngineError::Unavailable("x".into()), "engine_unavailable"),
             (EngineError::EngineFailed { code: 3, stderr: "s".into() }, "engine_failed"),
+            (EngineError::Timeout(std::time::Duration::from_secs(1)), "timeout"),
             (EngineError::BadOutput("x".into()), "bad_output"),
             (EngineError::InvalidTimeline("x".into()), "invalid_timeline"),
         ];

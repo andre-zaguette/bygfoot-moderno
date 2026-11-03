@@ -7,6 +7,10 @@ use tauri::webview::InvokeRequest;
 use tauri::WebviewWindowBuilder;
 
 fn call(body: serde_json::Value) -> Result<serde_json::Value, serde_json::Value> {
+    call_cmd("simulate_match", body)
+}
+
+fn call_cmd(cmd: &str, body: serde_json::Value) -> Result<serde_json::Value, serde_json::Value> {
     let app = mock_builder()
         .invoke_handler(tauri::generate_handler![bygfoot_moderno_app_lib::commands::simulate_match])
         .build(tauri::generate_context!())
@@ -15,7 +19,7 @@ fn call(body: serde_json::Value) -> Result<serde_json::Value, serde_json::Value>
     get_ipc_response(
         &w,
         InvokeRequest {
-            cmd: "simulate_match".into(),
+            cmd: cmd.into(),
             callback: CallbackFn(0),
             error: CallbackFn(1),
             url: (if cfg!(windows) { "http://tauri.localhost" } else { "tauri://localhost" }).parse().unwrap(),
@@ -45,4 +49,13 @@ fn real_engine_through_ipc_gives_the_contract_match() {
     assert_eq!(ok, want, "o JSON que a interface recebe deve ser igual à amostra do contrato");
     let err = call(json!({"seed": 1, "country": "faroe_islands", "team": "Nao Existe", "weeks": 2})).unwrap_err();
     assert_eq!(err["kind"], "engine_failed", "{err}");
+}
+
+#[test]
+fn acl_denies_commands_that_are_not_allowed() {
+    // privilégio mínimo: nem os comandos "core" padrão do Tauri (ex.: caminhos do sistema) são liberados
+    for cmd in ["plugin:path|resolve_directory", "plugin:app|version", "plugin:window|title"] {
+        let err = call_cmd(cmd, json!({"directory": 1, "label": "main"})).unwrap_err();
+        assert!(err.to_string().contains("not allowed"), "{cmd}: {err}");
+    }
 }
