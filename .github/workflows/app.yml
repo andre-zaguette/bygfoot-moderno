@@ -63,8 +63,8 @@ jobs:
         shell: bash
         run: |
           if [ "${{ matrix.os }}" = windows-latest ]; then
-            # o wrapper do motor precisa de sh/python3 e o motor das DLLs do MSYS2
-            export PATH="/c/msys64/mingw64/bin:/c/msys64/usr/bin:$PATH"
+            # o wrapper precisa de sh/python3 e o motor das DLLs do MSYS2; no FIM do PATH para não sobrepor DLLs do sistema (o Tauri quebra: ENTRYPOINT_NOT_FOUND)
+            export PATH="$PATH:/c/msys64/usr/bin:/c/msys64/mingw64/bin"
             export BYGFOOT_BIN="$(cygpath -m "$PWD/build/patched/bygfoot.exe")"
           else
             export BYGFOOT_BIN="$PWD/build/patched/bygfoot"
