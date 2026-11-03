@@ -30,3 +30,13 @@ button:disabled { opacity: .6; cursor: progress; }
 .approx { color: var(--muted); font-size: 13px; flex-basis: 100%; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+.layers { display: inline-flex; gap: 8px; margin-left: 8px; }
+.layers button[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: 1px; }
+.possession { font: 500 13px ui-monospace, monospace; color: var(--muted); }
+.names { margin: 0; flex: 1 1 auto; text-align: center; min-width: 0; background: var(--hud-bg); color: var(--hud-fg); padding: 4px 10px; border-radius: 4px; font-size: 14px; pointer-events: none; }
+.passes { background: var(--card); border: 1px solid var(--muted); border-radius: 8px; padding: 10px 14px; max-width: 480px; margin-inline: auto; width: 100%; }
+.passes h3 { margin: 0 0 6px; font-size: 15px; }
+.passes ol { margin: 0 0 6px; padding-left: 0; list-style: none; }
+.passes li { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.dot-home, .dot-away { width: 10px; height: 10px; border-radius: 50%; display: inline-block; border: 2px solid #fff; }
+.dot-home { background: #1b3fa0; } .dot-away { background: #ffd23f; border-color: #111; }

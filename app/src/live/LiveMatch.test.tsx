@@ -19,7 +19,7 @@ const timeline: Timeline = {
   match: { fixtureId: 1, home: "Time Azul", away: "Time Vermelho", final: [1, 0] },
   units: [
     u(0, 1, [0, 0], "Começa a partida."),
-    u(20, 0, [0, 0], "Troca de passes."),
+    { ...u(20, 0, [0, 0], "Troca de passes."), event: { type: 0, team: 0, commentary: "Troca de passes.", player: { id: 1, name: "Ana" }, player2: { id: 2, name: "Bia" } } },
     u(40, 10, [1, 0], "Gol do Azul!"),
     u(60, 0, [1, 0]),
     u(90, 4, [1, 0], "Fim de jogo."),
@@ -120,4 +120,50 @@ test("lances importantes são anunciados numa região aria-live; lances comuns n
   expect(live.textContent).not.toMatch(/Troca de passes/);
   while (captured.props.playback.state().index < 2) advance(1000); // chega ao gol
   expect(live.textContent).toMatch(/Gol do Azul/);
+});
+
+describe("camada de análise", () => {
+  const toggle = (name: RegExp) => screen.getByRole("button", { name });
+
+  test("começa desligada: sem calor no campo, sem painel de passes e sem legenda de nomes", () => {
+    render(<LiveMatch timeline={timeline} />);
+    for (const n of [/calor/i, /passes/i, /nomes/i]) expect(toggle(n)).toHaveAttribute("aria-pressed", "false");
+    expect(captured.props.heat).toBeNull();
+    expect(screen.queryByRole("region", { name: /passes mais frequentes/i })).not.toBeInTheDocument();
+    expect(screen.queryByTestId("names")).not.toBeInTheDocument();
+  });
+
+  test("Calor liga e desliga o calor enviado ao campo, rotulado como aproximação", async () => {
+    render(<LiveMatch timeline={timeline} />);
+    await userEvent.click(toggle(/calor/i));
+    expect(toggle(/calor/i)).toHaveAttribute("aria-pressed", "true");
+    expect(captured.props.heat).toHaveLength(2);
+    await userEvent.click(toggle(/calor/i));
+    expect(captured.props.heat).toBeNull();
+  });
+
+  test("Passes lista os pares citados só depois de acontecerem", async () => {
+    render(<LiveMatch timeline={timeline} />);
+    await userEvent.click(toggle(/passes/i));
+    const panel = screen.getByRole("region", { name: /passes mais frequentes/i });
+    expect(panel).toHaveTextContent(/nenhum passe/i);
+    while (captured.props.playback.state().index < 1) advance(1000);
+    expect(panel).toHaveTextContent("Ana");
+    expect(panel).toHaveTextContent("Bia");
+  });
+
+  test("Nomes mostra os jogadores do lance atual", async () => {
+    render(<LiveMatch timeline={timeline} />);
+    await userEvent.click(toggle(/nomes/i));
+    while (captured.props.playback.state().index < 1) advance(1000);
+    expect(screen.getByTestId("names")).toHaveTextContent("Ana");
+    expect(screen.getByTestId("names")).toHaveTextContent("Bia");
+  });
+
+  test("com qualquer camada ligada aparece a posse em %", async () => {
+    render(<LiveMatch timeline={timeline} />);
+    expect(screen.queryByTestId("possession")).not.toBeInTheDocument();
+    await userEvent.click(toggle(/calor/i));
+    expect(screen.getByTestId("possession")).toHaveTextContent(/%/);
+  });
 });

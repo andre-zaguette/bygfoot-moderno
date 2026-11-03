@@ -261,6 +261,8 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 
 ### Sprint 03 — Semanas 5–6 | Modelo de carreira e UX base
 
+> **Estado em 2026-11-03 (Fase 3 na branch `fase-3-ao-vivo`):** reprodução 2D da timeline em PixiJS (relógio, coreografia determinística, campo visual B, camada de análise C opcional), com testes e CI; coreografia é aproximação visual, desempenho medido só no Chrome/macOS (ADR-004).
+
 > **Estado em 2026-11-03 (Fase 2 na branch `fase-2-app`):** casca Tauri 2 + React/TS, crate `engine-adapter` (motor como processo separado, contrato `MatchTimeline v1` validado) e tela "Primeira partida" com CI verde nos 3 sistemas (ADR-003). Falta empacotar o motor (Fase 6) e os lances ao vivo (Fase 3).
 
 - [ ] `BF-020` Entidades: clube, atleta, campeonato, calendário, contrato e carreira.

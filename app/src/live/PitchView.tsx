@@ -14,12 +14,14 @@ export interface PitchViewProps {
   reducedMotion: boolean;
   /** Chamado só quando o lance, o estado de reprodução ou a velocidade mudam (não a cada quadro). */
   onState?: (s: PlaybackState, f: Frame) => void;
+  /** heat[time][área] do overlay; null = camada desligada. */
+  heat?: number[][] | null;
 }
 
-export default function PitchView({ frames, playback, reducedMotion, onState }: PitchViewProps) {
+export default function PitchView({ frames, playback, reducedMotion, onState, heat = null }: PitchViewProps) {
   const host = useRef<HTMLDivElement>(null);
-  const live = useRef({ frames, playback, reducedMotion, onState });
-  live.current = { frames, playback, reducedMotion, onState };
+  const live = useRef({ frames, playback, reducedMotion, onState, heat });
+  live.current = { frames, playback, reducedMotion, onState, heat };
 
   useEffect(() => {
     const el = host.current;
@@ -36,12 +38,13 @@ export default function PitchView({ frames, playback, reducedMotion, onState }: 
       el.appendChild(a.canvas);
 
       const bg = new Graphics();
+      const heatLayer = new Graphics();
       const shadows = new Graphics();
       const players = [...Array(22)].map(() => new Graphics());
       const labels = [...Array(22)].map(() => new Text({ text: "", style: { fontFamily: "IBM Plex Mono, monospace", fontSize: 12, fontWeight: "500", fill: 0xffffff } }));
       const ball = new Graphics();
       const ballShadow = new Graphics();
-      a.stage.addChild(bg, shadows, ballShadow, ...players, ...labels, ball);
+      a.stage.addChild(bg, heatLayer, shadows, ballShadow, ...players, ...labels, ball);
       labels.forEach((l) => l.anchor.set(0.5));
 
       let s = 0; // pixels por metro
@@ -75,11 +78,27 @@ export default function PitchView({ frames, playback, reducedMotion, onState }: 
       };
       layout();
 
+      // Calor por zona física (esquerda/centro/direita): soma o que cada time fez ali.
+      // Aproximação visual: o motor só informa a área do lance, não coordenadas.
+      let heatKey = "";
+      const drawHeat = (h: number[][] | null) => {
+        const key = JSON.stringify(h);
+        if (key === heatKey) return;
+        heatKey = key;
+        heatLayer.clear();
+        if (!h) return;
+        const zones = [0, 1, 2].map((z) => h[0][z] + h[1][2 - z]);
+        const max = Math.max(1, ...zones);
+        const w = a.screen.width / 3;
+        zones.forEach((v, z) => heatLayer.rect(z * w, 0, w, a.screen.height).fill({ color: hex(tokens.overlay.heat), alpha: 0.06 + 0.4 * (v / max) }));
+      };
+
       let lastW = a.screen.width;
       let lastKey = "";
       const onTick = () => {
         const { frames: fr, playback: pb, reducedMotion: rm, onState: cb } = live.current;
-        if (a.screen.width !== lastW) { lastW = a.screen.width; layout(); }
+        if (a.screen.width !== lastW) { lastW = a.screen.width; layout(); heatKey = ""; }
+        drawHeat(live.current.heat);
         pb.tick(a.ticker.deltaMS);
         const st = pb.state();
         const cur = fr[st.index];
