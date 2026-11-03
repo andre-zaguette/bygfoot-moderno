@@ -28,6 +28,9 @@ impl From<EngineError> for UiError {
 /// Monta o `Engine` a partir da raiz do repositório. Modo de DESENVOLVIMENTO:
 /// o binário vem de `BYGFOOT_BIN` ou de `build/patched/bygfoot`. Empacotar o motor
 /// dentro do app é trabalho da Fase 6.
+/// Binário padrão do motor remendado (modo de desenvolvimento).
+const DEFAULT_BIN: &str = if cfg!(windows) { "build/patched/bygfoot.exe" } else { "build/patched/bygfoot" };
+
 pub fn engine_from(root: &Path, bin_env: Option<PathBuf>) -> Engine {
     let mut patches: Vec<String> = std::fs::read_dir(root.join("patches"))
         .map(|rd| {
@@ -40,7 +43,7 @@ pub fn engine_from(root: &Path, bin_env: Option<PathBuf>) -> Engine {
     patches.sort();
     Engine {
         wrapper: root.join("spike/headless/bf-headless"),
-        binary: bin_env.unwrap_or_else(|| root.join("build/patched/bygfoot")),
+        binary: bin_env.unwrap_or_else(|| root.join(DEFAULT_BIN)),
         patches,
     }
 }
@@ -100,7 +103,7 @@ mod tests {
         let root = repo_root();
         let e = engine_from(&root, None);
         assert!(e.wrapper.ends_with("spike/headless/bf-headless") && e.wrapper.is_file());
-        assert!(e.binary.ends_with("build/patched/bygfoot"));
+        assert!(e.binary.ends_with(DEFAULT_BIN));
         assert_eq!(e.patches.len(), 3, "os 3 remendos de patches/ devem ser declarados");
         assert!(e.patches.windows(2).all(|w| w[0] <= w[1]), "em ordem");
         let e2 = engine_from(&root, Some("/x/motor".into()));
