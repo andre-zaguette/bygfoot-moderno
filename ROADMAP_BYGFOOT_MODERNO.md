@@ -261,6 +261,8 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 
 ### Sprint 03 — Semanas 5–6 | Modelo de carreira e UX base
 
+> **Estado em 2026-11-03 (Fase 2 na branch `fase-2-app`):** casca Tauri 2 + React/TS, crate `engine-adapter` (motor como processo separado, contrato `MatchTimeline v1` validado) e tela "Primeira partida" com CI verde nos 3 sistemas (ADR-003). Falta empacotar o motor (Fase 6) e os lances ao vivo (Fase 3).
+
 - [ ] `BF-020` Entidades: clube, atleta, campeonato, calendário, contrato e carreira.
 - [ ] `BF-021` Criar dataset fictício validado com 12 clubes e 300 jogadores.
 - [ ] `BF-022` Implementar fluxo criar carreira → abrir dashboard → listar elenco.
