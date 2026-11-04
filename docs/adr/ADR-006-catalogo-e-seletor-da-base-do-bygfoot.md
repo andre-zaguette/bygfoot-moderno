@@ -13,3 +13,6 @@ Data: 2026-11-04 · Status: aceito
 - Os modos de seleções `fifa`, `wc06` e `euro08` encerram o motor original com SIGSEGV (exit 139) ao simular (`bf-headless --country <modo>`); ficam fora do seletor (`ENGINE_CRASHES`). A causa não foi investigada.
 - Times "genéricos" do upstream (p.ex. `England 374`) aparecem na lista como qualquer outro clube.
 - O motor devolve só a partida já disputada nas semanas pedidas; por isso o seletor sugere as semanas.
+
+## Evidência (2026-11-04)
+Com o motor remendado real (`bf-headless`, seed 7), um clube sorteado de 70 ligas sorteadas do catálogo (seed 23 do sorteio, fora `fifa`, `wc06` e `euro08`), com as semanas sugeridas pela regra acima: **70/70 simularam uma partida**. Uma amostra anterior com `max(2, first_week)` teve 1 falha em 70 (`sweden5j`), que motivou o `+ 1`. É uma amostra, não a verificação das ~1200 ligas: o script não está no repositório.
