@@ -40,3 +40,14 @@ button:disabled { opacity: .6; cursor: progress; }
 .passes li { display: flex; align-items: center; gap: 8px; font-size: 14px; }
 .dot-home, .dot-away { width: 10px; height: 10px; border-radius: 50%; display: inline-block; border: 2px solid #fff; }
 .dot-home { background: #1b3fa0; } .dot-away { background: #ffd23f; border-color: #111; }
+
+.crest { vertical-align: middle; object-fit: contain; }
+.side { display: inline-flex; align-items: center; gap: 6px; }
+.scoreboard span { display: inline-flex; align-items: center; gap: 6px; }
+.guide { max-width: 760px; display: grid; gap: 12px; }
+.guide h2:focus { outline: none; }
+.guide .steps { display: grid; gap: 10px; padding-left: 1.4em; }
+.guide code { background: var(--surface-2, rgba(127,127,127,.18)); padding: 1px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+.guide table { border-collapse: collapse; width: 100%; }
+.guide th, .guide td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border, rgba(127,127,127,.35)); vertical-align: middle; }
+.guide-actions { display: flex; gap: 8px; flex-wrap: wrap; }

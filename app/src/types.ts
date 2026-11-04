@@ -15,3 +15,10 @@ export interface Timeline {
 }
 export interface SimulateRequest { seed: number; country: string; team: string; weeks: number }
 export interface UiError { kind: string; message: string }
+
+/** Situação do escudo de um clube na pasta do usuário (espelha `CrestInfo` do Rust). */
+export interface CrestInfo {
+  team: string; slug: string; file: string;
+  status: "found" | "missing" | "invalid";
+  reason: string | null; data_url: string | null;
+}

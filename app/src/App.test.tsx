@@ -16,6 +16,13 @@ const timeline: Timeline = {
   ],
 };
 
+const crest = (team: string, status: "found" | "missing", slug: string) => ({
+  team, slug, file: `${slug}.png`, status, reason: null, data_url: status === "found" ? "data:image/png;base64,AAAA" : null,
+});
+beforeEach(() => {
+  vi.spyOn(api, "crestStatus").mockImplementation(async (teams) => teams.map((t) => crest(t, "missing", t.toLowerCase())));
+  vi.spyOn(api, "crestFolder").mockResolvedValue("/dados/escudos");
+});
 afterEach(() => vi.restoreAllMocks());
 
 test("lance sem comentário (opcional no contrato) não quebra nem mostra 'undefined'", async () => {
@@ -107,4 +114,52 @@ test("o foco acompanha a troca de modo: abre na partida e volta para 'Assistir p
   expect(screen.getByRole("group", { name: /partida ao vivo/i })).toHaveFocus();
   await userEvent.click(screen.getByRole("button", { name: /ver só os lances/i }));
   expect(screen.getByRole("button", { name: /assistir partida/i })).toHaveFocus();
+});
+
+test("depois de simular, consulta os escudos dos dois clubes e mostra o emblema no resultado", async () => {
+  vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  await screen.findByText("N. Runavík");
+  await waitFor(() => expect(api.crestStatus).toHaveBeenCalledWith(["N. Runavík", "V. Gotu"]));
+  expect(await screen.findByRole("img", { name: "Emblema de N. Runavík (sem escudo)" })).toBeInTheDocument();
+});
+
+test("escudo do usuário aparece no lugar do emblema", async () => {
+  vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  vi.spyOn(api, "crestStatus").mockResolvedValue([crest("N. Runavík", "found", "n-runavik"), crest("V. Gotu", "missing", "v-gotu")]);
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  expect(await screen.findByRole("img", { name: "Escudo de N. Runavík" })).toBeInTheDocument();
+  expect(screen.getByRole("img", { name: "Emblema de V. Gotu (sem escudo)" })).toBeInTheDocument();
+});
+
+test("falha ao consultar escudos não atrapalha o resultado", async () => {
+  vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  vi.spyOn(api, "crestStatus").mockRejectedValue({ kind: "crest_dir", message: "sem pasta" });
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  expect(await screen.findByTestId("score")).toHaveTextContent("1 x 2");
+  expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+});
+
+test("o Guia de escudos abre, mostra a pasta e Voltar devolve o foco ao botão e mantém a partida", async () => {
+  vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  await screen.findByTestId("score");
+  const open = screen.getByRole("button", { name: /guia de escudos/i });
+  await userEvent.click(open);
+  expect(screen.getByRole("heading", { name: /guia de escudos/i })).toHaveFocus();
+  expect(await screen.findByText("/dados/escudos")).toBeInTheDocument();
+  expect(await screen.findByRole("table", { name: /escudos dos clubes da partida/i })).toBeInTheDocument();
+  await userEvent.click(screen.getByRole("button", { name: /^voltar$/i }));
+  expect(screen.getByRole("button", { name: /guia de escudos/i })).toHaveFocus();
+  expect(screen.getByTestId("score")).toHaveTextContent("1 x 2");
+});
+
+test("o guia abre mesmo antes de qualquer partida", async () => {
+  render(<App />);
+  await userEvent.click(screen.getByRole("button", { name: /guia de escudos/i }));
+  expect(await screen.findByText(/simule uma partida/i)).toBeInTheDocument();
 });

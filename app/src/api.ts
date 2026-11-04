@@ -1,8 +1,18 @@
 import { invoke } from "@tauri-apps/api/core";
-import type { SimulateRequest, Timeline, UiError } from "./types";
+import type { CrestInfo, SimulateRequest, Timeline, UiError } from "./types";
 
 export async function simulateMatch(req: SimulateRequest): Promise<Timeline> {
   return invoke<Timeline>("simulate_match", { ...req });
+}
+
+/** Pasta onde o usuário coloca os escudos (criada se não existir). */
+export async function crestFolder(): Promise<string> {
+  return invoke<string>("crest_folder");
+}
+
+/** Situação do escudo de cada clube (encontrado, faltando ou inválido). */
+export async function crestStatus(teams: string[]): Promise<CrestInfo[]> {
+  return invoke<CrestInfo[]>("crest_status", { teams });
 }
 
 export function toUiError(e: unknown): UiError {

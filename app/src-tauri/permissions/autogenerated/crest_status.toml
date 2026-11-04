@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-crest-status"
+description = "Enables the crest_status command without any pre-configured scope."
+commands.allow = ["crest_status"]
+
+[[permission]]
+identifier = "deny-crest-status"
+description = "Denies the crest_status command without any pre-configured scope."
+commands.deny = ["crest_status"]

@@ -1,6 +1,8 @@
 //! Casca Tauri: expõe o motor do Bygfoot (via `engine-adapter`) à interface.
 //! A interface nunca calcula resultado; só mostra a timeline devolvida pelo motor.
 
+pub mod crests;
+
 use engine_adapter::{Engine, EngineError, SimulateParams, Timeline};
 use serde::Serialize;
 use std::path::{Path, PathBuf};
@@ -58,8 +60,51 @@ fn repo_root() -> PathBuf {
         .unwrap_or_else(|| PathBuf::from("."))
 }
 
+/// Pasta dos escudos do usuário: `BYGFOOT_ESCUDOS` (testes/uso avançado) ou `<dados do app>/escudos`.
+pub fn crest_dir<R: tauri::Runtime>(app: &tauri::AppHandle<R>) -> Result<PathBuf, UiError> {
+    use tauri::Manager;
+    let dir = match std::env::var_os("BYGFOOT_ESCUDOS") {
+        Some(d) => PathBuf::from(d),
+        None => app
+            .path()
+            .app_data_dir()
+            .map_err(|e| UiError { kind: "crest_dir", message: format!("sem pasta de dados do app: {e}") })?
+            .join("escudos"),
+    };
+    std::fs::create_dir_all(&dir)
+        .map_err(|e| UiError { kind: "crest_dir", message: format!("não foi possível criar a pasta de escudos: {e}") })?;
+    Ok(dir)
+}
+
+pub const MAX_CREST_TEAMS: usize = 64;
+pub const MAX_TEAM_NAME: usize = 80;
+
+pub fn validate_teams(teams: &[String]) -> Result<(), UiError> {
+    if teams.len() > MAX_CREST_TEAMS || teams.iter().any(|t| t.chars().count() > MAX_TEAM_NAME) {
+        return Err(UiError {
+            kind: "invalid_params",
+            message: format!("No máximo {MAX_CREST_TEAMS} clubes por consulta, com até {MAX_TEAM_NAME} caracteres cada."),
+        });
+    }
+    Ok(())
+}
+
 pub mod commands {
     use super::*;
+
+    /// Caminho (absoluto) da pasta onde o usuário coloca os escudos; é criada se não existir.
+    #[tauri::command]
+    pub fn crest_folder<R: tauri::Runtime>(app: tauri::AppHandle<R>) -> Result<String, UiError> {
+        Ok(crest_dir(&app)?.to_string_lossy().into_owned())
+    }
+
+    /// Situação do escudo de cada clube pedido: encontrado (com a imagem), ausente ou inválido.
+    #[tauri::command]
+    pub fn crest_status<R: tauri::Runtime>(app: tauri::AppHandle<R>, teams: Vec<String>) -> Result<Vec<crate::crests::CrestInfo>, UiError> {
+        validate_teams(&teams)?;
+        let dir = crest_dir(&app)?;
+        Ok(teams.iter().map(|t| crate::crests::crest_info(&dir, t)).collect())
+    }
 
     #[tauri::command]
     pub async fn simulate_match(seed: u32, country: String, team: String, weeks: u32) -> Result<Timeline, UiError> {
@@ -75,7 +120,7 @@ pub mod commands {
 
 pub fn run() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![commands::simulate_match])
+        .invoke_handler(tauri::generate_handler![commands::simulate_match, commands::crest_folder, commands::crest_status])
         .run(tauri::generate_context!())
         .expect("erro ao iniciar o Bygfoot Moderno");
 }

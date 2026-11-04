@@ -223,3 +223,10 @@ describe("foco, leitor de tela e legenda", () => {
     expect(screen.getByTestId("names")).toHaveTextContent(/sem jogador citado/i);
   });
 });
+
+test("o placar mostra o escudo do usuário ou o emblema de cada clube", () => {
+  const found = { team: "Time Azul", slug: "time-azul", file: "time-azul.png", status: "found" as const, reason: null, data_url: "data:image/png;base64,AAAA" };
+  render(<LiveMatch timeline={timeline} crests={{ home: found }} />);
+  expect(screen.getByRole("img", { name: "Escudo de Time Azul" })).toBeInTheDocument();
+  expect(screen.getByRole("img", { name: "Emblema de Time Vermelho (sem escudo)" })).toBeInTheDocument();
+});

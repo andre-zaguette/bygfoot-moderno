@@ -4,6 +4,8 @@ import { buildChoreography, EFFECT_LABEL, type EffectKind, type Frame } from "./
 import { createPlayback, type PlaybackState, type Speed } from "./playback";
 import PitchView from "./PitchView";
 import { buildOverlay } from "./overlay";
+import Crest from "../crests/Crest";
+import type { CrestInfo } from "../types";
 
 /** Lances que merecem ser anunciados a leitores de tela (os comuns ficam só na faixa visual). */
 const ANNOUNCE: ReadonlySet<EffectKind> = new Set(["start", "goal", "yellow", "red", "penalty", "halftime", "end"]);
@@ -21,7 +23,7 @@ function usePrefersReducedMotion(): boolean {
   return reduced;
 }
 
-export default function LiveMatch({ timeline }: { timeline: Timeline }) {
+export default function LiveMatch({ timeline, crests }: { timeline: Timeline; crests?: { home?: CrestInfo; away?: CrestInfo } }) {
   const frames = useMemo(() => buildChoreography(timeline), [timeline]);
   const playback = useMemo(() => {
     const p = createPlayback(timeline.units);
@@ -87,9 +89,9 @@ export default function LiveMatch({ timeline }: { timeline: Timeline }) {
         <PitchView frames={frames} playback={playback} reducedMotion={reducedMotion} onState={onState} heat={layers.heat && overlay ? overlay.heat : null} />
         <div className="hud">
           <div className="scorebug">
-            <span>{match.home}</span>
+            <span className="side"><Crest team={match.home} info={crests?.home} size={24} /> {match.home}</span>
             <span className="score-num" data-testid="score">{shown[0]} x {shown[1]}</span>
-            <span>{match.away}</span>
+            <span className="side">{match.away} <Crest team={match.away} info={crests?.away} size={24} /></span>
           </div>
           {layers.names && (
             <p className="names" data-testid="names">
