@@ -61,14 +61,14 @@ Os prazos são estimativas de planejamento, não compromissos nem previsões der
 
 ### 3.1. Promessa de experiência
 
-> Dirigir um clube fictício do início ao fim de uma temporada, tomar decisões com impacto visível, assistir a uma partida tática 2D compreensível e entender por que venceu ou perdeu.
+> Dirigir um clube do Bygfoot do início ao fim de uma temporada, tomar decisões com impacto visível, assistir a uma partida tática 2D compreensível e entender por que venceu ou perdeu.
 
 ### 3.2. Pilares de design
 
 1. **Profundidade sem burocracia:** dados suficientes para decisões, com hierarquia visual clara.
 2. **Partida explicável:** ações em campo, placar e estatísticas têm uma única origem lógica.
 3. **Offline-first, leve e rápido:** sem dependência de conta ou backend na nuvem.
-4. **Modificável e transparente:** saves locais, dados fictícios e configurações editáveis na medida do possível.
+4. **Modificável e transparente:** saves locais, a base de dados do Bygfoot e configurações editáveis na medida do possível.
 5. **Progresso confiável:** temporada pode ser concluída, retomada e reproduzida sem corrupção de dados.
 
 ### 3.3. Loop do jogador
@@ -88,7 +88,7 @@ Os prazos são estimativas de planejamento, não compromissos nem previsões der
 
 | Área | Must — MVP | Should — pós-MVP | Could — V1+ |
 |---|---|---|---|
-| Clubes/ligas | 1 liga fictícia de 12 clubes | múltiplas divisões | editor de competições |
+| Clubes/ligas | todas as ligas e países da base do Bygfoot | múltiplas divisões | editor de competições |
 | Jogadores | atributos, posições, contratos | lesões e moral avançadas | personalidades e relações |
 | Gestão | elenco, seleção, transferências básicas, finanças mínimas | scouting e funcionários | categorias de base |
 | Táticas | formação, escalação, estilo de jogo, substituições | instruções por atleta | treino tático sofisticado |
@@ -166,7 +166,7 @@ Exemplo **proposto**, não uma API existente do Bygfoot:
 
 - `career`, `season`, `competition`, `club`, `player`, `contract`, `transfer`, `fixture`, `standing`.
 - `lineup`, `tactic`, `formation_slot`, `match`, `match_event`, `save_metadata`, `schema_version`.
-- Dataset fictício inicial: **12 clubes × ~25 jogadores = ~300 atletas**, uma divisão, temporada de 22 rodadas.
+- Dataset: a base do Bygfoot (`upstream/support_files`: países, ligas, copas e clubes); jogadores gerados pelo motor.
 - Saves de carreira versionados: não editar diretamente os arquivos do Bygfoot como estratégia de integração permanente. Usar importador separado e backup antes de migrar.
 
 ## 6. Motor de partidas: estratégia incremental
@@ -177,7 +177,7 @@ O engine decide placar, cartões, faltas, substituições, chances, finalizaçõ
 
 ### Nível 1 — Visualização 2D dos eventos (MVP)
 
-- Campo visto de cima com 22 marcadores e bola, cores originais dos times fictícios.
+- Campo visto de cima com 22 marcadores e bola, cores dos times.
 - Animações por interpolação entre eventos; câmera fixa; velocidade `1x`, `2x`, `4x`, pausa e replay.
 - Indicadores de posse, trajetória da bola, destaque do jogador, caixa de comentários e minimapa tático quando pertinente.
 - Para um engine que não calcula trajetórias exatas, o replay será **uma representação estilizada** da sequência causal, não física real.
@@ -237,7 +237,7 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 
 - [ ] `BF-001` Clonar o upstream do Bygfoot **sem modificar** e registrar commit/tag do estudo.
 - [ ] `BF-002` Mapear `src/`, save SQLite 3.0, dependências GTK, funções de calendário e match.
-- [ ] `BF-003` Executar build original em ambiente isolado; coletar logs, testes e amostras de saves fictícios.
+- [ ] `BF-003` Executar build original em ambiente isolado; coletar logs, testes e amostras de saves.
 - [ ] `BF-004` Elaborar mapa das chamadas do motor e lista de funções que dependem de UI.
 - [ ] `BF-005` Registrar análise inicial de GPL, assets, marcas e modelo de distribuição.
 - [ ] `BF-006` Criar um GDD enxuto, personas, pilares, fluxos e wireframes das 4 telas essenciais.
@@ -266,7 +266,7 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 > **Estado em 2026-11-03 (Fase 2 na branch `fase-2-app`):** casca Tauri 2 + React/TS, crate `engine-adapter` (motor como processo separado, contrato `MatchTimeline v1` validado) e tela "Primeira partida" com CI verde nos 3 sistemas (ADR-003). Falta empacotar o motor (Fase 6) e os lances ao vivo (Fase 3).
 
 - [ ] `BF-020` Entidades: clube, atleta, campeonato, calendário, contrato e carreira.
-- [ ] `BF-021` Criar dataset fictício validado com 12 clubes e 300 jogadores.
+- [ ] `BF-021` Carregar e validar a base do Bygfoot (países, ligas, clubes) com seletor no app.
 - [ ] `BF-022` Implementar fluxo criar carreira → abrir dashboard → listar elenco.
 - [ ] `BF-023` Design tokens, componentes-base, sidebar, navegação e layout responsivo.
 - [ ] `BF-024` Testes unitários de regras e contratos do adapter.
@@ -395,7 +395,7 @@ Só após maturidade da simulação espacial; avaliar arquitetura Godot ou outro
 | Escopo inflado por features de Football Manager | Alto/alto | MoSCoW, critérios de MVP e cut-list por sprint |
 | Dependência de skills/scripts não auditados | Médio/alto | revisar `SKILL.md`, hooks, comandos, origem e permissões |
 | Problemas gráficos de WebView/Tauri no Linux | Médio/médio | builds e smoke tests em Linux desde o sprint 2 |
-| Uso não autorizado de escudos/nomes/atletas | Médio/alto | dados e identidades fictícias no MVP |
+| Uso não autorizado de escudos/nomes/atletas | Médio/alto | usar só a base do Bygfoot; escudos só se houver direito de uso (ver LEGAL_REVIEW) |
 
 **Regras de corte para proteger o release:** se houver atraso, remover scouting, lesões complexas, novas ligas, efeitos de partículas e editor avançado antes de cortar a capacidade de finalizar temporada e salvar.
 
@@ -598,7 +598,7 @@ football-manager-modern/
 ├── legacy/
 │   └── README.md               # Referência ao upstream C, sem duplicar às cegas
 ├── datasets/
-│   └── fictional-league/
+│   └── (base de dados vem de upstream/support_files)
 ├── schemas/
 │   └── match-event-v1.schema.json
 ├── tests/
@@ -629,7 +629,7 @@ Usar o arquivo **`CLAUDE.md`** que acompanha este roadmap. Mudanças no código 
 
 **Sessão 3 — UI/UX:**
 
-> Use `ui-ux-pro-max` e `frontend-design`. Proponha 2 direções visuais para dashboard, elenco e dia de jogo de um football manager offline. Crie tokens em `design-system/MASTER.md`, wireframes e critérios de acessibilidade. Evite visual de dashboard SaaS genérico. Só depois implemente um fluxo navegável com dados fictícios realistas e teste em 1366×768 e 1920×1080.
+> Use `ui-ux-pro-max` e `frontend-design`. Proponha 2 direções visuais para dashboard, elenco e dia de jogo de um football manager offline. Crie tokens em `design-system/MASTER.md`, wireframes e critérios de acessibilidade. Evite visual de dashboard SaaS genérico. Só depois implemente um fluxo navegável com dados da base do Bygfoot e teste em 1366×768 e 1920×1080.
 
 **Sessão 4 — simulação e PixiJS:**
 
@@ -654,7 +654,7 @@ Usar o arquivo **`CLAUDE.md`** que acompanha este roadmap. Mudanças no código 
 
 ### Para o MVP
 
-- [ ] Nova carreira com clube fictício.
+- [ ] Nova carreira com clube da base do Bygfoot.
 - [ ] Elenco, táticas, orçamento, transferências básicas e calendário.
 - [ ] Uma partida com lógica determinística, resultado e replay 2D.
 - [ ] Campeonato completo de 12 clubes/22 rodadas com classificação correta.
@@ -676,7 +676,7 @@ Usar o arquivo **`CLAUDE.md`** que acompanha este roadmap. Mudanças no código 
 | 6 | Avaliar licenças, caminho A/B e custo de integração | ADR com decisão provisória |
 | 7 | Criar skeleton React/Tauri/TS e CI | build limpo |
 | 8 | Contract test para `SimulationAdapter` | teste passando com adapter mock |
-| 9 | Dashboard inicial com tokens e dado fictício | screenshot + teste de acessibilidade inicial |
+| 9 | Dashboard inicial com tokens e dados do Bygfoot | screenshot + teste de acessibilidade inicial |
 | 10 | Demo: simular partida e mostrar resultado na UI | fluxo de ponta a ponta e plano da sprint 2 |
 
 **Regra de decisão:** se a simulação headless não funcionar no dia 10, não investir mais tempo em telas sofisticadas antes do gate G1 da semana 4.

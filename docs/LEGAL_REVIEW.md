@@ -73,7 +73,7 @@ Nota: a FSF considera Apache-2.0 incompatível com GPL-2.0-only e compatível co
 
 Sem resposta jurídica, o projeto fica assim (já é a regra 7 do `CLAUDE.md`):
 
-- liga e jogadores **fictícios** nos dados novos; nenhum escudo ou nome real novo;
+- o projeto usa a base de dados do Bygfoot (decisão do usuário em 2026-11-04); nenhum escudo, logo ou foto de atleta novo sem direito de uso comprovado;
 - os dados do upstream não vão para o lançamento até a pergunta 3 ser respondida;
 - novas dependências só com licença compatível (MIT/BSD preferidas);
 - avisos de copyright do upstream preservados em `upstream/` sem edição.

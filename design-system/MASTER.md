@@ -2,7 +2,7 @@
 
 Fonte de verdade dos tokens: `app/src/design/tokens.ts` (testes de contraste em `tokens.test.ts`).
 Visual escolhido pelo usuário: **B (transmissão)** como base + **C (análise)** como camada opcional.
-As cores das camisas são fictícias. Os nomes de times e jogadores exibidos vêm do banco de dados do upstream (inclui nomes de clubes reais das Ilhas Faroé): trocar por um dataset fictício é pendência da regra 7 do CLAUDE.md, antes de qualquer distribuição.
+As cores das camisas são definidas aqui. Os nomes de times e jogadores exibidos vêm da base de dados do Bygfoot (`upstream/support_files`).
 
 ## Campo (B)
 | Token | Valor | Uso |

@@ -1,5 +1,5 @@
 // Tokens da partida ao vivo (visual B "transmissão" + camada C "análise").
-// Fonte de verdade documentada em design-system/MASTER.md. Times e cores são fictícios.
+// Fonte de verdade documentada em design-system/MASTER.md. Cores das camisas definidas aqui.
 export const tokens = {
   pitch: { grassA: "#2a8647", grassB: "#34995a", line: "#f4fbf5" },
   kits: {
