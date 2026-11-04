@@ -4,7 +4,7 @@ import { vi } from "vitest";
 vi.mock("./live/PitchView", () => ({ default: () => <div data-testid="pitch" /> }));
 import App from "./App";
 import * as api from "./api";
-import type { Timeline } from "./types";
+import type { Catalog, Timeline } from "./types";
 
 const timeline: Timeline = {
   schemaVersion: 1,
@@ -19,7 +19,18 @@ const timeline: Timeline = {
 const crest = (team: string, status: "found" | "missing", slug: string) => ({
   team, slug, file: `${slug}.png`, status, reason: null, data_url: status === "found" ? "data:image/png;base64,AAAA" : null,
 });
+const catalog: Catalog = {
+  continents: [
+    { id: "europe", countries: [{ sid: "faroe_islands", name: "Faroe Islands", flag: null, cups: [], leagues: [
+      { sid: "faroe_islands1", name: "Betri Deildin", layer: 1, firstWeek: 2, teams: ["V. Gotu", "K. Klaksvík"] },
+    ] }] },
+    { id: "south_america", countries: [{ sid: "brazil", name: "Brazil", flag: null, cups: [], leagues: [
+      { sid: "brazil1", name: "Serie A", layer: 1, firstWeek: 7, teams: ["Santos", "Flamengo"] },
+    ] }] },
+  ],
+};
 beforeEach(() => {
+  vi.spyOn(api, "catalog").mockResolvedValue(catalog);
   vi.spyOn(api, "crestStatus").mockImplementation(async (teams) => teams.map((t) => crest(t, "missing", t.toLowerCase())));
   vi.spyOn(api, "crestFolder").mockResolvedValue("/dados/escudos");
 });
@@ -48,11 +59,12 @@ test("mostra o formulário e nenhum resultado no início", () => {
 test("simula e mostra placar e lances", async () => {
   const spy = vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
   render(<App />);
+  await screen.findByRole("combobox", { name: "País" }); // base carregada: semanas já sugeridas
   await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
   expect(await screen.findByText("N. Runavík")).toBeInTheDocument();
   expect(screen.getByTestId("score")).toHaveTextContent("1 x 2");
   expect(screen.getByText("Gol de Stian!")).toBeInTheDocument();
-  expect(spy).toHaveBeenCalledWith({ seed: 431199, country: "faroe_islands", team: "V. Gotu", weeks: 2 });
+  expect(spy).toHaveBeenCalledWith({ seed: 431199, country: "faroe_islands", team: "V. Gotu", weeks: 3 });
 });
 
 test("desabilita o botão enquanto simula", async () => {
@@ -162,4 +174,41 @@ test("o guia abre mesmo antes de qualquer partida", async () => {
   render(<App />);
   await userEvent.click(screen.getByRole("button", { name: /guia de escudos/i }));
   expect(await screen.findByText(/simule uma partida/i)).toBeInTheDocument();
+});
+
+test("carrega a base do Bygfoot e começa em Faroe Islands com V. Gotu", async () => {
+  render(<App />);
+  expect(await screen.findByRole("combobox", { name: "País" })).toHaveValue("faroe_islands");
+  expect(screen.getByRole("listbox", { name: "Clube" })).toHaveValue("V. Gotu");
+});
+
+test("escolher país e clube pelo seletor muda o que é simulado, com as semanas sugeridas", async () => {
+  const spy = vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  render(<App />);
+  await userEvent.selectOptions(await screen.findByRole("combobox", { name: "País" }), "brazil");
+  expect(screen.getByLabelText("Semanas")).toHaveValue(8);
+  await userEvent.selectOptions(screen.getByRole("listbox", { name: "Clube" }), "Flamengo");
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  await screen.findByTestId("score");
+  expect(spy).toHaveBeenCalledWith({ seed: 431199, country: "brazil", team: "Flamengo", weeks: 8 });
+});
+
+test("enquanto a base carrega avisa o usuário", async () => {
+  vi.spyOn(api, "catalog").mockReturnValue(new Promise(() => {}));
+  render(<App />);
+  expect(screen.getByText(/carregando a base de dados/i)).toBeInTheDocument();
+});
+
+test("se a base não carregar, mostra o erro e deixa digitar país e time à mão", async () => {
+  vi.spyOn(api, "catalog").mockRejectedValue({ kind: "catalog_unavailable", message: "Não encontrei a base" });
+  const spy = vi.spyOn(api, "simulateMatch").mockResolvedValue(timeline);
+  render(<App />);
+  expect(await screen.findByRole("alert")).toHaveTextContent(/Não encontrei a base/);
+  await userEvent.clear(screen.getByLabelText("País"));
+  await userEvent.type(screen.getByLabelText("País"), "brazil");
+  await userEvent.clear(screen.getByLabelText("Time"));
+  await userEvent.type(screen.getByLabelText("Time"), "Santos");
+  await userEvent.click(screen.getByRole("button", { name: /simular partida/i }));
+  await screen.findByTestId("score");
+  expect(spy).toHaveBeenCalledWith({ seed: 431199, country: "brazil", team: "Santos", weeks: 2 });
 });

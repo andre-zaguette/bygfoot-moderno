@@ -1,6 +1,7 @@
 //! Casca Tauri: expõe o motor do Bygfoot (via `engine-adapter`) à interface.
 //! A interface nunca calcula resultado; só mostra a timeline devolvida pelo motor.
 
+pub mod catalog;
 pub mod crests;
 
 use engine_adapter::{Engine, EngineError, SimulateParams, Timeline};
@@ -89,8 +90,26 @@ pub fn validate_teams(teams: &[String]) -> Result<(), UiError> {
     Ok(())
 }
 
+/// Base de dados que o motor usa: `BYGFOOT_SUPPORT` (igual ao `bf-headless`) ou `upstream/support_files`.
+pub fn support_dir() -> PathBuf {
+    std::env::var_os("BYGFOOT_SUPPORT").map(PathBuf::from).unwrap_or_else(|| repo_root().join("upstream/support_files"))
+}
+
 pub mod commands {
     use super::*;
+
+    /// Continentes, países, ligas, copas e clubes da base do Bygfoot, para o seletor da interface.
+    #[tauri::command]
+    pub async fn catalog() -> Result<crate::catalog::Catalog, UiError> {
+        let dir = support_dir();
+        let c = tauri::async_runtime::spawn_blocking(move || crate::catalog::load_catalog(&dir))
+            .await
+            .map_err(|e| UiError { kind: "internal", message: format!("tarefa interrompida: {e}") })?;
+        if c.continents.is_empty() {
+            return Err(UiError { kind: "catalog_unavailable", message: "Não encontrei a base de dados do Bygfoot (upstream/support_files).".into() });
+        }
+        Ok(c)
+    }
 
     /// Caminho (absoluto) da pasta onde o usuário coloca os escudos; é criada se não existir.
     #[tauri::command]
@@ -120,7 +139,7 @@ pub mod commands {
 
 pub fn run() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![commands::simulate_match, commands::crest_folder, commands::crest_status])
+        .invoke_handler(tauri::generate_handler![commands::simulate_match, commands::crest_folder, commands::crest_status, commands::catalog])
         .run(tauri::generate_context!())
         .expect("erro ao iniciar o Bygfoot Moderno");
 }

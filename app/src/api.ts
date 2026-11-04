@@ -1,8 +1,13 @@
 import { invoke } from "@tauri-apps/api/core";
-import type { CrestInfo, SimulateRequest, Timeline, UiError } from "./types";
+import type { Catalog, CrestInfo, SimulateRequest, Timeline, UiError } from "./types";
 
 export async function simulateMatch(req: SimulateRequest): Promise<Timeline> {
   return invoke<Timeline>("simulate_match", { ...req });
+}
+
+/** Continentes, países, ligas, copas e clubes da base do Bygfoot. */
+export async function catalog(): Promise<Catalog> {
+  return invoke<Catalog>("catalog");
 }
 
 /** Pasta onde o usuário coloca os escudos (criada se não existir). */

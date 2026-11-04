@@ -3,5 +3,5 @@
   "identifier": "default",
   "description": "Permissões mínimas da janela principal (sem rede; só lê a pasta de escudos do usuário, por comando próprio).",
   "windows": ["main"],
-  "permissions": ["allow-simulate-match", "allow-crest-folder", "allow-crest-status"]
+  "permissions": ["allow-simulate-match", "allow-crest-folder", "allow-crest-status", "allow-catalog"]
 }

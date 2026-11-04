@@ -13,7 +13,7 @@ fn call(body: serde_json::Value) -> Result<serde_json::Value, serde_json::Value>
 fn call_cmd(cmd: &str, body: serde_json::Value) -> Result<serde_json::Value, serde_json::Value> {
     use bygfoot_moderno_app_lib::commands as c;
     let app = mock_builder()
-        .invoke_handler(tauri::generate_handler![c::simulate_match, c::crest_folder, c::crest_status])
+        .invoke_handler(tauri::generate_handler![c::simulate_match, c::crest_folder, c::crest_status, c::catalog])
         .build(tauri::generate_context!())
         .unwrap();
     let w = WebviewWindowBuilder::new(&app, "main", Default::default()).build().unwrap();
@@ -100,4 +100,17 @@ fn crest_status_rejects_too_many_or_too_long_names() {
     let many: Vec<String> = (0..65).map(|i| format!("T{i}")).collect();
     assert_eq!(call_cmd("crest_status", json!({"teams": many})).unwrap_err()["kind"], "invalid_params");
     assert_eq!(call_cmd("crest_status", json!({"teams": ["x".repeat(81)]})).unwrap_err()["kind"], "invalid_params");
+}
+
+#[test]
+fn catalog_through_ipc_lists_the_bygfoot_database() {
+    if !std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../upstream/support_files").is_dir() {
+        return;
+    }
+    let got = call_cmd("catalog", json!({})).unwrap();
+    let europe = got["continents"].as_array().unwrap().iter().find(|c| c["id"] == "europe").unwrap();
+    let fo = europe["countries"].as_array().unwrap().iter().find(|c| c["sid"] == "faroe_islands").unwrap();
+    assert_eq!(fo["leagues"][0]["sid"], "faroe_islands1");
+    assert_eq!(fo["leagues"][0]["firstWeek"], 2, "campos em camelCase para a interface");
+    assert!(fo["leagues"][0]["teams"].as_array().unwrap().iter().any(|t| t == "V. Gotu"));
 }

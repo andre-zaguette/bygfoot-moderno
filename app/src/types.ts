@@ -22,3 +22,10 @@ export interface CrestInfo {
   status: "found" | "missing" | "invalid";
   reason: string | null; data_url: string | null;
 }
+
+/** Base de dados do Bygfoot (espelha `catalog.rs`; campos em camelCase). */
+export interface CatalogLeague { sid: string; name: string; layer: number | null; firstWeek: number | null; teams: string[] }
+export interface CatalogCup { sid: string; name: string }
+export interface CatalogCountry { sid: string; name: string; flag: string | null; leagues: CatalogLeague[]; cups: CatalogCup[] }
+export interface CatalogContinent { id: string; countries: CatalogCountry[] }
+export interface Catalog { continents: CatalogContinent[] }
