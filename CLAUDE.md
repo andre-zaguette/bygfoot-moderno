@@ -29,7 +29,7 @@ Gerenciador de futebol offline-first para desktop, com interface moderna e parti
 4. Mesma seed + estado + versão = mesmo resultado, salvo decisão de projeto documentada.
 5. Todos os DTOs e schemas de save/eventos têm versões e testes de contrato.
 6. Nenhuma query de UI modifica SQLite sem passar pela camada de aplicação.
-7. Não usar escudos, logos, nomes e imagens de atletas reais sem direitos apropriados; priorizar dataset fictício.
+7. Usar a base de dados do Bygfoot (países, ligas, copas e clubes de `upstream/support_files`). Não adicionar escudos, logos nem fotos de atletas além do que o Bygfoot já traz.
 8. Não inserir pacotes/scripts/hook de skills automaticamente sem inspecionar origem, conteúdo, permissões, dependências e licença.
 9. Não afirmar que algo foi executado, validado ou aprovado sem evidências (comando, logs, testes, screenshot).
 10. Não adicionar 3D, multiplayer, cloud, monetização ou AI gerativa ao MVP sem ADR e replanejamento.
@@ -62,7 +62,7 @@ Gerenciador de futebol offline-first para desktop, com interface moderna e parti
 
 ## Comportamento esperado
 
-- Prefira dados fictícios e seeds fixas para demos.
+- Prefira a base do Bygfoot e seeds fixas para demos.
 - Registre decisões significativas em `docs/adr/`.
 - Não crie rotinas de rede, analytics ou upload de saves por padrão.
 - Seja claro sobre hipóteses versus código existente no Bygfoot.
